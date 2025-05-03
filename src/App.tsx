@@ -1,8 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(process.env.REACT_APP_BASE_URL);
+        const res = await fetch(process.env.REACT_APP_BASE_URL + "/jobs");
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
