@@ -7,7 +7,7 @@ export const contactApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     getAllContact: build.query<Contacts[], number>({
-      query: (limit: number) => "/contact",
+      query: (limit: number) => "api/contact",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
