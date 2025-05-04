@@ -5,7 +5,7 @@ import { Jobs } from "@/shared/types";
 export const jobsApi = createApi({
   reducerPath: "jobsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BASE_URL,
+    baseUrl: import.meta.env.VITE_BASE_URL,
   }),
   endpoints: (build) => ({
     getAllJobs: build.query<Jobs[], number>({

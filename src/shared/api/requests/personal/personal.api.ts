@@ -4,7 +4,7 @@ import { setData } from "./slice";
 
 export const personalApi = createApi({
   reducerPath: "personalApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
   endpoints: (build) => ({
     getPersonalData: build.query<Personals[], number>({
       query: (limit: number) => "api/personal",
