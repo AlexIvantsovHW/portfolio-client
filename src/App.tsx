@@ -7,7 +7,7 @@ function App() {
     const fetchData = async () => {
       try {
         console.log(process.env.REACT_APP_BASE_URL);
-        const res = await fetch(process.env.REACT_APP_BASE_URL + "/jobs");
+        const res = await fetch("/jobs");
         const data = await res.json();
         console.log(data);
       } catch (error) {
