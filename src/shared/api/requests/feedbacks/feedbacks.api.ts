@@ -7,7 +7,7 @@ export const feedbacksApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     getAllFeedbacks: build.query<Feedbacks[], number>({
-      query: (limit: number) => "/feedbacks",
+      query: (limit: number) => "api/feedbacks",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

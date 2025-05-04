@@ -7,7 +7,7 @@ export const personalApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     getPersonalData: build.query<Personals[], number>({
-      query: (limit: number) => "/personal",
+      query: (limit: number) => "api/personal",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

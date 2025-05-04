@@ -7,7 +7,7 @@ export const universitiesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     getAllUniversities: build.query<Universities[], number>({
-      query: (limit: number) => `/university`,
+      query: (limit: number) => `api/university`,
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

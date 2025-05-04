@@ -9,7 +9,7 @@ export const jobsApi = createApi({
   }),
   endpoints: (build) => ({
     getAllJobs: build.query<Jobs[], number>({
-      query: (limit: number) => `/jobs`,
+      query: (limit: number) => `api/jobs`,
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

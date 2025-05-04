@@ -7,7 +7,7 @@ export const projectsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     getAllProjects: build.query<Projects[], number>({
-      query: (limit: number) => "/projects",
+      query: (limit: number) => "api/projects",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
