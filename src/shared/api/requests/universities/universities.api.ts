@@ -4,10 +4,10 @@ import { Universities } from "@/shared/types";
 
 export const universitiesApi = createApi({
   reducerPath: "universitiesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   endpoints: (build) => ({
     getAllUniversities: build.query<Universities[], number>({
-      query: (limit: number) => `/university`,
+      query: (limit: number) => `api/university`,
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
