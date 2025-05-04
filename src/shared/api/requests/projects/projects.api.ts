@@ -4,7 +4,7 @@ import { Projects } from "@/shared/types/projects.type";
 console.log("BASE URL", process.env.BASE_URL);
 export const projectsApi = createApi({
   reducerPath: "projectsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   endpoints: (build) => ({
     getAllProjects: build.query<Projects[], number>({
       query: (limit: number) => "api/projects",

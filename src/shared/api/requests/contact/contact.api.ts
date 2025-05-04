@@ -4,7 +4,7 @@ import { Contacts } from "@/shared/types/contact.type";
 
 export const contactApi = createApi({
   reducerPath: "contactApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   endpoints: (build) => ({
     getAllContact: build.query<Contacts[], number>({
       query: (limit: number) => "api/contact",

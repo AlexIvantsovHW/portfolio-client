@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
-
-import "./App.css";
+import React, { Suspense, useState, useEffect } from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useGetAllContactQuery } from "./shared/api/requests/contact";
+import { ROUTES } from "./widgets/Header/imports";
+import MainPage from "./pages/main/main-page";
+import BaseLayout from "./widgets/Layout/BaseLayout";
 
 function App() {
   const { data } = useGetAllContactQuery(20);
@@ -9,7 +11,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(process.env.REACT_APP_BASE_URL);
         const res = await fetch("api/jobs");
         const data = await res.json();
         console.log(data);
@@ -23,19 +24,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        {" "}
+        <BaseLayout>
+          <Routes>
+            <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
+          </Routes>{" "}
+        </BaseLayout>
+      </BrowserRouter>
     </div>
   );
 }
