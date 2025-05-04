@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 
 import "./App.css";
+import { useGetAllContactQuery } from "./shared/api/requests/contact";
 
 function App() {
+  const { data } = useGetAllContactQuery(20);
+  console.log(data);
   useEffect(() => {
     const fetchData = async () => {
       try {
         console.log(process.env.REACT_APP_BASE_URL);
-        const res = await fetch("/jobs");
+        const res = await fetch("api/jobs");
         const data = await res.json();
         console.log(data);
       } catch (error) {
