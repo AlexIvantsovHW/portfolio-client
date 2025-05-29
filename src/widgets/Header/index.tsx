@@ -4,18 +4,17 @@ export const Header = () => {
   const router = i.useNavigate();
   return (
     <section
-      className="sticky w-full items-center flex justify-center h-[80px]"
+      className="sticky w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
       style={{ fontFamily: "Cinzel" }}
     >
       <header className="w-full xl:w-[75%] flex items-center justify-between  h-full px-[2.5%]">
-        <img
+        <h1
           onClick={() => router(i.ROUTES.HOME)}
-          src="./logo.png"
-          width={30}
-          height={30}
-          alt="logo"
-          className="cursor-pointer hover:scale-[105%] transition ease-in-out  duration-500"
-        />{" "}
+          style={{ fontFamily: "Revamped" }}
+          className="font-revamped text-[60px] hover:text-[70px] hover:text-[#a855f7] hover:rotate-359 transition duration-700 ease-in-out text-[#ffffff] cursor-pointer"
+        >
+          A
+        </h1>
         <div className="w-full flex items-center justify-end gap-[15px]">
           <i.CustomizedBtn
             label="About"
