@@ -7,21 +7,6 @@ import BaseLayout from "./widgets/Layout/BaseLayout";
 
 function App() {
   const { data } = useGetAllContactQuery(20);
-  console.log(data);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("api/jobs");
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div className="App">
       <BrowserRouter>

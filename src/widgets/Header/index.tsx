@@ -4,7 +4,7 @@ export const Header = () => {
   const router = i.useNavigate();
   return (
     <section
-      className="sticky w-full items-center flex justify-center h-[80px] bg-[#152428] bg-opacity-70"
+      className="sticky w-full items-center flex justify-center h-[80px]"
       style={{ fontFamily: "Cinzel" }}
     >
       <header className="w-full xl:w-[75%] flex items-center justify-between  h-full px-[2.5%]">
