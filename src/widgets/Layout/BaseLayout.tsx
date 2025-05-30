@@ -1,8 +1,14 @@
 import { ReactNode } from "react";
 import { Header } from "../Header";
-import { Footer } from "../Footer";
+import { Navbar } from "@/shared/ui/navbar";
+import { useSelector } from "react-redux";
+import { AppRootState } from "@/app/store";
+import { AnimatePresence } from "framer-motion";
 
 const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
+  const openNavbar = useSelector(
+    (state: AppRootState) => state.navbarSlice.open
+  );
   return (
     <div className={`relative w-full min-h-screen overflow-hidden ${cl}`}>
       <video
@@ -15,7 +21,10 @@ const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
       />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header />
-        <main className="flex-grow h-full flex flex-col">{children}</main>
+        <main className="flex-grow h-full flex flex-col">
+          {children}
+          <AnimatePresence>{openNavbar && <Navbar />}</AnimatePresence>
+        </main>
       </div>
     </div>
   );
