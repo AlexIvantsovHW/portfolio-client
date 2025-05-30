@@ -35,7 +35,12 @@ export const NavbarBtn: React.FC<Props> = ({ label, Icon, route }) => {
       {IconComponent && (
         <IconComponent className="text-white transition-colors duration-300 group-hover:text-[#a855f7]" />
       )}
-      <span className="group-hover:text-[#a855f7]">{label}</span>
+      <span
+        style={{ fontFamily: "Rocket", fontWeight: "bold" }}
+        className="group-hover:text-[#a855f7] "
+      >
+        {label}
+      </span>
     </div>
   );
 };
