@@ -4,7 +4,7 @@ const MainPage = () => {
       <div className="px-[10px] py-[20px] flex flex-col items-center justify-center">
         <h1
           style={{ fontFamily: "Revamped" }}
-          className=" xs:text-[40px] md:text-[80px] text-[45px] text-center break-words font-revamped uppercase 
+          className=" xs:text-[40px] md:text-[80px] text-[25px] text-center break-words font-revamped uppercase 
             text-transparent bg-clip-text
             bg-gradient-to-r from-[#ffffff] via-[#a855f7] to-[#ffffff]
            "
@@ -14,7 +14,7 @@ const MainPage = () => {
         <h4
           style={{ fontFamily: "Revamped" }}
           className="text-[#ffffff] text-[20px] md:text-[30px] text-center font-bold font-revamped uppercase  
-break-words  "
+break-words text-revamped "
         >
           Fullstack development – Aleksandr Ivantsov
         </h4>
