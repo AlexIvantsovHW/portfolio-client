@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import * as icons from "../icons/index";
+
 type Props = {
   label: string;
   Icon?:
@@ -15,6 +16,7 @@ type Props = {
   click?: () => void;
   labelStyle?: string;
 };
+
 export const CustomizedBtn: React.FC<Props> = ({
   label,
   Icon,
@@ -25,13 +27,14 @@ export const CustomizedBtn: React.FC<Props> = ({
   const router = useNavigate();
   const IconComponent = Icon ? icons[Icon] : null;
   const styles = labelStyle ?? "md2:block hidden";
+
   return (
     <button
-      onClick={() => (route ? router(route) : click)}
-      className="flex cursor-pointer  hover:rotate-359 hover:bg-[#ffffff]/90 border border-[#ffffff]/50 rounded-[25px] hover:text-[#a855f7] transition duration-700 ease-in-out  bg-[#ffffff]/0 w-fit  gap-[5px] items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
+      onClick={() => (route ? router(route) : click?.())}
+      className="group flex w-[40px] h-[40px] cursor-pointer hover:rotate-359 hover:bg-[#ffffff]/90 border border-[#ffffff]/50 rounded-[50px] transition duration-700 ease-in-out bg-[#ffffff]/0 gap-[5px] items-center justify-center text-[15px]  py-[5px]"
     >
       {IconComponent && (
-        <IconComponent className="hover:text-[#a855f7] text-[#ffffff]" />
+        <IconComponent className="text-white transition duration-300 group-hover:text-[#a855f7]" />
       )}
       <span className={`${styles}`}>{label.toUpperCase()}</span>
     </button>
