@@ -15,6 +15,7 @@ const initialState: MyState = {
       country: "",
       yearExperince: 0,
       description: "",
+      avatar: "",
     },
   ],
 };
