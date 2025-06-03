@@ -19,7 +19,7 @@ const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
         loop
         playsInline
       />
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-90 flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow h-full flex flex-col">
           {children}

@@ -9,5 +9,6 @@ export type Jobs = Pick<
   | "software_id"
   | "startAt"
   | "id"
+  | "logo"
 >;
 export type Job = Omit<Jobs, "id">;

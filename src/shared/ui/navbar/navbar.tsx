@@ -8,7 +8,8 @@ export const Navbar = () => {
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -200, opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="absolute top-0 backdrop-blur-sm flex text-white  left-0 w-[200px] min-h-screen  bg-black/80"
+      style={{ zIndex: 999 }}
+      className="absolute top-0 backdrop-blur-sm flex text-white  left-0 w-[200px] min-h-screen  bg-black/80 "
     >
       <div className="relative w-full h-full flex flex-col items-start justify-center gap-[20px] py-[20px] px-[10px]">
         <i.motion.div

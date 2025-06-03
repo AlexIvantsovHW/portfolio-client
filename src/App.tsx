@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useGetAllContactQuery } from "./shared/api/requests/contact";
 import { ROUTES } from "./widgets/Header/imports";
 
 import BaseLayout from "./widgets/Layout/BaseLayout";
@@ -11,8 +10,10 @@ const MainPage = lazy(() => {
 const AboutPage = lazy(() => {
   return import("@/pages/about/about-page");
 });
+const JobsPage = lazy(() => {
+  return import("@/pages/jobs/jobs-page");
+});
 function App() {
-  const { data } = useGetAllContactQuery(20);
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,7 +28,8 @@ function App() {
           >
             <Routes>
               <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
-              <Route path={ROUTES.ABOUT + "/"} element={<AboutPage />} />
+              <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+              <Route path={ROUTES.EXPERIENCE} element={<JobsPage />} />
             </Routes>{" "}
           </Suspense>
         </BaseLayout>
