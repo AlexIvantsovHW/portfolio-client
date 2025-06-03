@@ -1,18 +1,33 @@
 import { ReactNode } from "react";
 import { Header } from "../Header";
-import { Footer } from "../Footer";
+import { Navbar } from "@/shared/ui/navbar";
+import { useSelector } from "react-redux";
+import { AppRootState } from "@/app/store";
+import { AnimatePresence } from "framer-motion";
 
 const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
+  const openNavbar = useSelector(
+    (state: AppRootState) => state.navbarSlice.open
+  );
   return (
-    <div
-      className={`w-full min-h-screen flex flex-col md:flex-row  justify-between ${cl} bg-[#263337] `}
-    >
-      <div className="w-full flex flex-col justify-between">
+    <div className={`relative w-full min-h-screen overflow-hidden ${cl}`}>
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 bg-black/40 "
+        src="/video/main-video.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="relative z-90 flex flex-col min-h-screen">
         <Header />
-        {children}
-        <Footer />
+        <main className="flex-grow h-full flex flex-col">
+          {children}
+          <AnimatePresence>{openNavbar && <Navbar />}</AnimatePresence>
+        </main>
       </div>
     </div>
   );
 };
+
 export default BaseLayout;

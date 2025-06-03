@@ -5,7 +5,19 @@ interface MyState {
   data: Personals[];
 }
 const initialState: MyState = {
-  data: [],
+  data: [
+    {
+      id: 0,
+      username: "",
+      surname: "",
+      age: 0,
+      city: 0,
+      country: "",
+      yearExperince: 0,
+      description: "",
+      avatar: "",
+    },
+  ],
 };
 
 export const personalSlice = createSlice({

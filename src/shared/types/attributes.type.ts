@@ -27,4 +27,5 @@ export type Attributes = {
   cv: string;
   website: string;
   companyLogo: string;
+  avatar: string;
 };

@@ -9,5 +9,6 @@ export type Personals = Pick<
   | "country"
   | "yearExperince"
   | "description"
+  | "avatar"
 >;
 export type Personal = Omit<Personals, "id">;

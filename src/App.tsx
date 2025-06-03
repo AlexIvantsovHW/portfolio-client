@@ -1,35 +1,37 @@
-import React, { Suspense, useState, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useGetAllContactQuery } from "./shared/api/requests/contact";
 import { ROUTES } from "./widgets/Header/imports";
-import MainPage from "./pages/main/main-page";
+
 import BaseLayout from "./widgets/Layout/BaseLayout";
-
+import { RocketLoader } from "./shared/ui/rocket-loader";
+const MainPage = lazy(() => {
+  return import("@/pages/main/main-page");
+});
+const AboutPage = lazy(() => {
+  return import("@/pages/about/about-page");
+});
+const JobsPage = lazy(() => {
+  return import("@/pages/jobs/jobs-page");
+});
 function App() {
-  const { data } = useGetAllContactQuery(20);
-  console.log(data);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("api/jobs");
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div className="App">
       <BrowserRouter>
         {" "}
         <BaseLayout>
-          <Routes>
-            <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
-          </Routes>{" "}
+          <Suspense
+            fallback={
+              <div className="w-full h-full flex-grow flex items-center justify-center">
+                <RocketLoader />
+              </div>
+            }
+          >
+            <Routes>
+              <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
+              <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+              <Route path={ROUTES.EXPERIENCE} element={<JobsPage />} />
+            </Routes>{" "}
+          </Suspense>
         </BaseLayout>
       </BrowserRouter>
     </div>

@@ -22,6 +22,7 @@ import { personalApi } from "../../shared/api/requests/personal";
 import { contactApi } from "../../shared/api/requests/contact";
 import { personalSlice } from "../../shared/api/requests/personal/slice";
 import { contactSlice } from "../../shared/api/requests/contact/slice";
+import { navbarSlice } from "@/shared/ui/navbar/slice";
 
 const persistConfig = {
   key: "root",
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   personalSlice: personalSlice.reducer,
   [contactApi.reducerPath]: contactApi.reducer,
   contactSlice: contactSlice.reducer,
+  navbarSlice: navbarSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

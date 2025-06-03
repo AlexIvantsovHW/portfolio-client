@@ -1,17 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url(https://db.onlinewebfonts.com/c/4e447705f6a3ad4e6e6ec31c7c8a14aa?family=Revamped);
+@import "tailwindcss";
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Revamped";
+  src: url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.eot");
+  src: url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/4e447705f6a3ad4e6e6ec31c7c8a14aa.svg#Revamped")
+      format("svg");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+  font-family: "Rocket";
+  src: url("/src/shared//assets/fonts/Rocketwildness-ZVMm3.ttf")
+    format("truetype");
 }
