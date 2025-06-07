@@ -1,13 +1,25 @@
+import { Box, Modal } from "@mui/material";
 import * as i from "./imports";
 
 type Props = {
   university: i.Universities;
   idx: number;
 };
-
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 export const UniversityCard = (props: Props) => {
   const { university, idx } = props;
-
+  const [visible, setVisible] = i.useState(false);
+  const [zoomed, setZoomed] = i.useState(false);
   return (
     <div
       key={university.id || idx}
@@ -48,18 +60,65 @@ export const UniversityCard = (props: Props) => {
           <p className="text-base leading-relaxed">{university.description}</p>
 
           <div className="flex flex-wrap items-center gap-4 mt-4">
-            <a
-              href={university.certificate}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i.CustomizedBtn label="Diploma" Icon="SchoolIcon" />
-            </a>
+            <i.CustomizedBtn
+              click={() => {
+                setVisible(true);
+              }}
+              label="Diploma"
+              Icon="SchoolIcon"
+            />
+
             <a href={university.link} target="_blank" rel="noopener noreferrer">
               <i.CustomizedBtn label="University" Icon="CastForEducationIcon" />
             </a>
           </div>
         </div>
+        {visible ? (
+          <Modal
+            open={visible}
+            onClose={() => setVisible(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              onClick={() => setVisible(false)}
+              sx={{
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                outline: "none",
+                cursor: "pointer",
+              }}
+            >
+              <Box
+                onClick={(e) => e.stopPropagation()}
+                sx={{
+                  overflow: "hidden",
+                  cursor: zoomed ? "zoom-out" : "zoom-in",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                }}
+                onDoubleClick={() => setZoomed(!zoomed)}
+              >
+                <img
+                  src={university.certificate}
+                  alt="Certificate"
+                  style={{
+                    transition: "transform 0.3s ease",
+                    transform: zoomed ? "scale(1.5)" : "scale(1)",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+              </Box>
+            </Box>
+          </Modal>
+        ) : null}
       </i.motion.div>
     </div>
   );

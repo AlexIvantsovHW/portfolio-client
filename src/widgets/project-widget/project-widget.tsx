@@ -1,5 +1,5 @@
 import * as i from "./imports";
-const ProjectWidget = () => {
+const widget = () => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
   );
@@ -45,4 +45,4 @@ const ProjectWidget = () => {
     </div>
   );
 };
-export default i.memo(ProjectWidget);
+export const ProjectWidget = i.memo(widget);
