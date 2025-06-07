@@ -22,7 +22,6 @@ const ProjectWidget = () => {
 
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
-      <h1 className="text-orangeLight">PROJECTS</h1>
       <video>
         <source />
       </video>
