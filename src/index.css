@@ -21,3 +21,15 @@
   src: url("/src/shared//assets/fonts/Rocketwildness-ZVMm3.ttf")
     format("truetype");
 }
+@layer utilities {
+  .custom-scroll {
+    @apply overflow-y-auto 
+      [&::-webkit-scrollbar]:w-1 
+      [&::-webkit-scrollbar-track]:rounded-full 
+      [&::-webkit-scrollbar-track]:bg-gray-100 
+      [&::-webkit-scrollbar-thumb]:rounded-full 
+      [&::-webkit-scrollbar-thumb]:bg-gray-300 
+      dark:[&::-webkit-scrollbar-track]:bg-neutral-700 
+      dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500;
+  }
+}

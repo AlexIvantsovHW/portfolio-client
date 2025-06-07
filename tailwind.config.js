@@ -12,6 +12,7 @@ module.exports = {
           "0%, 100%": { opacity: "0.1" },
           "50%": { opacity: "0.4" },
         },
+
         flame: {
           "0%, 100%": {
             transform: "translateY(0) scaleY(1)",
