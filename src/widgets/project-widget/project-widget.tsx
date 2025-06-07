@@ -35,7 +35,13 @@ const ProjectWidget = () => {
         onClick={handleProjects}
         className="flex items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
       >
-        <span>{data.length > value ? "See More" : "Hidden All"}</span>
+        <span>
+          {data.length <= 3
+            ? null
+            : data.length > value
+            ? "See More"
+            : "Hidden All"}
+        </span>
       </button>
     </div>
   );
