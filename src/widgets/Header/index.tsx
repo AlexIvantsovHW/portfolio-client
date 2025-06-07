@@ -10,8 +10,8 @@ export const Header = () => {
 
   return (
     <section
-      className="sticky backdrop-blur-sm  w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
-      style={{ fontFamily: "Cinzel" }}
+      className="sticky top-0 backdrop-blur-sm  w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
+      style={{ fontFamily: "Cinzel", zIndex: 999, position: "sticky", top: 0 }}
     >
       <header className=" w-full xl:w-[75%] flex items-center justify-between  h-full px-[2.5%]">
         <h1
