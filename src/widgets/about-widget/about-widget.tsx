@@ -17,7 +17,7 @@ export const AboutWidget = () => {
 
       <h1
         style={{ fontFamily: "Revamped" }}
-        className="text-[40px] md:text-[56px] text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
+        className="text-[30px] sm:text-[40px] md:text-[56px] break-words text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
       >
         About Me
       </h1>
