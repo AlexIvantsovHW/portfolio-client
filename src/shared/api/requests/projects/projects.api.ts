@@ -4,13 +4,14 @@ import { Projects } from "@/shared/types/projects.type";
 
 export const projectsApi = createApi({
   reducerPath: "projectsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (build) => ({
     getAllProjects: build.query<Projects[], number>({
       query: (limit: number) => "api/projects",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          console.log(data);
           dispatch(setData(data));
         } catch (err) {
           console.log(err);

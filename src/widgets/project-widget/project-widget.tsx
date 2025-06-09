@@ -1,5 +1,5 @@
 import * as i from "./imports";
-const ProjectWidget = () => {
+const widget = () => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
   );
@@ -21,19 +21,28 @@ const ProjectWidget = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start ">
-      <h1 className="text-orangeLight">PROJECTS</h1>
+    <div className="w-full  flex flex-col items-center justify-start  ">
       <video>
         <source />
       </video>
-      <i.ProjectListSkillet data={filteredData} />
+      <i.ProjectListSkillet
+        data={filteredData.sort(
+          (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
+        )}
+      />
       <button
         onClick={handleProjects}
         className="flex items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
       >
-        <span>{data.length > value ? "See More" : "Hidden All"}</span>
+        <span>
+          {data.length <= 3
+            ? null
+            : data.length > value
+            ? "See More"
+            : "Hidden All"}
+        </span>
       </button>
     </div>
   );
 };
-export default i.memo(ProjectWidget);
+export const ProjectWidget = i.memo(widget);

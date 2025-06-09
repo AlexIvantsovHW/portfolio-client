@@ -7,11 +7,15 @@ export const Header = () => {
   const router = i.useNavigate();
   const dispatch = useDispatch();
   const open = useSelector((state: AppRootState) => state.navbarSlice);
+  const handleBurgerMenu = async () => {
+    await window.scrollTo({ top: 0, behavior: "smooth" });
+    dispatch(setOpen(!open.open));
+  };
 
   return (
     <section
-      className="sticky backdrop-blur-sm  w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
-      style={{ fontFamily: "Cinzel" }}
+      className="sticky top-0 backdrop-blur-sm  w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
+      style={{ fontFamily: "Cinzel", zIndex: 999, position: "sticky", top: 0 }}
     >
       <header className=" w-full xl:w-[75%] flex items-center justify-between  h-full px-[2.5%]">
         <h1
@@ -60,7 +64,7 @@ export const Header = () => {
         </div>
         <div className="block sm:hidden flex w-full h-full items-center justify-end">
           <i.MenuIcon
-            onClick={() => dispatch(setOpen(!open.open))}
+            onClick={handleBurgerMenu}
             className="text-white hover:text-[#a855f7] cursor-pointer hover:scale-[105%]"
           />
         </div>

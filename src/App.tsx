@@ -13,6 +13,15 @@ const AboutPage = lazy(() => {
 const JobsPage = lazy(() => {
   return import("@/pages/jobs/jobs-page");
 });
+const ProjectsPage = lazy(() => {
+  return import("@/pages/projects/projects-page");
+});
+const EducationPage = lazy(() => {
+  return import("@/pages/education/education-page");
+});
+const FeedbackPage = lazy(() => {
+  return import("@/pages/feedback/feedback-page");
+});
 function App() {
   return (
     <div className="App">
@@ -30,6 +39,10 @@ function App() {
               <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
               <Route path={ROUTES.ABOUT} element={<AboutPage />} />
               <Route path={ROUTES.EXPERIENCE} element={<JobsPage />} />
+              <Route path={ROUTES.PROJECTS} element={<ProjectsPage />} />
+              <Route path={ROUTES.EDUCATION} element={<EducationPage />} />
+
+              <Route path={ROUTES.FEEDBACK} element={<FeedbackPage />} />
             </Routes>{" "}
           </Suspense>
         </BaseLayout>

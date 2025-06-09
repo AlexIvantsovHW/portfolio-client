@@ -1,7 +1,7 @@
 import * as i from "./imports";
 const widget = () => {
   const data = i.useSelector(
-    (state: i.AppRootState) => state.universitiesSlice.data
+    (state: i.AppRootState) => state.feedbacksSlice.data
   );
   console.log(data);
   const [isClient, setIsClient] = i.useState(false);
@@ -26,9 +26,9 @@ const widget = () => {
       <video>
         <source />
       </video>
-      <i.UniversityListSkillet
+      <i.FeedbackListSkillet
         data={filteredData.sort(
-          (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
+          (a, b) => Date.parse(b.date) - Date.parse(a.date)
         )}
       />
       <button
@@ -46,4 +46,4 @@ const widget = () => {
     </div>
   );
 };
-export const EducationWidget = i.memo(widget);
+export const FeedbackWidget = i.memo(widget);

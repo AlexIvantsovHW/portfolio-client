@@ -4,7 +4,7 @@ import { Feedbacks } from "@/shared/types";
 
 export const feedbacksApi = createApi({
   reducerPath: "feedbacksApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (build) => ({
     getAllFeedbacks: build.query<Feedbacks[], number>({
       query: (limit: number) => "api/feedbacks",

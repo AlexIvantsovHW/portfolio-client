@@ -4,7 +4,7 @@ import { Universities } from "@/shared/types";
 
 export const universitiesApi = createApi({
   reducerPath: "universitiesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (build) => ({
     getAllUniversities: build.query<Universities[], number>({
       query: (limit: number) => `api/university`,
