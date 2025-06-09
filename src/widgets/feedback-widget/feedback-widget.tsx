@@ -3,40 +3,45 @@ const widget = () => {
   const data = i.useSelector(
     (state: i.AppRootState) => state.feedbacksSlice.data
   );
-  console.log(data);
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
+  const listEndRef = i.useRef<HTMLDivElement | null>(null);
+  const topRef = i.useRef<HTMLDivElement | null>(null);
   i.useEffect(() => {
     setIsClient(true);
   }, []);
   const filteredData = i.useMemo(() => {
-    return data.slice(0, value);
+    const sortedData = [...data]
+      ?.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+      .slice(0, value);
+    return sortedData;
   }, [value]);
   const handleProjects = () => {
     if (data.length > value) {
-      setValue(value + 2);
+      setValue((prev) => prev + 2);
+      setTimeout(() => {
+        listEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } else {
       setValue(2);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      topRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
+      <div ref={topRef}></div>
       <video>
         <source />
       </video>
-      <i.FeedbackListSkillet
-        data={filteredData.sort(
-          (a, b) => Date.parse(b.date) - Date.parse(a.date)
-        )}
-      />
+      <i.FeedbackListSkillet data={filteredData} />
+      <div ref={listEndRef}></div>
       <button
         onClick={handleProjects}
-        className="flex items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
+        className="flex-1 px-2 py-2 max-w-[200px] rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
       >
         <span>
-          {data.length <= 3
+          {data.length <= 2
             ? null
             : data.length > value
             ? "See More"

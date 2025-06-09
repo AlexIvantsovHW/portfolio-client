@@ -19,11 +19,9 @@ export const FeedbackCard = ({ feedback, idx }: Props) => {
                    shadow-[0_0_30px_#ff00ff44] overflow-hidden 
                    flex flex-col md:flex-row items-center transition-all duration-500"
       >
-        {/* Светящийся ореол */}
         <div className="absolute top-[-30%] right-[-20%] w-[300px] h-[300px] bg-pink-500 rounded-full opacity-30 blur-[120px] z-0" />
         <div className="absolute bottom-[-30%] left-[-20%] w-[300px] h-[300px] bg-indigo-500 rounded-full opacity-30 blur-[120px] z-0" />
 
-        {/* Логотип */}
         <div className="flex items-center justify-center w-full md:w-[40%] p-6 z-10">
           <img
             src={feedback.logo}
@@ -34,7 +32,6 @@ export const FeedbackCard = ({ feedback, idx }: Props) => {
           />
         </div>
 
-        {/* Контент */}
         <div className="flex flex-col gap-4 justify-center p-6 w-full text-white z-10">
           <h2
             className="text-center text-xl md:text-2xl font-black uppercase text-fuchsia-200 tracking-widest 
@@ -48,7 +45,9 @@ export const FeedbackCard = ({ feedback, idx }: Props) => {
           </p>
 
           <div className="flex justify-center flex-wrap items-center gap-[10px]">
-            <span className="font-bold break-words">Washington (USA)</span>{" "}
+            <span className="font-bold break-words">
+              {feedback.city} ({feedback.country})
+            </span>{" "}
             <span className="italic">{i.dataConvector(feedback.date)}</span>
           </div>
           {visible ? (
