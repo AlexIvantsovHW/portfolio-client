@@ -11,6 +11,8 @@ export type Attributes = {
   logo: string;
   title: string;
   name: string;
+  codewars: string;
+  github: string;
   username: string;
   surname: string;
   age: number;

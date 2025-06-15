@@ -22,9 +22,6 @@ const widget = () => {
 
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
-      <video>
-        <source />
-      </video>
       <i.ProjectListSkillet
         data={filteredData.sort(
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
