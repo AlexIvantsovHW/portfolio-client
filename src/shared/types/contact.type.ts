@@ -10,5 +10,7 @@ export type Contacts = Pick<
   | "email"
   | "cv"
   | "website"
+  | "github"
+  | "codewars"
 >;
 export type Contact = Omit<Contacts, "id">;

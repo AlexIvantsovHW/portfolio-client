@@ -1,46 +1,58 @@
 import * as i from "./imports";
-const widget = () => {
-  const data = i.useSelector(
-    (state: i.AppRootState) => state.universitiesSlice.data
+export const ContactWidget = () => {
+  const contacts = i.useSelector(
+    (state: i.AppRootState) => state.contactSlice.data
   );
-  console.log(data);
-  const [isClient, setIsClient] = i.useState(false);
-  const [value, setValue] = i.useState<number>(2);
-  i.useEffect(() => {
-    setIsClient(true);
-  }, []);
-  const filteredData = i.useMemo(() => {
-    return data.slice(0, value);
-  }, [value]);
-  const handleProjects = () => {
-    if (data.length > value) {
-      setValue(value + 2);
-    } else {
-      setValue(2);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  const [open, setOpen] = i.useState(false);
+  const handleClose = () => setOpen(false);
 
+  const size = 80;
+  const sx = { width: size, height: size };
   return (
-    <div className="w-full  flex flex-col items-center justify-start  ">
-      <i.UniversityListSkillet
-        data={filteredData.sort(
-          (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
-        )}
+    <div className="grid grid-cols-2 sm:grid-cols-4  lg:grid-cols-9 gap-[10px] w-fit  mx-[5%]  ">
+      <i.CustomizedBtn
+        Icon="LinkedInIcon"
+        sx={sx}
+        href={contacts[0].linkedIn}
       />
-      <button
-        onClick={handleProjects}
-        className="flex items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
-      >
-        <span>
-          {data.length <= 3
-            ? null
-            : data.length > value
-            ? "See More"
-            : "Hidden All"}
-        </span>
-      </button>
+      <i.CustomizedBtn
+        Icon="ContactPageIcon"
+        sx={sx}
+        click={() => (window.location.href = contacts[0].cv)}
+      />
+      <i.CustomizedBtn
+        Icon="CodewarsIcon"
+        sx={sx}
+        href={contacts[0].codewars}
+      />
+      <i.CustomizedBtn Icon="HttpIcon" sx={sx} href={contacts[0].website} />
+
+      <i.CustomizedBtn Icon="GitHubIcon" sx={sx} href={contacts[0].github} />
+      <i.CustomizedBtn
+        Icon="WhatsAppIcon"
+        sx={sx}
+        href={`https://wa.me/${contacts[0].whatsApp}`}
+      />
+      <i.CustomizedBtn
+        Icon="AlternateEmailIcon"
+        sx={sx}
+        href={`mailto:${contacts[0].email}`}
+      />
+      <i.CustomizedBtn
+        Icon="LocalPhoneIcon"
+        sx={sx}
+        click={() => setOpen(true)}
+      />
+      <i.CustomizedBtn
+        Icon="TelegramIcon"
+        sx={sx}
+        href={`https://t.me/${contacts[0].telegram}`}
+      />
+      <i.ModalComponent
+        open={open}
+        onClose={handleClose}
+        text={contacts[0].phone.toString()}
+      />
     </div>
   );
 };
-export const ContactWidget = i.memo(widget);
