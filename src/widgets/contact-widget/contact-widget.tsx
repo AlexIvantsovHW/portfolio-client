@@ -1,8 +1,9 @@
 import * as i from "./imports";
 const widget = () => {
-  const { data } = i.useSelector(
-    (state: i.AppRootState) => state.projectsSlice
+  const data = i.useSelector(
+    (state: i.AppRootState) => state.universitiesSlice.data
   );
+  console.log(data);
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
   i.useEffect(() => {
@@ -22,7 +23,7 @@ const widget = () => {
 
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
-      <i.ProjectListSkillet
+      <i.UniversityListSkillet
         data={filteredData.sort(
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
         )}
@@ -42,4 +43,4 @@ const widget = () => {
     </div>
   );
 };
-export const ProjectWidget = i.memo(widget);
+export const ContactWidget = i.memo(widget);

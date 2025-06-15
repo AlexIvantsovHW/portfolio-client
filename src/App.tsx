@@ -1,52 +1,32 @@
-import { lazy, Suspense } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { ROUTES } from "./widgets/Header/imports";
-
-import BaseLayout from "./widgets/Layout/BaseLayout";
-import { RocketLoader } from "./shared/ui/rocket-loader";
-const MainPage = lazy(() => {
-  return import("@/pages/main/main-page");
-});
-const AboutPage = lazy(() => {
-  return import("@/pages/about/about-page");
-});
-const JobsPage = lazy(() => {
-  return import("@/pages/jobs/jobs-page");
-});
-const ProjectsPage = lazy(() => {
-  return import("@/pages/projects/projects-page");
-});
-const EducationPage = lazy(() => {
-  return import("@/pages/education/education-page");
-});
-const FeedbackPage = lazy(() => {
-  return import("@/pages/feedback/feedback-page");
-});
+import * as i from "./imports";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <i.BrowserRouter>
         {" "}
-        <BaseLayout>
-          <Suspense
+        <i.BaseLayout>
+          <i.Suspense
             fallback={
               <div className="w-full h-full flex-grow flex items-center justify-center">
-                <RocketLoader />
+                <i.RocketLoader />
               </div>
             }
           >
-            <Routes>
-              <Route path={ROUTES.HOME + "/"} element={<MainPage />} />
-              <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-              <Route path={ROUTES.EXPERIENCE} element={<JobsPage />} />
-              <Route path={ROUTES.PROJECTS} element={<ProjectsPage />} />
-              <Route path={ROUTES.EDUCATION} element={<EducationPage />} />
-
-              <Route path={ROUTES.FEEDBACK} element={<FeedbackPage />} />
-            </Routes>{" "}
-          </Suspense>
-        </BaseLayout>
-      </BrowserRouter>
+            <i.Routes>
+              <i.Route path={i.ROUTES.HOME + "/"} element={<i.MainPage />} />
+              <i.Route path={i.ROUTES.ABOUT} element={<i.AboutPage />} />
+              <i.Route path={i.ROUTES.EXPERIENCE} element={<i.JobsPage />} />
+              <i.Route path={i.ROUTES.PROJECTS} element={<i.ProjectsPage />} />
+              <i.Route
+                path={i.ROUTES.EDUCATION}
+                element={<i.EducationPage />}
+              />
+              <i.Route path={i.ROUTES.FEEDBACK} element={<i.FeedbackPage />} />
+              <i.Route path={i.ROUTES.CONTACT} element={<i.ContactPage />} />
+            </i.Routes>
+          </i.Suspense>
+        </i.BaseLayout>
+      </i.BrowserRouter>
     </div>
   );
 }
