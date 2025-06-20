@@ -25,6 +25,9 @@ const FeedbackPage = lazy(() => {
 const ContactPage = lazy(() => {
   return import("@/pages/contact/contact-page");
 });
+const LoginPage = lazy(() => {
+  return import("@/pages/log-in/log-in-page");
+});
 export {
   BaseLayout,
   RocketLoader,
@@ -40,4 +43,5 @@ export {
   BrowserRouter,
   ROUTES,
   Routes,
+  LoginPage,
 };

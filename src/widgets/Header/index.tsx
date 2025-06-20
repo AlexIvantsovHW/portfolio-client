@@ -59,7 +59,7 @@ export const Header = () => {
           <i.CustomizedBtn
             label="Sign In"
             Icon="LoginIcon"
-            route={i.ROUTES.SIGN_IN}
+            route={i.ROUTES.LOGIN}
           />
         </div>
         <div className="block sm:hidden flex w-full h-full items-center justify-end">
