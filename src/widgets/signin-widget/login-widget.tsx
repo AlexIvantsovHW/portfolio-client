@@ -1,4 +1,3 @@
-import { Alert } from "@mui/material";
 import * as i from "./imports";
 export const LoginWidget = () => {
   const {
@@ -6,10 +5,7 @@ export const LoginWidget = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = i.useForm<i.Tlogin>({ resolver: i.zodResolver(i.schema) });
-  const [mutate] = i.useLoginMutation();
-  const [alert, setAlert] = i.useState("");
-  const [alertType, setAlertType] = i.useState<"success" | "error">("success");
+  } = i.useForm<any>({ resolver: i.zodResolver(i.schema) });
   const [showPassword, setShowPassword] = i.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -24,22 +20,6 @@ export const LoginWidget = () => {
   ) => {
     event.preventDefault();
   };
-  const onSubmit = async (data: i.Tlogin) => {
-    try {
-      const response = await mutate(data).unwrap();
-      setAlertType("success");
-      setAlert(response.message || "Login successful");
-      setTimeout(() => setAlert(""), 4000);
-    } catch (error: unknown) {
-      const err = error as { data?: { message?: string }; message?: string };
-      const errorMessage =
-        err?.data?.message || err?.message || "An unknown error occurred";
-      setAlertType("error");
-      setAlert(errorMessage);
-      setTimeout(() => setAlert(""), 4000);
-    }
-  };
-
   return (
     <div className="relative z-10 flex flex-col gap-[20px] items-center justify-start max-w-4xl w-full bg-[#111827]/80 border border-indigo-500 shadow-2xl rounded-2xl p-10 backdrop-blur-sm">
       <i.Box
@@ -47,31 +27,29 @@ export const LoginWidget = () => {
         sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex items-center justify-center gap-[20px] flex-col"
       >
-        <div className="w-full flex flex-col md:flex-row justify-center items-center">
+        <div>
           <i.TextField
-            error={!!errors.email}
-            label="email"
+            error={false}
+            label="Username"
+            helperText="ex: Alex"
             variant="outlined"
-            helperText={errors.email?.message || "ex: example@gmail.com"}
+            required
             fullWidth
-            {...register("email", { required: true })}
             InputProps={{
               startAdornment: (
                 <i.InputAdornment position="start">
-                  <i.AlternateEmailIcon sx={{ color: "gray" }} />
+                  <i.PersonIcon sx={{ color: "gray" }} />
                 </i.InputAdornment>
               ),
             }}
             sx={i.sx}
-          />{" "}
+          />
           <i.TextField
-            error={!!errors.password}
+            error={false}
             label="password"
             type={showPassword ? "text" : "password"}
-            helperText={errors.password?.message || "ex: Gh)2Zfk@4!23"}
+            helperText="ex: Gh)2Zfk@4!23"
             variant="outlined"
             {...register("password", { required: true })}
             fullWidth
@@ -100,15 +78,30 @@ export const LoginWidget = () => {
             }}
             sx={i.sx}
           />
+          <i.TextField
+            error={false}
+            label="email"
+            helperText="ex: example@gmail.com"
+            variant="outlined"
+            fullWidth
+            {...register("email", { required: true })}
+            InputProps={{
+              startAdornment: (
+                <i.InputAdornment position="start">
+                  <i.AlternateEmailIcon sx={{ color: "gray" }} />
+                </i.InputAdornment>
+              ),
+            }}
+            sx={i.sx}
+          />
         </div>
-        <button
-          type="submit"
-          className="flex-1 px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
-        >
-          Login
-        </button>
       </i.Box>
-      {alert && <Alert severity={alertType}>{alert}</Alert>}
+      <button
+        type="submit"
+        className="flex-1 px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
+      >
+        Login
+      </button>
       <div className="text-gray-300">
         If you don't have an account, please{" "}
         <i.Link to={i.ROUTES.SIGN_IN}>

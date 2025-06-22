@@ -13,7 +13,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./model";
 import { Tlogin } from "@/shared/types";
-import { useLoginMutation } from "@/shared/api/requests/auth";
 export {
   Box,
   TextField,
@@ -30,6 +29,5 @@ export {
   useForm,
   zodResolver,
   schema,
-  useLoginMutation,
 };
 export type { Tlogin };
