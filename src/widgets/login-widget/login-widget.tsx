@@ -1,4 +1,3 @@
-import { Alert } from "@mui/material";
 import * as i from "./imports";
 export const LoginWidget = () => {
   const {
@@ -108,7 +107,7 @@ export const LoginWidget = () => {
           Login
         </button>
       </i.Box>
-      {alert && <Alert severity={alertType}>{alert}</Alert>}
+      {alert && <i.Alert severity={alertType}>{alert}</i.Alert>}
       <div className="text-gray-300">
         If you don't have an account, please{" "}
         <i.Link to={i.ROUTES.SIGN_IN}>

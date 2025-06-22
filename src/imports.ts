@@ -28,6 +28,9 @@ const ContactPage = lazy(() => {
 const LoginPage = lazy(() => {
   return import("@/pages/log-in/log-in-page");
 });
+const SigninPage = lazy(() => {
+  return import("@/pages/sign-in/sign-in-page");
+});
 export {
   BaseLayout,
   RocketLoader,
@@ -44,4 +47,5 @@ export {
   ROUTES,
   Routes,
   LoginPage,
+  SigninPage,
 };

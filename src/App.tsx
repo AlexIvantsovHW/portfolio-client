@@ -23,6 +23,7 @@ function App() {
               />
               <i.Route path={i.ROUTES.FEEDBACK} element={<i.FeedbackPage />} />
               <i.Route path={i.ROUTES.CONTACT} element={<i.ContactPage />} />
+              <i.Route path={i.ROUTES.SIGN_IN} element={<i.SigninPage />} />
               <i.Route path={i.ROUTES.LOGIN} element={<i.LoginPage />} />
             </i.Routes>
           </i.Suspense>
