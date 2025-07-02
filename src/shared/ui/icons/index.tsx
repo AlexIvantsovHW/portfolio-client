@@ -14,6 +14,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import SvgIcon from "@mui/material/SvgIcon";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import HttpIcon from "@mui/icons-material/Http";
+import LogoutIcon from "@mui/icons-material/Logout";
 const CodewarsIcon = ({ size = 40 }: { size?: number }) => {
   return (
     <SvgIcon sx={{ width: size, height: size }}>
@@ -45,4 +46,5 @@ export {
   SchoolIcon,
   CastForEducationIcon,
   ContactPageIcon,
+  LogoutIcon,
 };

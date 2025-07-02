@@ -7,12 +7,12 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (build) => ({
     login: build.mutation<
-      { message: string; response: { access_token: string } },
+      { access_token: string; response: { message: string[]; code: number } },
       Tlogin
     >({
       query(auth) {
         return {
-          url: `/api/login`,
+          url: `/api/auth`,
           method: "POST",
           body: auth,
         };
@@ -20,7 +20,9 @@ export const authApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setLogin(data.response));
+          localStorage.setItem("access_token", data.access_token);
+          dispatch(setLogin({ access_token: data.access_token }));
+          window.location.replace(import.meta.env.VITE_FRONTEND_URL as string);
         } catch (err) {
           console.log(err);
         }
@@ -29,7 +31,7 @@ export const authApi = createApi({
     signin: build.mutation<{ message: string }, Tsignin>({
       query(data) {
         return {
-          url: `/api/signin`,
+          url: `/api/auth/signin`,
           method: "POST",
           body: data,
         };

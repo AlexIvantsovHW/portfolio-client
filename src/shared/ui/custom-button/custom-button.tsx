@@ -20,7 +20,8 @@ type Props = {
     | "TelegramIcon"
     | "CodewarsIcon"
     | "ContactPageIcon"
-    | "HttpIcon";
+    | "HttpIcon"
+    | "LogoutIcon";
 
   route?: string;
   href?: string;
