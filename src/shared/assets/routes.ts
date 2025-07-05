@@ -8,4 +8,10 @@ export enum ROUTES {
   SIGN_IN = "/sign-in",
   LOGIN = "/login",
   EDUCATION = "/education",
+  UPDATE_ABOUT = "/update-about",
+  UPDATE_PROJECTS = "/update-projects",
+  UPDATE_EXPERIENCE = "/update-jobs",
+  UPDATE_CONTACT = "/update-contact",
+  UPDATE_FEEDBACK = "/update-feedback",
+  UPDATE_EDUCATION = "/update-education",
 }

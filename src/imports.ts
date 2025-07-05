@@ -31,6 +31,24 @@ const LoginPage = lazy(() => {
 const SigninPage = lazy(() => {
   return import("@/pages/sign-in/sign-in-page");
 });
+const UpdateAbout = lazy(() => {
+  return import("@/pages/update-about/update-about");
+});
+const UpdateContact = lazy(() => {
+  return import("@/pages/update-contact/update-contact");
+});
+const UpdateFeedback = lazy(() => {
+  return import("@/pages/update-feedback/update-feedback");
+});
+const UpdateJobs = lazy(() => {
+  return import("@/pages/update-jobs/update-jobs");
+});
+const UpdateProjects = lazy(() => {
+  return import("@/pages/update-projects/update-projects");
+});
+const UpdateEducation = lazy(() => {
+  return import("@/pages/update-education/update-education");
+});
 export {
   BaseLayout,
   RocketLoader,
@@ -48,4 +66,10 @@ export {
   Routes,
   LoginPage,
   SigninPage,
+  UpdateAbout,
+  UpdateContact,
+  UpdateFeedback,
+  UpdateJobs,
+  UpdateProjects,
+  UpdateEducation,
 };
