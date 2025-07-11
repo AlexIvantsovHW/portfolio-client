@@ -18,7 +18,7 @@ export type Attributes = {
   username: string;
   surname: string;
   age: number;
-  city: number;
+  city: string;
   country: string;
   yearExperince: number;
   date: string;

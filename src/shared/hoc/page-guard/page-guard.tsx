@@ -1,4 +1,4 @@
-import { JSX, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 type Props = {
   children: React.ReactNode;

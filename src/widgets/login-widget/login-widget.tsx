@@ -27,7 +27,7 @@ export const LoginWidget = () => {
     try {
       const response = await mutate(data).unwrap();
       setAlertType("success");
-      setAlert(response.message || "Login successful");
+      setAlert(response?.message || "Login successful");
       setTimeout(() => setAlert(""), 4000);
     } catch (error: unknown) {
       const err = error as { data?: { message?: string }; message?: string };
