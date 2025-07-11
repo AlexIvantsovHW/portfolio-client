@@ -1,7 +1,7 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { UseFormRegister } from "react-hook-form";
-import { Personal } from "@/shared/types/index";
+import { Personal, TpersonalForm } from "@/shared/types/index";
 export type TinputField = {
   Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
     muiName: string;
@@ -9,6 +9,6 @@ export type TinputField = {
   placeholder: string;
   registerName: keyof Personal;
   type?: "text" | "number";
-  register: UseFormRegister<Personal>;
+  register: UseFormRegister<TpersonalForm>;
   styles?: string;
 };
