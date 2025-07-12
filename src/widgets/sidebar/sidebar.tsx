@@ -44,7 +44,7 @@ export const Sidebar = () => {
         }}
         startIcon={IconComponent ? <IconComponent /> : null}
       >
-        {label}
+        <span className="hidden md:block"> {label}</span>
       </i.Button>
     );
   };
@@ -74,7 +74,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="w-[200px] min-h-[calc(100vh-80px)] flex-shrink-0 backdrop-blur-sm flex flex-col items-start justify-start bg-[#000000]/40 p-2 space-y-1">
+    <div className="w-[70px] md:w-[200px] min-h-[calc(100vh-80px)] flex-shrink-0 backdrop-blur-sm flex flex-col items-center  md:items-start  justify-start bg-[#000000]/40 p-2 space-y-1">
       {btnList.map((btn, idx) => (
         <SidebarBtn key={idx} {...btn} />
       ))}

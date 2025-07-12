@@ -32,8 +32,6 @@ export const UpdateAbooutWidget = () => {
     }
   }, [data]);
   const onSubmit = async (formData: i.TpersonalForm) => {
-    console.log(formData);
-    console.log(data);
     let payload: i.Personals = {
       ...formData,
       age: +formData.age,
@@ -43,28 +41,17 @@ export const UpdateAbooutWidget = () => {
 
     try {
       const request = await mutate(payload).unwrap();
-
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
       }, 4000);
     } catch (e: any) {
-      console.error(e);
-      console.log(e instanceof Error);
-
-      if (e instanceof Error) {
-        setAlert({ status: false, message: e.message });
-        setTimeout(() => {
-          setAlert({ status: true, message: "" });
-        }, 4000);
-      } else {
-        const errorMessage =
-          e?.data?.message || e?.error?.data?.message || e?.message || "Error";
-        setAlert({ status: false, message: errorMessage });
-        setTimeout(() => {
-          setAlert({ status: true, message: "" });
-        }, 4000);
-      }
+      const errorMessage =
+        e?.data?.message || e?.error?.data?.message || e?.message || "Error";
+      setAlert({ status: false, message: e.message || errorMessage });
+      setTimeout(() => {
+        setAlert({ status: true, message: "" });
+      }, 4000);
     }
   };
 
