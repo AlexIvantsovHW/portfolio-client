@@ -56,9 +56,13 @@ export const UpdateAbooutWidget = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-8 rounded-xl bg-black/40 shadow-2xl text-white">
-      <h2 className="text-3xl font-bold text-center mb-10">Update Profile</h2>
-
+    <div className="w-full max-w-5xl mx-auto p-8 rounded-xl bg-black/20 shadow-2xl text-white">
+      <h1
+        style={{ fontFamily: "Revamped" }}
+        className="text-[30px] sm:text-[40px] md:text-[56px] break-words text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
+      >
+        Update Profile
+      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 sm:grid-cols-2 gap-6"
