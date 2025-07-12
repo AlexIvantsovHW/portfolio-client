@@ -1,14 +1,15 @@
 import { Box, TextField } from "@mui/material";
 import { TinputField } from "./model";
+import { FieldValues } from "react-hook-form";
 
-export const InputField = ({
+export const InputField = <T extends FieldValues>({
   Icon,
   placeholder,
   registerName,
   type = "text",
   styles,
   register,
-}: TinputField) => {
+}: TinputField<T>) => {
   const isMultiline = registerName === "description";
 
   return (

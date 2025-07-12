@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import * as i from "./imports";
+import { ROUTES } from "@/imports";
 type JobCardType = {
   job: i.Jobs;
+  route: boolean;
 };
-export const JobCard = (data: JobCardType) => {
+export const JobCard = ({ job, route }: JobCardType) => {
   const {
     companyTitle,
     description,
@@ -12,14 +16,22 @@ export const JobCard = (data: JobCardType) => {
     startAt,
     id,
     logo,
-  } = data.job;
+  } = job;
+  const navigate = useNavigate();
+  console.log(route);
   return (
     <i.motion.div
+      onClick={() => {
+        if (!route) {
+          navigate(ROUTES.EXPERIENCE + `/${id}`);
+        }
+      }}
       key={id}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: id * 0.2, ease: "easeOut" }}
-      className="transform-gpu relative w-full md:w-[80%] xl:w-[60%] bg-[#13131f]/70 border border-fuchsia-600/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(255,0,200,0.15)] hover:shadow-[0_0_70px_rgba(255,0,200,0.35)] hover:scale-[1.025] hover:bg-[#13131f]/95 ]  transition-all duration-700 ease-in-out overflow-hidden group "
+      className="cursor-pointer
+ transform-gpu relative w-full md:w-[80%] xl:w-[60%] bg-[#13131f]/70 border border-fuchsia-600/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(255,0,200,0.15)] hover:shadow-[0_0_70px_rgba(255,0,200,0.35)] hover:scale-[1.025] hover:bg-[#13131f]/95 ]  transition-all duration-700 ease-in-out overflow-hidden group "
     >
       <div className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] bg-gradient-to-tr from-fuchsia-500 via-purple-600 to-blue-500 opacity-20 animate-pulse-slow z-0" />
 

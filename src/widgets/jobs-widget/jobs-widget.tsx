@@ -1,8 +1,9 @@
 import * as i from "./imports";
-export const JobsWidget = () => {
+type Props = { route: boolean };
+export const JobsWidget = (props: Props) => {
   return (
     <div className="w-full">
-      <i.JobListSkelet />
+      <i.JobListSkelet route={props.route} />
     </div>
   );
 };
