@@ -4,3 +4,4 @@ export * from "./universities.type";
 export * from "./feedbacks.type";
 export * from "./personal.type";
 export * from "./auth.type";
+export * from "./projects.type";

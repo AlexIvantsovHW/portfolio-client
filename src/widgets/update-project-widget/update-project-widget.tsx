@@ -1,14 +1,11 @@
-import { useNavigate } from "react-router";
 import * as i from "./imports";
-import { ROUTES } from "@/imports";
 
-const defaultValues: i.TexperienceForm = {
-  companyTitle: "",
+const defaultValues: i.TprojectForm = {
+  title: "",
   description: "",
   endAt: "1990-01-01",
-  jobTitle: "",
   logo: "",
-  software_id: "",
+  link: "",
   startAt: "1990-01-01",
 };
 type Props = {
@@ -17,29 +14,33 @@ type Props = {
 export const UpdateProjectWidget = (props: Props) => {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
-  const navigate = useNavigate();
+  const navigate = i.useNavigate();
   const { register, reset, handleSubmit, setValue, watch } =
-    i.useForm<i.TexperienceForm>({
+    i.useForm<i.TprojectForm>({
       resolver: i.zodResolver(i.schema),
       defaultValues,
     });
-  const [mutate, { isLoading }] = i.useUpdateJobMutation();
-  const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
+  const [mutate, { isLoading }] = i.useUpdateProjectMutation();
+  const { data } = i.useSelector(
+    (state: i.AppRootState) => state.projectsSlice
+  );
   i.useEffect(() => {
+    console.log(data);
     if (data?.length) {
-      const job = data?.find((j) => j.id === id) ?? defaultValues;
+      const project = data?.find((p) => p.id === id) ?? defaultValues;
 
-      const formData: i.TexperienceForm = {
-        ...job,
-        software_id: String(job.software_id),
+      const formData: i.TprojectForm = {
+        ...project,
+        // id: String(project.id),
       };
       reset(formData);
     }
   }, [data]);
-  const onSubmit = async (formData: i.TexperienceForm) => {
-    let payload: i.Jobs = {
+  const onSubmit = async (formData: i.TprojectForm) => {
+    let payload: i.Projects = {
       ...formData,
-      software_id: +formData.software_id,
+      startAt: i.dayjs(formData.startAt).toISOString(),
+      endAt: i.dayjs(formData.endAt).toISOString(),
       id: id,
     };
 
@@ -48,7 +49,7 @@ export const UpdateProjectWidget = (props: Props) => {
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
-        navigate(ROUTES.UPDATE_EXPERIENCE);
+        navigate(i.ROUTES.UPDATE_PROJECTS);
       }, 4000);
     } catch (e: any) {
       const errorMessage =
@@ -61,19 +62,19 @@ export const UpdateProjectWidget = (props: Props) => {
   };
 
   const inputData: {
-    icon: typeof i.JavascriptIcon;
+    icon: typeof i.WebAssetIcon;
     placeholder: string;
-    registerName: keyof i.TexperienceForm;
+    registerName: keyof i.TprojectForm;
   }[] = [
     {
-      icon: i.BusinessIcon,
-      placeholder: "Company",
-      registerName: "companyTitle",
+      icon: i.WebAssetIcon,
+      placeholder: "Project title",
+      registerName: "title",
     },
     {
-      icon: i.WorkIcon,
-      placeholder: "Job title",
-      registerName: "jobTitle",
+      icon: i.LinkIcon,
+      placeholder: "Project link",
+      registerName: "link",
     },
     {
       icon: i.ViewCarouselIcon,
@@ -103,7 +104,7 @@ export const UpdateProjectWidget = (props: Props) => {
               label="Start Date"
               value={i.dayjs(watch("startAt"))}
               onChange={(date) => {
-                if (date) setValue("startAt", date.format("YYYY-MM-DD"));
+                if (date) setValue("startAt", date.toISOString());
               }}
               slotProps={{
                 textField: {
@@ -138,7 +139,7 @@ export const UpdateProjectWidget = (props: Props) => {
               label="End Date"
               value={i.dayjs(watch("endAt"))}
               onChange={(date) => {
-                if (date) setValue("endAt", date.format("YYYY-MM-DD"));
+                if (date) setValue("endAt", date.toISOString());
               }}
               slotProps={{
                 textField: {

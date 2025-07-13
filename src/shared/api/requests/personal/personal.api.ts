@@ -1,6 +1,7 @@
 import { Personal, Personals } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
+import { Tresponse } from "@/shared/types/response.type";
 
 export const personalApi = createApi({
   reducerPath: "personalApi",
@@ -18,10 +19,7 @@ export const personalApi = createApi({
         }
       },
     }),
-    updatePersonalData: build.mutation<
-      { message: string; data: Personals[] },
-      Personals
-    >({
+    updatePersonalData: build.mutation<Tresponse<Personals[]>, Personals>({
       query(data) {
         return {
           url: `api/personal/${data.id}`,

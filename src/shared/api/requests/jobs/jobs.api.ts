@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/jobs.slice";
 import { Jobs } from "@/shared/types";
+import { Tresponse } from "@/shared/types/response.type";
 
 export const jobsApi = createApi({
   reducerPath: "jobsApi",
@@ -16,13 +17,10 @@ export const jobsApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setData(data));
-        } catch (err) {
-          // `onError` side-effect
-          // dispatch(messageCreated("Error fetching post!"));
-        }
+        } catch (err) {}
       },
     }),
-    updateJob: build.mutation<{ message: string; data: Jobs[] }, Jobs>({
+    updateJob: build.mutation<Tresponse<Jobs[]>, Jobs>({
       query(data) {
         return {
           url: `api/jobs/${data.id}`,
