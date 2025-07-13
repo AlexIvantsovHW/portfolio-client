@@ -20,7 +20,7 @@ const UpdateProjects = () => {
             <RocketLoader />
           </div>
         ) : (
-          <ProjectWidget />
+          <ProjectWidget route={true} />
         )}
       </div>
     </PageGuard>

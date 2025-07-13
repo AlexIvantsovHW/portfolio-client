@@ -1,5 +1,8 @@
 import * as i from "./imports";
-const widget = () => {
+type Props = {
+  route: boolean;
+};
+const widget = (props: Props) => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
   );
@@ -26,6 +29,7 @@ const widget = () => {
         data={filteredData.sort(
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
         )}
+        route={props.route}
       />
       <button
         onClick={handleProjects}
