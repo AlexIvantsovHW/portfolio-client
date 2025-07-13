@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelector } from "react-redux";
 import { AppRootState } from "@/app/store";
 import { schema } from "./model/index";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 import { Alert, CircularProgress } from "@mui/material";
 import { InputField } from "@/features/input-field/input-field";
@@ -19,7 +22,11 @@ import { useUpdateJobMutation } from "@/shared/api/requests/jobs/jobs.api";
 
 export {
   useEffect,
+  DatePicker,
+  LocalizationProvider,
   useForm,
+  AdapterDayjs,
+  dayjs,
   useSelector,
   useState,
   zodResolver,

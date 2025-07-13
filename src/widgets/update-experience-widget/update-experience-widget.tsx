@@ -1,7 +1,6 @@
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useNavigate } from "react-router";
 import * as i from "./imports";
-import dayjs from "dayjs";
+import { ROUTES } from "@/imports";
 
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
@@ -18,7 +17,7 @@ type Props = {
 export const UpdateExperienceWidget = (props: Props) => {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
-
+  const navigate = useNavigate();
   const { register, reset, handleSubmit, setValue, watch } =
     i.useForm<i.TexperienceForm>({
       resolver: i.zodResolver(i.schema),
@@ -28,9 +27,11 @@ export const UpdateExperienceWidget = (props: Props) => {
   const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
   i.useEffect(() => {
     if (data?.length) {
+      const job = data?.find((j) => j.id === id) ?? defaultValues;
+
       const formData: i.TexperienceForm = {
-        ...data[0],
-        software_id: String(data[0].software_id),
+        ...job,
+        software_id: String(job.software_id),
       };
       reset(formData);
     }
@@ -47,6 +48,7 @@ export const UpdateExperienceWidget = (props: Props) => {
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
+        navigate(ROUTES.UPDATE_EXPERIENCE);
       }, 4000);
     } catch (e: any) {
       const errorMessage =
@@ -94,12 +96,12 @@ export const UpdateExperienceWidget = (props: Props) => {
             registerName={el.registerName}
             register={register}
           />
-        ))}{" "}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        ))}
+        <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <DatePicker
+            <i.DatePicker
               label="Start Date"
-              value={dayjs(watch("startAt"))}
+              value={i.dayjs(watch("startAt"))}
               onChange={(date) => {
                 if (date) setValue("startAt", date.format("YYYY-MM-DD"));
               }}
@@ -132,9 +134,9 @@ export const UpdateExperienceWidget = (props: Props) => {
               }}
             />
 
-            <DatePicker
+            <i.DatePicker
               label="End Date"
-              value={dayjs(watch("endAt"))}
+              value={i.dayjs(watch("endAt"))}
               onChange={(date) => {
                 if (date) setValue("endAt", date.format("YYYY-MM-DD"));
               }}
@@ -167,7 +169,7 @@ export const UpdateExperienceWidget = (props: Props) => {
               }}
             />
           </div>
-        </LocalizationProvider>
+        </i.LocalizationProvider>
         <div className="sm:col-span-2">
           <label className="text-sm font-semibold flex items-center gap-2 mb-2">
             <i.DescriptionIcon className="text-green-500" />
