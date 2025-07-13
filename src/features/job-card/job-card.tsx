@@ -22,8 +22,8 @@ export const JobCard = ({ job, route }: JobCardType) => {
   return (
     <i.motion.div
       onClick={() => {
-        if (!route) {
-          navigate(ROUTES.EXPERIENCE + `/${id}`);
+        if (route) {
+          navigate(ROUTES.UPDATE_EXPERIENCE + `/${id}`);
         }
       }}
       key={id}

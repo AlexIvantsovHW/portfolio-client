@@ -49,6 +49,9 @@ const UpdateProjects = lazy(() => {
 const UpdateEducation = lazy(() => {
   return import("@/pages/update-education/update-education");
 });
+const UpdateSpecificJob = lazy(() => {
+  return import("@/pages/update-specific-job/update-specific-job");
+});
 export {
   BaseLayout,
   RocketLoader,
@@ -72,4 +75,5 @@ export {
   UpdateJobs,
   UpdateProjects,
   UpdateEducation,
+  UpdateSpecificJob,
 };

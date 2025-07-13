@@ -2,7 +2,6 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import * as i from "./imports";
 import dayjs from "dayjs";
-import type {} from "@mui/x-date-pickers/themeAugmentation";
 
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
@@ -13,8 +12,11 @@ const defaultValues: i.TexperienceForm = {
   software_id: "",
   startAt: "1990-01-01",
 };
-
-export const UpdateExperienceWidget = () => {
+type Props = {
+  id: number;
+};
+export const UpdateExperienceWidget = (props: Props) => {
+  const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
 
   const { register, reset, handleSubmit, setValue, watch } =
@@ -24,7 +26,6 @@ export const UpdateExperienceWidget = () => {
     });
   const [mutate, { isLoading }] = i.useUpdateJobMutation();
   const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
-  console.log(data);
   i.useEffect(() => {
     if (data?.length) {
       const formData: i.TexperienceForm = {
@@ -38,7 +39,7 @@ export const UpdateExperienceWidget = () => {
     let payload: i.Jobs = {
       ...formData,
       software_id: +formData.software_id,
-      id: data[0]?.id || 1,
+      id: id,
     };
 
     try {

@@ -49,6 +49,10 @@ function App() {
                 path={i.ROUTES.UPDATE_PROJECTS}
                 element={<i.UpdateProjects />}
               />
+              <i.Route
+                path={i.ROUTES.UPDATE_EXPERIENCE + "/:id"}
+                element={<i.UpdateSpecificJob />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>
