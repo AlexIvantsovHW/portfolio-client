@@ -2,16 +2,27 @@ import { useDispatch, useSelector } from "react-redux";
 import * as i from "./imports";
 import { AppRootState } from "@/app/store";
 import { setOpen } from "@/shared/ui/navbar/slice";
+import { useEffect } from "react";
 
 export const Header = () => {
   const router = i.useNavigate();
   const dispatch = useDispatch();
+  const [auth, setAuth] = i.useState(false);
   const open = useSelector((state: AppRootState) => state.navbarSlice);
   const handleBurgerMenu = async () => {
     await window.scrollTo({ top: 0, behavior: "smooth" });
     dispatch(setOpen(!open.open));
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) return;
+    setAuth(true);
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    console.log(import.meta.env.VITE_FRONTEND_URL);
+    window.location.replace(import.meta.env.VITE_FRONTEND_URL as string);
+  };
   return (
     <section
       className="sticky top-0 backdrop-blur-sm  w-full items-center flex justify-center h-[80px] bg-[#000000]/20"
@@ -56,11 +67,19 @@ export const Header = () => {
             Icon="ThumbUpAltIcon"
             route={i.ROUTES.FEEDBACK}
           />
-          <i.CustomizedBtn
-            label="Sign In"
-            Icon="LoginIcon"
-            route={i.ROUTES.SIGN_IN}
-          />
+          {!auth ? (
+            <i.CustomizedBtn
+              label="Sign In"
+              Icon="LoginIcon"
+              route={i.ROUTES.LOGIN}
+            />
+          ) : (
+            <i.CustomizedBtn
+              label="Logout"
+              Icon="LogoutIcon"
+              click={handleLogout}
+            />
+          )}
         </div>
         <div className="block sm:hidden flex w-full h-full items-center justify-end">
           <i.MenuIcon

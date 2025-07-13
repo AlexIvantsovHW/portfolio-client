@@ -12,3 +12,7 @@ export type Personals = Pick<
   | "avatar"
 >;
 export type Personal = Omit<Personals, "id">;
+export type TpersonalForm = Omit<Personal, "yearExperince" | "age"> & {
+  age: string;
+  yearExperince: string;
+};

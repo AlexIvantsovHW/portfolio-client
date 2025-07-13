@@ -12,11 +12,13 @@ export type Attributes = {
   title: string;
   name: string;
   codewars: string;
+  access_token: string;
+  message: string;
   github: string;
   username: string;
   surname: string;
   age: number;
-  city: number;
+  city: string;
   country: string;
   yearExperince: number;
   date: string;
@@ -24,6 +26,7 @@ export type Attributes = {
   whatsApp: number;
   telegram: number;
   linkedIn: string;
+  password: string;
   phone: number;
   email: string;
   cv: string;

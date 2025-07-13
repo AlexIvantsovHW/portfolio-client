@@ -1,12 +1,19 @@
+import { Button } from "@mui/material";
 import * as i from "./imports";
 
 type Props = {
   project: i.Projects;
   idx: number;
+  route: boolean;
 };
 
-export const ProjectCard: React.FC<Props> = ({ project, idx }) => {
+export const ProjectCard: React.FC<Props> = ({
+  project,
+  idx,
+  route = false,
+}) => {
   const [visible, setVisible] = i.useState(false);
+  const navigate = i.useNavigate();
 
   return (
     <i.motion.div
@@ -27,6 +34,25 @@ export const ProjectCard: React.FC<Props> = ({ project, idx }) => {
             : "opacity-100 pointer-events-auto"
         }`}
       >
+        {route ? (
+          <div className="w-full flex items-center justify-end">
+            {" "}
+            <Button
+              sx={{
+                color: "white",
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.1)",
+                },
+              }}
+              onClick={() => {
+                navigate(i.ROUTES.UPDATE_PROJECTS + `/${project.id}`);
+              }}
+              endIcon={<i.EditIcon />}
+            />
+          </div>
+        ) : null}
+
         <img
           src={project.logo}
           alt={project.title}

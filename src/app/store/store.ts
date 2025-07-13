@@ -23,6 +23,8 @@ import { contactApi } from "../../shared/api/requests/contact";
 import { personalSlice } from "../../shared/api/requests/personal/slice";
 import { contactSlice } from "../../shared/api/requests/contact/slice";
 import { navbarSlice } from "@/shared/ui/navbar/slice";
+import { authApi } from "@/shared/api/requests/auth";
+import { authSlice } from "@/shared/api/requests/auth/slice";
 
 const persistConfig = {
   key: "root",
@@ -44,6 +46,8 @@ const rootReducer = combineReducers({
   [contactApi.reducerPath]: contactApi.reducer,
   contactSlice: contactSlice.reducer,
   navbarSlice: navbarSlice.reducer,
+  [authApi.reducerPath]: authApi.reducer,
+  authSlice: authSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -61,7 +65,8 @@ export const store = configureStore({
       projectsApi.middleware,
       feedbacksApi.middleware,
       personalApi.middleware,
-      contactApi.middleware
+      contactApi.middleware,
+      authApi.middleware
     ),
 });
 

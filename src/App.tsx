@@ -23,6 +23,40 @@ function App() {
               />
               <i.Route path={i.ROUTES.FEEDBACK} element={<i.FeedbackPage />} />
               <i.Route path={i.ROUTES.CONTACT} element={<i.ContactPage />} />
+              <i.Route path={i.ROUTES.SIGN_IN} element={<i.SigninPage />} />
+              <i.Route path={i.ROUTES.LOGIN} element={<i.LoginPage />} />
+              <i.Route
+                path={i.ROUTES.UPDATE_ABOUT}
+                element={<i.UpdateAbout />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_CONTACT}
+                element={<i.UpdateContact />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_EDUCATION}
+                element={<i.UpdateEducation />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_EXPERIENCE}
+                element={<i.UpdateJobs />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_FEEDBACK}
+                element={<i.UpdateFeedback />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_PROJECTS}
+                element={<i.UpdateProjects />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_EXPERIENCE + "/:id"}
+                element={<i.UpdateSpecificJob />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_PROJECTS + "/:id"}
+                element={<i.UpdateSpecificProject />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>

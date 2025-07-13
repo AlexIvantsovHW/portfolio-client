@@ -11,7 +11,7 @@ const initialState: MyState = {
       username: "",
       surname: "",
       age: 0,
-      city: 0,
+      city: "",
       country: "",
       yearExperince: 0,
       description: "",

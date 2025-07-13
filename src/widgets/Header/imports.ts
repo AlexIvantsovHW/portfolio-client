@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { ROUTES } from "@/shared/assets/routes";
 import { CustomizedBtn } from "@/shared/ui/custom-button";
 import { useNavigate } from "react-router";
+import LogoutIcon from "@mui/icons-material/Logout";
 export {
   React,
   useState,
@@ -12,4 +13,5 @@ export {
   CustomizedBtn,
   SchoolIcon,
   MenuIcon,
+  LogoutIcon,
 };

@@ -25,6 +25,36 @@ const FeedbackPage = lazy(() => {
 const ContactPage = lazy(() => {
   return import("@/pages/contact/contact-page");
 });
+const LoginPage = lazy(() => {
+  return import("@/pages/log-in/log-in-page");
+});
+const SigninPage = lazy(() => {
+  return import("@/pages/sign-in/sign-in-page");
+});
+const UpdateAbout = lazy(() => {
+  return import("@/pages/update-about/update-about");
+});
+const UpdateContact = lazy(() => {
+  return import("@/pages/update-contact/update-contact");
+});
+const UpdateFeedback = lazy(() => {
+  return import("@/pages/update-feedback/update-feedback");
+});
+const UpdateJobs = lazy(() => {
+  return import("@/pages/update-jobs/update-jobs");
+});
+const UpdateProjects = lazy(() => {
+  return import("@/pages/update-projects/update-projects");
+});
+const UpdateEducation = lazy(() => {
+  return import("@/pages/update-education/update-education");
+});
+const UpdateSpecificJob = lazy(() => {
+  return import("@/pages/update-specific-job/update-specific-job");
+});
+const UpdateSpecificProject = lazy(() => {
+  return import("@/pages/update-specific-project/update-specific-project");
+});
 export {
   BaseLayout,
   RocketLoader,
@@ -40,4 +70,14 @@ export {
   BrowserRouter,
   ROUTES,
   Routes,
+  LoginPage,
+  SigninPage,
+  UpdateAbout,
+  UpdateContact,
+  UpdateFeedback,
+  UpdateJobs,
+  UpdateProjects,
+  UpdateEducation,
+  UpdateSpecificJob,
+  UpdateSpecificProject,
 };
