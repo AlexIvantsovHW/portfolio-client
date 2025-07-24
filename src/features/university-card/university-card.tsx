@@ -3,12 +3,15 @@ import * as i from "./imports";
 type Props = {
   university: i.Universities;
   idx: number;
+  route: boolean;
 };
 export const UniversityCard = (props: Props) => {
-  const { university, idx } = props;
+  const { university, idx, route = false } = props;
   const [visible, setVisible] = i.useState(false);
   const [visibleDescription, setVisibleDescription] = i.useState(false);
   const [zoomed, setZoomed] = i.useState(false);
+  const navigate = i.useNavigate();
+  console.log(`route`, route);
   return (
     <div
       key={university.id || idx}
@@ -21,6 +24,7 @@ export const UniversityCard = (props: Props) => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="backdrop-blur-lg bg-dark/20 dark:bg-white/10 shadow-xl border border-white/30 dark:border-white/20 rounded-2xl overflow-hidden flex flex-col md:flex-row items-stretch transition-all duration-500"
       >
+        {" "}
         <div className="flex items-center justify-center p-4 bg-dark/40  ">
           <img
             src={university.companyLogo}
@@ -34,8 +38,25 @@ export const UniversityCard = (props: Props) => {
           "
           />
         </div>
-
         <div className="w-full flex-grow flex flex-col gap-4 justify-center p-6 text-white bg-black/40 dark:text-white">
+          {route ? (
+            <div className="w-full flex items-center justify-end">
+              {" "}
+              <i.Button
+                sx={{
+                  color: "white",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                  },
+                }}
+                onClick={() => {
+                  navigate(i.ROUTES.UPDATE_EDUCATION + `/${university.id}`);
+                }}
+                endIcon={<i.EditIcon />}
+              />
+            </div>
+          ) : null}
           <h1 className="text-2xl font-extrabold tracking-wide uppercase text-center text-pink-400 drop-shadow-[0_0_4px_rgba(255,0,100,0.5)]">
             {university.companyTitle}
           </h1>

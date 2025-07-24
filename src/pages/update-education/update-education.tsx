@@ -21,7 +21,7 @@ const UpdateEducation = () => {
             <RocketLoader />
           </div>
         ) : (
-          <EducationWidget />
+          <EducationWidget route={true} />
         )}
       </div>
     </PageGuard>

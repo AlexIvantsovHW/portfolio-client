@@ -4,14 +4,21 @@ import { memo } from "react";
 
 type Props = {
   data: Universities[];
+  route: boolean;
 };
 export const UniversityListSkillet = memo((props: Props) => {
-  const { data } = props;
-  console.log("UniversityListSkillet Render");
+  const { data, route = false } = props;
+
   return (
     <div className="w-full flex flex-col items-center justify-start gap-[10px]">
       {data.map((university, idx) => {
-        return <UniversityCard university={university} idx={idx} />;
+        return (
+          <UniversityCard
+            university={university}
+            idx={university.id}
+            route={route}
+          />
+        );
       })}
     </div>
   );

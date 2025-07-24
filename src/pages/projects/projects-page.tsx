@@ -18,7 +18,7 @@ const ProjectsPage = () => {
           <RocketLoader />
         </div>
       ) : (
-        <ProjectWidget />
+        <ProjectWidget route={false} />
       )}
     </div>
   );

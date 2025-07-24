@@ -7,7 +7,7 @@ import { UpdateExperienceWidget } from "@/widgets/update-experience-widget";
 
 const UpdateJobs = () => {
   const { data, isLoading } = useGetAllJobsQuery(20);
-
+  console.log(data);
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">

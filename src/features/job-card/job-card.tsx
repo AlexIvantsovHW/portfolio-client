@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
 import * as i from "./imports";
-import { ROUTES } from "@/imports";
+
 type JobCardType = {
   job: i.Jobs;
   route: boolean;
 };
 export const JobCard = ({ job, route }: JobCardType) => {
+  console.log(`route`, route);
   const {
     companyTitle,
     description,
@@ -23,7 +24,7 @@ export const JobCard = ({ job, route }: JobCardType) => {
     <i.motion.div
       onClick={() => {
         if (route) {
-          navigate(ROUTES.UPDATE_EXPERIENCE + `/${id}`);
+          navigate(i.ROUTES.UPDATE_EXPERIENCE + `/${id}`);
         }
       }}
       key={id}
@@ -33,8 +34,26 @@ export const JobCard = ({ job, route }: JobCardType) => {
       className="cursor-pointer
  transform-gpu relative w-full md:w-[80%] xl:w-[60%] bg-[#13131f]/70 border border-fuchsia-600/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(255,0,200,0.15)] hover:shadow-[0_0_70px_rgba(255,0,200,0.35)] hover:scale-[1.025] hover:bg-[#13131f]/95 ]  transition-all duration-700 ease-in-out overflow-hidden group "
     >
+      {" "}
+      {route ? (
+        <div className="w-full flex items-center justify-end">
+          {" "}
+          <i.Button
+            sx={{
+              color: "white",
+              transition: "transform 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.1)",
+              },
+            }}
+            onClick={() => {
+              navigate(i.ROUTES.EXPERIENCE + `/${id}`);
+            }}
+            endIcon={<i.EditIcon />}
+          />
+        </div>
+      ) : null}
       <div className="absolute top-[-40%] left-[-40%] w-[180%] h-[180%] bg-gradient-to-tr from-fuchsia-500 via-purple-600 to-blue-500 opacity-20 animate-pulse-slow z-0" />
-
       <div className="relative z-10 flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-center gap-5">
           <div className="w-16 h-16 rounded-xl border border-pink-500/30 bg-white/10 flex items-center justify-center overflow-hidden shadow-inner shadow-pink-800/50 will-change-transform">
@@ -73,7 +92,6 @@ export const JobCard = ({ job, route }: JobCardType) => {
           {description}
         </p>
       </div>
-
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 via-blue-500 to-fuchsia-500 animate-pulse" />
     </i.motion.div>
   );

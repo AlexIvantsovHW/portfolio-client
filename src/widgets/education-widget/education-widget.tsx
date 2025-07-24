@@ -1,9 +1,9 @@
 import * as i from "./imports";
-const widget = () => {
+const widget = ({ route }: { route: boolean }) => {
   const data = i.useSelector(
     (state: i.AppRootState) => state.universitiesSlice.data
   );
-  console.log(data);
+
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
   i.useEffect(() => {
@@ -24,6 +24,7 @@ const widget = () => {
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
       <i.UniversityListSkillet
+        route={route}
         data={filteredData.sort(
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
         )}

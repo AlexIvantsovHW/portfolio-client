@@ -1,3 +1,4 @@
+import React from "react";
 import * as i from "./imports";
 
 const defaultValues: i.TprojectForm = {
@@ -11,7 +12,7 @@ const defaultValues: i.TprojectForm = {
 type Props = {
   id: number;
 };
-export const UpdateProjectWidget = (props: Props) => {
+export const UpdateProjectWidget = React.memo(function (props: Props) {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = i.useNavigate();
@@ -25,13 +26,10 @@ export const UpdateProjectWidget = (props: Props) => {
     (state: i.AppRootState) => state.projectsSlice
   );
   i.useEffect(() => {
-    console.log(data);
     if (data?.length) {
       const project = data?.find((p) => p.id === id) ?? defaultValues;
-
       const formData: i.TprojectForm = {
         ...project,
-        // id: String(project.id),
       };
       reset(formData);
     }
@@ -202,4 +200,4 @@ export const UpdateProjectWidget = (props: Props) => {
       </form>
     </div>
   );
-};
+});
