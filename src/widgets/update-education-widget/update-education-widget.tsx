@@ -197,6 +197,9 @@ export const UpdateEducationWidget = (props: Props) => {
             placeholder="Tell us about yourself"
             className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
           />
+          {errors["description"] ? (
+            <div className="text-red-500">{errors["description"].message}</div>
+          ) : null}
         </div>
         {alert.message ? (
           <i.Alert
