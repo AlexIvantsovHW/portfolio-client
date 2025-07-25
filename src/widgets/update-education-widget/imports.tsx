@@ -11,7 +11,7 @@ export { ROUTES } from "@/imports";
 export { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 export { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export { default as dayjs } from "dayjs";
-
+export { CustomTextArea } from "@/shared/components/custom-textarea/custom-textarea";
 export { Alert, CircularProgress } from "@mui/material";
 
 export { InputField } from "@/features/input-field/input-field";

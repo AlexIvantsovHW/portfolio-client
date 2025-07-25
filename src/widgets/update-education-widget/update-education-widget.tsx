@@ -54,7 +54,7 @@ export const UpdateEducationWidget = (props: Props) => {
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
-        navigate(i.ROUTES.UPDATE_EXPERIENCE);
+        navigate(i.ROUTES.UPDATE_EDUCATION);
       }, 4000);
     } catch (e: any) {
       const errorMessage =
@@ -187,20 +187,14 @@ export const UpdateEducationWidget = (props: Props) => {
             />
           </div>
         </i.LocalizationProvider>
-        <div className="sm:col-span-2">
-          <label className="text-sm font-semibold flex items-center gap-2 mb-2">
-            <i.DescriptionIcon className="text-green-500" />
-            Description
-          </label>
-          <textarea
-            {...register("description")}
-            placeholder="Tell us about yourself"
-            className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
-          />
-          {errors["description"] ? (
-            <div className="text-red-500">{errors["description"].message}</div>
-          ) : null}
-        </div>
+
+        <i.CustomTextArea
+          Icon={i.DescriptionIcon}
+          label="Description"
+          errors={errors}
+          register={register}
+          registerName="description"
+        />
         {alert.message ? (
           <i.Alert
             variant="filled"
