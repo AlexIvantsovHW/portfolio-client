@@ -8,6 +8,7 @@ export const InputField = <T extends FieldValues>({
   registerName,
   type = "text",
   styles,
+  errors,
   register,
 }: TinputField<T>) => {
   const isMultiline = registerName === "description";
@@ -36,6 +37,8 @@ export const InputField = <T extends FieldValues>({
       <TextField
         fullWidth
         type={type}
+        error={!!errors[registerName]}
+        helperText={errors ? (errors[registerName]?.message as string) : ""}
         variant="outlined"
         placeholder={placeholder}
         {...register(registerName)}

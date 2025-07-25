@@ -3,8 +3,6 @@ import { PageGuard } from "@/shared/hoc/page-guard";
 import { RocketLoader } from "@/shared/ui/rocket-loader";
 import { JobsWidget } from "@/widgets/jobs-widget";
 
-import { UpdateExperienceWidget } from "@/widgets/update-experience-widget";
-
 const UpdateJobs = () => {
   const { data, isLoading } = useGetAllJobsQuery(20);
   console.log(data);

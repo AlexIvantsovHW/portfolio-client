@@ -57,6 +57,10 @@ function App() {
                 path={i.ROUTES.UPDATE_PROJECTS + "/:id"}
                 element={<i.UpdateSpecificProject />}
               />
+              <i.Route
+                path={i.ROUTES.UPDATE_EDUCATION + "/:id"}
+                element={<i.UpdateSpecificEducation />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>

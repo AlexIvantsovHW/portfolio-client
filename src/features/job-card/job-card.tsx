@@ -7,7 +7,6 @@ type JobCardType = {
   route: boolean;
 };
 export const JobCard = ({ job, route }: JobCardType) => {
-  console.log(`route`, route);
   const {
     companyTitle,
     description,
