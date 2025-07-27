@@ -18,7 +18,7 @@ export const CustomDatePicker = <T extends FieldValues>(props: Props<T>) => {
   const { watch, setValue, registerName, label } = props;
   return (
     <DatePicker
-      label
+      label={label}
       value={dayjs(watch(registerName) as string)}
       onChange={(date) => {
         if (date)

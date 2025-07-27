@@ -1,5 +1,6 @@
 import React from "react";
 import * as i from "./imports";
+import { CustomDatePicker } from "@/shared/components/custom-datepicker/custom-datepicker";
 
 const defaultValues: i.TprojectForm = {
   title: "",
@@ -105,74 +106,17 @@ export const UpdateProjectWidget = React.memo(function (props: Props) {
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <i.DatePicker
+            <CustomDatePicker
               label="Start Date"
-              value={i.dayjs(watch("startAt"))}
-              onChange={(date) => {
-                if (date) setValue("startAt", date.toISOString());
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
-            />
-
-            <i.DatePicker
+              watch={watch}
+              setValue={setValue}
+              registerName={"startAt"}
+            />{" "}
+            <CustomDatePicker
               label="End Date"
-              value={i.dayjs(watch("endAt"))}
-              onChange={(date) => {
-                if (date) setValue("endAt", date.toISOString());
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              watch={watch}
+              setValue={setValue}
+              registerName={"endAt"}
             />
           </div>
         </i.LocalizationProvider>
