@@ -1,3 +1,5 @@
+export { CustomDatePicker } from "../update-project-widget/imports";
+
 export { useUpdateEducationMutation } from "@/shared/api/requests/universities/universities.api";
 export type { Universities } from "@/shared/types/universities.type";
 export { useEffect, useState } from "react";
@@ -10,7 +12,6 @@ export type { TeducationForm, Experience } from "./model/schema";
 export { ROUTES } from "@/imports";
 export { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 export { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-export { default as dayjs } from "dayjs";
 export { CustomTextArea } from "@/shared/components/custom-textarea/custom-textarea";
 export { Alert, CircularProgress } from "@mui/material";
 
