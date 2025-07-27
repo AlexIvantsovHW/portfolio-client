@@ -13,7 +13,12 @@ const defaultValues: i.TpersonalForm = {
 export const UpdateAbooutWidget = () => {
   const [alert, setAlert] = i.useState({ status: true, message: "" });
 
-  const { register, reset, handleSubmit } = i.useForm<i.TpersonalForm>({
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = i.useForm<i.TpersonalForm>({
     resolver: i.zodResolver(i.schema),
     defaultValues,
   });
@@ -72,36 +77,42 @@ export const UpdateAbooutWidget = () => {
           placeholder="User name"
           registerName="username"
           register={register}
+          errors={errors}
         />
         <i.InputField
           Icon={i.SensorOccupiedIcon}
           placeholder="Surname"
           registerName="surname"
           register={register}
+          errors={errors}
         />
         <i.InputField
           Icon={i.FlagIcon}
           placeholder="Country"
           registerName="country"
           register={register}
+          errors={errors}
         />
         <i.InputField
           Icon={i.LocationCityIcon}
           placeholder="City"
           registerName="city"
           register={register}
+          errors={errors}
         />
         <i.InputField
           Icon={i.Looks6Icon}
           placeholder="Age"
           registerName="age"
           register={register}
+          errors={errors}
         />
         <i.InputField
           Icon={i.Timer3SelectIcon}
           placeholder="Experience (years)"
           registerName="yearExperince"
           register={register}
+          errors={errors}
         />
         <div className="sm:col-span-2">
           <label className="text-sm font-semibold flex items-center gap-2 mb-2">
@@ -119,6 +130,7 @@ export const UpdateAbooutWidget = () => {
           placeholder="Avatar (URL)"
           registerName="avatar"
           register={register}
+          errors={errors}
           styles="sm:col-span-2"
         />{" "}
         {alert.message ? (
