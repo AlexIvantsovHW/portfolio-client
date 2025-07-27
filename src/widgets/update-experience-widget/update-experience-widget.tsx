@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router";
 import * as i from "./imports";
-import { ROUTES } from "@/imports";
 
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
@@ -17,7 +15,7 @@ type Props = {
 export const UpdateExperienceWidget = (props: Props) => {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
-  const navigate = useNavigate();
+  const navigate = i.useNavigate();
   const {
     register,
     reset,
@@ -54,7 +52,7 @@ export const UpdateExperienceWidget = (props: Props) => {
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
-        navigate(ROUTES.UPDATE_EXPERIENCE);
+        navigate(i.ROUTES.UPDATE_EXPERIENCE);
       }, 4000);
     } catch (e: any) {
       const errorMessage =
@@ -106,74 +104,17 @@ export const UpdateExperienceWidget = (props: Props) => {
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <i.DatePicker
+            <i.CustomDatePicker
               label="Start Date"
-              value={i.dayjs(watch("startAt"))}
-              onChange={(date) => {
-                if (date) setValue("startAt", date.format("YYYY-MM-DD"));
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              registerName="startAt"
+              watch={watch}
+              setValue={setValue}
             />
-
-            <i.DatePicker
+            <i.CustomDatePicker
               label="End Date"
-              value={i.dayjs(watch("endAt"))}
-              onChange={(date) => {
-                if (date) setValue("endAt", date.format("YYYY-MM-DD"));
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              registerName="endAt"
+              watch={watch}
+              setValue={setValue}
             />
           </div>
         </i.LocalizationProvider>
