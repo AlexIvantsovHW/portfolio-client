@@ -1,3 +1,4 @@
+import { CustomTextArea } from "../update-project-widget/imports";
 import * as i from "./imports";
 const defaultValues: i.TpersonalForm = {
   username: "",
@@ -114,17 +115,13 @@ export const UpdateAbooutWidget = () => {
           register={register}
           errors={errors}
         />
-        <div className="sm:col-span-2">
-          <label className="text-sm font-semibold flex items-center gap-2 mb-2">
-            <i.AccountBoxIcon className="text-green-500" />
-            Description
-          </label>
-          <textarea
-            {...register("description")}
-            placeholder="Tell us about yourself"
-            className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
-          />
-        </div>
+        <CustomTextArea
+          Icon={i.AccountBoxIcon}
+          registerName="description"
+          label="Description"
+          register={register}
+          errors={errors}
+        />
         <i.InputField
           Icon={i.FaceIcon}
           placeholder="Avatar (URL)"
