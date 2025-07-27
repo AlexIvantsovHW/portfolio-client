@@ -16,11 +16,17 @@ export const UpdateProjectWidget = React.memo(function (props: Props) {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = i.useNavigate();
-  const { register, reset, handleSubmit, setValue, watch } =
-    i.useForm<i.TprojectForm>({
-      resolver: i.zodResolver(i.schema),
-      defaultValues,
-    });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = i.useForm<i.TprojectForm>({
+    resolver: i.zodResolver(i.schema),
+    defaultValues,
+  });
   const [mutate, { isLoading }] = i.useUpdateProjectMutation();
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
@@ -94,6 +100,7 @@ export const UpdateProjectWidget = React.memo(function (props: Props) {
             placeholder={el.placeholder}
             registerName={el.registerName}
             register={register}
+            errors={errors}
           />
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>

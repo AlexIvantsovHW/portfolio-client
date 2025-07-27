@@ -177,25 +177,14 @@ export const UpdateExperienceWidget = (props: Props) => {
             />
           </div>
         </i.LocalizationProvider>
-        <div className="sm:col-span-2">
-          <label className="text-sm font-semibold flex items-center gap-2 mb-2">
-            <i.DescriptionIcon className="text-green-500" />
-            Description
-          </label>
-          <textarea
-            {...register("description")}
-            placeholder="Tell us about yourself"
-            className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
-          />
-        </div>
-        {alert.message ? (
-          <i.Alert
-            variant="filled"
-            severity={alert.status ? "success" : "error"}
-          >
-            {alert.message}
-          </i.Alert>
-        ) : null}
+        <i.CustomTextArea
+          Icon={i.DescriptionIcon}
+          label="Description"
+          errors={errors}
+          register={register}
+          registerName="description"
+        />
+
         <div className="sm:col-span-2 flex justify-center mt-4">
           <button
             disabled={isLoading}
