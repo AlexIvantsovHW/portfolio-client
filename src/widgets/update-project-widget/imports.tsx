@@ -21,3 +21,4 @@ export { useUpdateProjectMutation } from "@/shared/api/requests/projects/project
 export { ROUTES } from "@/shared/assets/routes";
 export { default as LinkIcon } from "@mui/icons-material/Link";
 export { default as WebAssetIcon } from "@mui/icons-material/WebAsset";
+export { CustomTextArea } from "../update-education-widget/imports";
