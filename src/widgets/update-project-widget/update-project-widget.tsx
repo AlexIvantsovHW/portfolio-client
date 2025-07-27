@@ -1,6 +1,4 @@
-import React from "react";
 import * as i from "./imports";
-import { CustomDatePicker } from "@/shared/components/custom-datepicker/custom-datepicker";
 
 const defaultValues: i.TprojectForm = {
   title: "",
@@ -13,7 +11,7 @@ const defaultValues: i.TprojectForm = {
 type Props = {
   id: number;
 };
-export const UpdateProjectWidget = React.memo(function (props: Props) {
+export const UpdateProjectWidget = i.React.memo(function (props: Props) {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = i.useNavigate();
@@ -106,13 +104,13 @@ export const UpdateProjectWidget = React.memo(function (props: Props) {
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <CustomDatePicker
+            <i.CustomDatePicker
               label="Start Date"
               watch={watch}
               setValue={setValue}
               registerName={"startAt"}
             />{" "}
-            <CustomDatePicker
+            <i.CustomDatePicker
               label="End Date"
               watch={watch}
               setValue={setValue}
