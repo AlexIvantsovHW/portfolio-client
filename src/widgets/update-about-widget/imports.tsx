@@ -14,7 +14,7 @@ export { default as Looks6Icon } from "@mui/icons-material/Looks6";
 export { default as Timer3SelectIcon } from "@mui/icons-material/Timer3Select";
 export { Alert, CircularProgress } from "@mui/material";
 export { InputField } from "@/features/input-field/input-field";
-
+export { CustomTextArea } from "../update-project-widget/imports";
 export type { TpersonalForm } from "./model/schema";
 export type { Personals } from "@/shared/types";
 export { useUpdatePersonalDataMutation } from "@/shared/api/requests/personal";

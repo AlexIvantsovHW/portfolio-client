@@ -1,4 +1,3 @@
-import { CustomTextArea } from "../update-project-widget/imports";
 import * as i from "./imports";
 const defaultValues: i.TpersonalForm = {
   username: "",
@@ -115,7 +114,7 @@ export const UpdateAbooutWidget = () => {
           register={register}
           errors={errors}
         />
-        <CustomTextArea
+        <i.CustomTextArea
           Icon={i.AccountBoxIcon}
           registerName="description"
           label="Description"
