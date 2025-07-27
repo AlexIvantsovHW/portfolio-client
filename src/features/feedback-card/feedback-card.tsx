@@ -2,13 +2,12 @@ import * as i from "./imports";
 
 type Props = {
   feedback: i.Feedback;
-  idx: number;
 };
 
-export const FeedbackCard = ({ feedback, idx }: Props) => {
+export const FeedbackCard = ({ feedback }: Props) => {
   const [visible, setVisible] = i.useState(false);
   return (
-    <div key={idx} className="w-full xl:w-[75%] xxl:w-[50%] px-4 py-6">
+    <div className="w-full xl:w-[75%] xxl:w-[50%] px-4 py-6">
       <i.motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

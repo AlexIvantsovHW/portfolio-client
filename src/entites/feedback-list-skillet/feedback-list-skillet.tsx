@@ -11,7 +11,7 @@ export const FeedbackListSkillet = memo((props: Props) => {
   return (
     <div className="w-full flex flex-col items-center justify-start gap-[10px]">
       {data.map((feedback, idx) => {
-        return <FeedbackCard feedback={feedback} idx={idx} />;
+        return <FeedbackCard feedback={feedback} key={feedback.id} />;
       })}
     </div>
   );
