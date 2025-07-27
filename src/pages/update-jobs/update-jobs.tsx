@@ -2,6 +2,7 @@ import { useGetAllJobsQuery } from "@/shared/api/requests/jobs/jobs.api";
 import { PageGuard } from "@/shared/hoc/page-guard";
 import { RocketLoader } from "@/shared/ui/rocket-loader";
 import { JobsWidget } from "@/widgets/jobs-widget";
+import { Button } from "@mui/material";
 
 const UpdateJobs = () => {
   const { data, isLoading } = useGetAllJobsQuery(20);
@@ -13,8 +14,9 @@ const UpdateJobs = () => {
           style={{ fontFamily: "Revamped" }}
           className="text-[30px] sm:text-[40px] md:text-[56px] break-words text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
         >
-          Update Experience
+          Experience
         </h1>
+        <div></div>
         {isLoading ? (
           <div className="w-full h-full flex-grow flex items-center justify-center">
             <RocketLoader />

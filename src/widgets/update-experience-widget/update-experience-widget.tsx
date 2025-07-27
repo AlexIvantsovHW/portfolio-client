@@ -18,11 +18,17 @@ export const UpdateExperienceWidget = (props: Props) => {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = useNavigate();
-  const { register, reset, handleSubmit, setValue, watch } =
-    i.useForm<i.TexperienceForm>({
-      resolver: i.zodResolver(i.schema),
-      defaultValues,
-    });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = i.useForm<i.TexperienceForm>({
+    resolver: i.zodResolver(i.schema),
+    defaultValues,
+  });
   const [mutate, { isLoading }] = i.useUpdateJobMutation();
   const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
   i.useEffect(() => {
@@ -95,6 +101,7 @@ export const UpdateExperienceWidget = (props: Props) => {
             placeholder={el.placeholder}
             registerName={el.registerName}
             register={register}
+            errors={errors}
           />
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
