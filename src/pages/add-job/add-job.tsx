@@ -5,6 +5,12 @@ const AddJob = () => {
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">
+        <h1
+          style={{ fontFamily: "Revamped" }}
+          className="text-[30px] sm:text-[40px] md:text-[56px] break-words text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
+        >
+          Adding new job
+        </h1>
         <AddExperienceWidget />
       </div>
     </PageGuard>

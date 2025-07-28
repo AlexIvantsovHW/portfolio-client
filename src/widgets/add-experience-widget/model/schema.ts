@@ -11,9 +11,9 @@ export const schema = z.object({
   jobTitle: z.string().min(2, "Job title should include at least 2 chars!"),
   logo: z.string().url(),
 
-  software_id: z
+  /* software_id: z
     .string()
-    .min(1, "Software id should include at least 1 number!"),
+    .min(1, "Software id should include at least 1 number!"), */
   startAt: z.string().min(6, "Stard date should include at least 6 chars!"),
 });
 

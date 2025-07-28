@@ -6,7 +6,7 @@ const defaultValues: i.TexperienceForm = {
   endAt: "1990-01-01",
   jobTitle: "",
   logo: "",
-  software_id: "",
+
   startAt: "1990-01-01",
 };
 
@@ -24,8 +24,7 @@ export const AddExperienceWidget = () => {
     resolver: i.zodResolver(i.schema),
     defaultValues,
   });
-  const [mutate, { isLoading }] = i.useUpdateJobMutation();
-  const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
+  const [mutate, { isLoading }] = i.useAddJobMutation();
   /*   i.useEffect(() => {
     if (data?.length) {
       const job = data;
@@ -40,7 +39,7 @@ export const AddExperienceWidget = () => {
   const onSubmit = async (formData: i.TexperienceForm) => {
     let payload: i.Jobs = {
       ...formData,
-      software_id: +formData.software_id,
+      software_id: 1,
       id: 1,
     };
 
@@ -129,7 +128,7 @@ export const AddExperienceWidget = () => {
             type="submit"
             className="px-6 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition-all duration-300 font-medium shadow-md"
           >
-            {isLoading ? <i.CircularProgress /> : "Update"}
+            {isLoading ? <i.CircularProgress /> : "Add"}
           </button>
         </div>
       </form>
