@@ -14,4 +14,5 @@ export enum ROUTES {
   UPDATE_CONTACT = "/update-contact",
   UPDATE_FEEDBACK = "/update-feedback",
   UPDATE_EDUCATION = "/update-education",
+  CREATE_JOB = "/create-job",
 }

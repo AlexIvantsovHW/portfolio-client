@@ -1,87 +1,64 @@
-import { lazy, Suspense } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { ROUTES } from "./widgets/Header/imports";
+import { lazy } from "react";
+export { Suspense } from "react";
+export { Route, Routes, BrowserRouter } from "react-router-dom";
+export { ROUTES } from "./widgets/Header/imports";
 
-import BaseLayout from "./widgets/Layout/BaseLayout";
-import { RocketLoader } from "./shared/ui/rocket-loader";
-const MainPage = lazy(() => {
+export { default as BaseLayout } from "./widgets/Layout/BaseLayout";
+export { RocketLoader } from "./shared/ui/rocket-loader";
+export const MainPage = lazy(() => {
   return import("@/pages/main/main-page");
 });
-const AboutPage = lazy(() => {
+export const AboutPage = lazy(() => {
   return import("@/pages/about/about-page");
 });
-const JobsPage = lazy(() => {
+export const JobsPage = lazy(() => {
   return import("@/pages/jobs/jobs-page");
 });
-const ProjectsPage = lazy(() => {
+export const ProjectsPage = lazy(() => {
   return import("@/pages/projects/projects-page");
 });
-const EducationPage = lazy(() => {
+export const EducationPage = lazy(() => {
   return import("@/pages/education/education-page");
 });
-const FeedbackPage = lazy(() => {
+export const FeedbackPage = lazy(() => {
   return import("@/pages/feedback/feedback-page");
 });
-const ContactPage = lazy(() => {
+export const ContactPage = lazy(() => {
   return import("@/pages/contact/contact-page");
 });
-const LoginPage = lazy(() => {
+export const LoginPage = lazy(() => {
   return import("@/pages/log-in/log-in-page");
 });
-const SigninPage = lazy(() => {
+export const SigninPage = lazy(() => {
   return import("@/pages/sign-in/sign-in-page");
 });
-const UpdateAbout = lazy(() => {
+export const UpdateAbout = lazy(() => {
   return import("@/pages/update-about/update-about");
 });
-const UpdateContact = lazy(() => {
+export const UpdateContact = lazy(() => {
   return import("@/pages/update-contact/update-contact");
 });
-const UpdateFeedback = lazy(() => {
+export const UpdateFeedback = lazy(() => {
   return import("@/pages/update-feedback/update-feedback");
 });
-const UpdateJobs = lazy(() => {
+export const UpdateJobs = lazy(() => {
   return import("@/pages/update-jobs/update-jobs");
 });
-const UpdateProjects = lazy(() => {
+export const UpdateProjects = lazy(() => {
   return import("@/pages/update-projects/update-projects");
 });
-const UpdateEducation = lazy(() => {
+export const UpdateEducation = lazy(() => {
   return import("@/pages/update-education/update-education");
 });
-const UpdateSpecificJob = lazy(() => {
+export const UpdateSpecificJob = lazy(() => {
   return import("@/pages/update-specific-job/update-specific-job");
 });
-const UpdateSpecificProject = lazy(() => {
+export const UpdateSpecificProject = lazy(() => {
   return import("@/pages/update-specific-project/update-specific-project");
 });
-const UpdateSpecificEducation = lazy(() => {
+export const UpdateSpecificEducation = lazy(() => {
   return import("@/pages/update-specific-education/update-specific-project");
 });
-export {
-  BaseLayout,
-  RocketLoader,
-  MainPage,
-  AboutPage,
-  JobsPage,
-  ProjectsPage,
-  EducationPage,
-  FeedbackPage,
-  ContactPage,
-  Route,
-  Suspense,
-  BrowserRouter,
-  ROUTES,
-  Routes,
-  LoginPage,
-  SigninPage,
-  UpdateAbout,
-  UpdateContact,
-  UpdateFeedback,
-  UpdateJobs,
-  UpdateProjects,
-  UpdateEducation,
-  UpdateSpecificJob,
-  UpdateSpecificProject,
-  UpdateSpecificEducation,
-};
+export const AddJob = lazy(() => {
+  return import("@/pages/add-job/add-job");
+});
