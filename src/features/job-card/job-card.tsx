@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import * as i from "./imports";
 
 type JobCardType = {
@@ -7,25 +5,11 @@ type JobCardType = {
   route: boolean;
 };
 export const JobCard = ({ job, route }: JobCardType) => {
-  const {
-    companyTitle,
-    description,
-    endAt,
-    jobTitle,
-    software_id,
-    startAt,
-    id,
-    logo,
-  } = job;
-  const navigate = useNavigate();
-  console.log(route);
+  const { companyTitle, description, endAt, jobTitle, startAt, id, logo } = job;
+  const navigate = i.useNavigate();
+  const [mutate, { isLoading }] = i.useDeleteJobMutation();
   return (
     <i.motion.div
-      onClick={() => {
-        if (route) {
-          navigate(i.ROUTES.UPDATE_EXPERIENCE + `/${id}`);
-        }
-      }}
       key={id}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -36,9 +20,25 @@ export const JobCard = ({ job, route }: JobCardType) => {
       {" "}
       {route ? (
         <div className="w-full flex items-center justify-end">
-          {" "}
+          {isLoading ? (
+            <i.CircularProgress size="3rem" color="error" />
+          ) : (
+            <i.Button
+              onClick={() => mutate(id)}
+              sx={{
+                zIndex: 100,
+                color: "white",
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.1)",
+                },
+              }}
+              endIcon={<i.DeleteForeverIcon color="error" />}
+            />
+          )}{" "}
           <i.Button
             sx={{
+              zIndex: 100,
               color: "white",
               transition: "transform 0.3s ease",
               "&:hover": {
@@ -46,7 +46,7 @@ export const JobCard = ({ job, route }: JobCardType) => {
               },
             }}
             onClick={() => {
-              navigate(i.ROUTES.EXPERIENCE + `/${id}`);
+              navigate(i.ROUTES.UPDATE_EXPERIENCE + `/${id}`);
             }}
             endIcon={<i.EditIcon />}
           />

@@ -1,7 +1,9 @@
-import { Jobs } from "@/shared/types";
-import { motion } from "framer-motion";
-import { EditIcon } from "../project-card/imports";
-import { ROUTES } from "@/imports";
-import { Button } from "@mui/material";
-export { motion, EditIcon, ROUTES, Button };
-export type { Jobs };
+export { CircularProgress } from "@mui/material";
+export { useDeleteJobMutation } from "@/shared/api/requests/jobs/jobs.api";
+export type { Jobs } from "@/shared/types";
+export { motion } from "framer-motion";
+export { EditIcon } from "../project-card/imports";
+export { ROUTES } from "@/imports";
+export { Button } from "@mui/material";
+export { default as DeleteForeverIcon } from "@mui/icons-material/DeleteForever";
+export { useNavigate } from "react-router-dom";
