@@ -2,7 +2,7 @@ import { useGetAllsoftwareQuery } from "@/shared/api/requests/software/software.
 import { RocketLoader } from "@/shared/ui/rocket-loader";
 import { AddSoftwareWidget } from "@/widgets/add-software-widget";
 
-const AboutPage = () => {
+const AddSoftware = () => {
   const { data, isLoading } = useGetAllsoftwareQuery(20);
 
   return (
@@ -24,4 +24,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default AddSoftware;

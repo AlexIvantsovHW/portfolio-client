@@ -2,7 +2,7 @@ import { useGetAllsoftwareQuery } from "@/shared/api/requests/software/software.
 import { PageGuard } from "@/shared/hoc/page-guard";
 import { AddExperienceWidget } from "@/widgets/add-experience-widget";
 
-const AddSoftware = () => {
+const AddJob = () => {
   const { data } = useGetAllsoftwareQuery(20);
   console.log(data);
   return (
@@ -12,11 +12,11 @@ const AddSoftware = () => {
           style={{ fontFamily: "Revamped" }}
           className="text-[30px] sm:text-[40px] md:text-[56px] break-words text-white font-extrabold tracking-wide mb-4 text-center drop-shadow-md"
         >
-          Adding new software
+          Add new job
         </h1>
         <AddExperienceWidget />
       </div>
     </PageGuard>
   );
 };
-export default AddSoftware;
+export default AddJob;

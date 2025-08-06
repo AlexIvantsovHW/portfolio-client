@@ -155,18 +155,18 @@ export const AddSoftwareWidget = () => {
         </div>
         <div className="sm:col-span-2 flex justify-center mt-4">
           <button
-            disabled={isLoading}
+            disabled={isLoading || deleteIsLoading}
             type="submit"
             className={`
       px-6 py-2 rounded-full border font-medium shadow-md transition-all duration-300
       ${
-        isLoading
+        isLoading || deleteIsLoading
           ? "bg-gray-500 text-white cursor-not-allowed border-gray-500"
           : "border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white"
       }
     `}
           >
-            {isLoading ? (
+            {isLoading || deleteIsLoading ? (
               <i.CircularProgress size={20} color="inherit" />
             ) : (
               "Create"

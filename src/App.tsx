@@ -64,7 +64,8 @@ function App() {
               <i.Route
                 path={i.ROUTES.ADD_SOFTWARE}
                 element={<i.AddSoftware />}
-              />
+              />{" "}
+              <i.Route path={i.ROUTES.CREATE_JOB} element={<i.AddJob />} />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>
