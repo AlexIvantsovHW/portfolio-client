@@ -39,7 +39,28 @@ export const softwareApi = createApi({
       },
       invalidatesTags: ["softwareApi"],
     }),
+    deleteSoftware: build.mutation<Tresponse<Tsoftwares[]>, number>({
+      query(id) {
+        return {
+          url: `api/software/${id}`,
+          method: "DELETE",
+        };
+      },
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      invalidatesTags: ["softwareApi"],
+    }),
   }),
 });
 
-export const { useGetAllsoftwareQuery, useAddSoftwareMutation } = softwareApi;
+export const {
+  useGetAllsoftwareQuery,
+  useAddSoftwareMutation,
+  useDeleteSoftwareMutation,
+} = softwareApi;

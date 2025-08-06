@@ -1,4 +1,7 @@
-export { useAddSoftwareMutation } from "@/shared/api/requests/software/software.api";
+export {
+  useAddSoftwareMutation,
+  useDeleteSoftwareMutation,
+} from "@/shared/api/requests/software/software.api";
 export { default as dayjs } from "dayjs";
 export { useEffect, useState } from "react";
 export { useForm } from "react-hook-form";
@@ -10,6 +13,7 @@ export { LocalizationProvider } from "@mui/x-date-pickers";
 export { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export { useNavigate } from "react-router";
 export { ROUTES } from "@/imports";
+export { default as DeleteForeverIcon } from "@mui/icons-material/DeleteForever";
 export { Alert, CircularProgress } from "@mui/material";
 export { InputField } from "@/features/input-field/input-field";
 export { default as BusinessIcon } from "@mui/icons-material/Business";
@@ -18,6 +22,8 @@ export { default as DescriptionIcon } from "@mui/icons-material/Description";
 export { default as ViewCarouselIcon } from "@mui/icons-material/ViewCarousel";
 export { default as JavascriptIcon } from "@mui/icons-material/Javascript";
 export { default as DateRangeIcon } from "@mui/icons-material/DateRange";
+export { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+export { CustomAlert } from "@/shared/components/custom-alert/custom-alert";
 export type { TsoftwareForm } from "./model/schema";
 export type { Job, Jobs } from "@/shared/types";
 export { CustomTextArea } from "../update-education-widget/imports";

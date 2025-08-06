@@ -1,6 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import * as i from "./imports";
-import { CustomAlert } from "@/shared/components/custom-alert/custom-alert";
+
 const defaultValues: i.TsoftwareForm = {
   title: "",
   logo: "",
@@ -8,14 +7,16 @@ const defaultValues: i.TsoftwareForm = {
 
 export const AddSoftwareWidget = () => {
   const [alert, setAlert] = i.useState({ status: true, message: "" });
+  const [value, setValue] = i.useState<number>(NaN);
+  const [deleteMutation, { isLoading: deleteIsLoading }] =
+    i.useDeleteSoftwareMutation();
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.softwareSlice
   );
   const {
     register,
-
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = i.useForm<i.TsoftwareForm>({
     resolver: i.zodResolver(i.schema),
@@ -33,10 +34,29 @@ export const AddSoftwareWidget = () => {
       setTimeout(() => {
         setAlert({ status: true, message: "" });
       }, 4000);
+      reset();
     } catch (e: any) {
       const errorMessage =
         e?.data?.message || e?.error?.data?.message || e?.message || "Error";
       setAlert({ status: false, message: e.message || errorMessage });
+      setTimeout(() => {
+        setAlert({ status: true, message: "" });
+      }, 4000);
+    }
+  };
+  const onDelete = async (id: number) => {
+    try {
+      const request = await deleteMutation(id).unwrap();
+      setAlert({ status: true, message: request.message });
+      setValue(NaN);
+      setTimeout(() => {
+        setAlert({ status: true, message: "" });
+      }, 4000);
+    } catch (e: any) {
+      const errorMessage =
+        e?.data?.message || e?.error?.data?.message || e?.message || "Error";
+      setAlert({ status: false, message: e.message || errorMessage });
+      setValue(NaN);
       setTimeout(() => {
         setAlert({ status: true, message: "" });
       }, 4000);
@@ -76,12 +96,12 @@ export const AddSoftwareWidget = () => {
           />
         ))}
         <div className="w-full flex flex-col items-start gap-4">
-          <FormControl fullWidth>
+          <i.FormControl fullWidth>
             <div className="flex items-center gap-4">
-              <InputLabel id="software-select-label" sx={{ color: "white" }}>
+              <i.InputLabel id="software-select-label" sx={{ color: "white" }}>
                 Software
-              </InputLabel>
-              <Select
+              </i.InputLabel>
+              <i.Select
                 labelId="software-select-label"
                 id="software-select"
                 sx={{
@@ -102,19 +122,36 @@ export const AddSoftwareWidget = () => {
                 }}
               >
                 {data?.map((s) => (
-                  <MenuItem
+                  <i.MenuItem
                     value={s.id}
                     key={s.id}
-                    aria-readonly
+                    onClick={() => setValue(s.id)}
                     className="flex items-center justify-center gap-[5px]"
                   >
                     <img src={s.logo} alt={s.title} width={30} height={30} />{" "}
                     <span>{s.title}</span>
-                  </MenuItem>
+                  </i.MenuItem>
                 ))}
-              </Select>
+              </i.Select>
+              {value ? (
+                <div>
+                  <span onClick={() => onDelete(value)}>
+                    {" "}
+                    <i.DeleteForeverIcon
+                      color="error"
+                      sx={{
+                        cursor: "pointer",
+                        "&:hover": {
+                          fill: "white",
+                          scale: "110%",
+                        },
+                      }}
+                    />
+                  </span>
+                </div>
+              ) : null}
             </div>
-          </FormControl>
+          </i.FormControl>
         </div>
         <div className="sm:col-span-2 flex justify-center mt-4">
           <button
@@ -136,7 +173,7 @@ export const AddSoftwareWidget = () => {
             )}
           </button>
         </div>{" "}
-        <CustomAlert message={alert.message} status={alert.status} />
+        <i.CustomAlert message={alert.message} status={alert.status} />
       </form>
     </div>
   );
