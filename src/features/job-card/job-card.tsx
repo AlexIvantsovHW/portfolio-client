@@ -1,7 +1,7 @@
 import * as i from "./imports";
 
 type JobCardType = {
-  job: i.Jobs;
+  job: i.TjobCard;
   route: boolean;
 };
 export const JobCard = ({ job, route }: JobCardType) => {

@@ -11,12 +11,12 @@ export const jobsApi = createApi({
   }),
 
   endpoints: (build) => ({
-    getAllJobs: build.query<Jobs[], number>({
+    getAllJobs: build.query<Tresponse<Jobs[]>, number>({
       query: (limit: number) => `api/jobs`,
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setData(data));
+          dispatch(setData(data.data));
         } catch (err) {}
       },
     }),
