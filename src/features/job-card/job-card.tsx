@@ -90,6 +90,11 @@ export const JobCard = ({ job, route }: JobCardType) => {
         <p className="text-sm text-gray-200 text-center sm:text-start leading-relaxed tracking-wide italic">
           {description}
         </p>
+        <div className="w-full flex items-center justify-start gap-[5px] flex-wrap ">
+          {job?.softwares?.map((s) => (
+            <img src={s.logo} alt={s.title} key={s.id} width={50} height={50} />
+          ))}
+        </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-fuchsia-500 via-blue-500 to-fuchsia-500 animate-pulse" />
     </i.motion.div>
