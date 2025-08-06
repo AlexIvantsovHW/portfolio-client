@@ -15,6 +15,7 @@ import SvgIcon from "@mui/material/SvgIcon";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import HttpIcon from "@mui/icons-material/Http";
 import LogoutIcon from "@mui/icons-material/Logout";
+import CodeIcon from "@mui/icons-material/Code";
 const CodewarsIcon = ({ size = 40 }: { size?: number }) => {
   return (
     <SvgIcon sx={{ width: size, height: size }}>
@@ -47,4 +48,5 @@ export {
   CastForEducationIcon,
   ContactPageIcon,
   LogoutIcon,
+  CodeIcon,
 };

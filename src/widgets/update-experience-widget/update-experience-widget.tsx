@@ -43,7 +43,7 @@ export const UpdateExperienceWidget = (props: Props) => {
   const onSubmit = async (formData: i.TexperienceForm) => {
     let payload: i.Jobs = {
       ...formData,
-      software_id: +formData.software_id,
+      software_id: [+formData.software_id],
       id: id,
     };
 

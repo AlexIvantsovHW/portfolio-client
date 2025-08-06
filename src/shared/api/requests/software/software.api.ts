@@ -2,6 +2,7 @@ import { Tresponse } from "@/shared/types/response.type";
 import { Tsoftwares } from "@/shared/types/software.type";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/software.slice";
+import { Software } from "@/widgets/add-software-widget/model/schema";
 export const softwareApi = createApi({
   reducerPath: "softwareApi",
   baseQuery: fetchBaseQuery({
@@ -20,7 +21,25 @@ export const softwareApi = createApi({
         } catch (err) {}
       },
     }),
+    addSoftware: build.mutation<Tresponse<Tsoftwares[]>, Software>({
+      query(data) {
+        return {
+          url: `api/software`,
+          method: "POST",
+          body: data,
+        };
+      },
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      invalidatesTags: ["softwareApi"],
+    }),
   }),
 });
 
-export const { useGetAllsoftwareQuery } = softwareApi;
+export const { useGetAllsoftwareQuery, useAddSoftwareMutation } = softwareApi;

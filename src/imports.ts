@@ -62,3 +62,6 @@ export const UpdateSpecificEducation = lazy(() => {
 export const AddJob = lazy(() => {
   return import("@/pages/add-job/add-job");
 });
+export const AddSoftware = lazy(() => {
+  return import("@/pages/add-software/add-software-page");
+});
