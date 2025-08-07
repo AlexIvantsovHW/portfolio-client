@@ -2,18 +2,23 @@ import { Personal, Personals } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
 import { Tresponse } from "@/shared/types/response.type";
+import { softwareApi, useGetAllsoftwareQuery } from "../software/software.api";
 
 export const personalApi = createApi({
   reducerPath: "personalApi",
   tagTypes: ["personal"],
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (build) => ({
-    getPersonalData: build.query<Personals[], number>({
+    getPersonalData: build.query<Tresponse<Personals[]>, number>({
       query: (limit: number) => "api/personal",
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setData(data));
+          console.log(data.data);
+          dispatch(setData(data?.data));
+          const softwareResult = await dispatch(
+            softwareApi.endpoints.getAllsoftware.initiate(20)
+          ).unwrap();
         } catch (err) {
           console.log(err);
         }
@@ -30,7 +35,11 @@ export const personalApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+
           dispatch(setData(data?.data));
+          const softwareResult = await dispatch(
+            softwareApi.endpoints.getAllsoftware.initiate(20)
+          ).unwrap();
         } catch (err) {
           console.log(err);
         }

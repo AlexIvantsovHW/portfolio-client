@@ -1,13 +1,4 @@
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
 import * as i from "./imports";
-import { ClearIcon } from "@mui/x-date-pickers";
 
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
@@ -108,7 +99,7 @@ export const UpdateExperienceWidget = (props: Props) => {
     const list = softwareList.filter((e) => e != software);
     setSoftwareList(list);
   };
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: i.SelectChangeEvent) => {
     setSoftware(+event.target.value);
   };
   return (
@@ -151,12 +142,12 @@ export const UpdateExperienceWidget = (props: Props) => {
           registerName="description"
         />
         <div className="w-full flex flex-col items-start gap-4">
-          <FormControl fullWidth>
+          <i.FormControl fullWidth>
             <div className="flex items-center gap-4">
-              <InputLabel id="software-select-label" sx={{ color: "white" }}>
+              <i.InputLabel id="software-select-label" sx={{ color: "white" }}>
                 Software
-              </InputLabel>
-              <Select
+              </i.InputLabel>
+              <i.Select
                 labelId="software-select-label"
                 id="software-select"
                 value={software.toString()}
@@ -180,13 +171,13 @@ export const UpdateExperienceWidget = (props: Props) => {
                 }}
               >
                 {softwareData?.map((s) => (
-                  <MenuItem value={s.id} key={s.id}>
+                  <i.MenuItem value={s.id} key={s.id}>
                     {s.title}
-                  </MenuItem>
+                  </i.MenuItem>
                 ))}
-              </Select>
+              </i.Select>
 
-              <Button
+              <i.Button
                 variant="contained"
                 size="medium"
                 color="secondary"
@@ -201,9 +192,9 @@ export const UpdateExperienceWidget = (props: Props) => {
                 onClick={() => handleSoftwareList(software)}
               >
                 Add
-              </Button>
+              </i.Button>
             </div>
-          </FormControl>
+          </i.FormControl>
 
           <ul className="flex flex-col gap-2 mt-4">
             {softwareList?.map((s) => (
@@ -215,7 +206,7 @@ export const UpdateExperienceWidget = (props: Props) => {
                   className="cursor-pointer transition-transform hover:scale-125"
                   onClick={() => handleDeleteSoftware(s)}
                 >
-                  <ClearIcon
+                  <i.ClearIcon
                     color="error"
                     sx={{
                       transition: "transform 0.3s ease-in-out",
@@ -247,6 +238,7 @@ export const UpdateExperienceWidget = (props: Props) => {
           >
             {isLoading ? <i.CircularProgress /> : "Update"}
           </button>
+          <i.CustomAlert message={alert.message} status={alert.status} />
         </div>
       </form>
     </div>

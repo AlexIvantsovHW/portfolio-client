@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import * as i from "./imports";
 import ClearIcon from "@mui/icons-material/Clear";
+import { CustomAlert } from "../add-software-widget/imports";
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
   description: "",
@@ -233,6 +234,7 @@ export const AddExperienceWidget = () => {
               "Create"
             )}
           </button>
+          <CustomAlert message={alert.message} status={alert.status} />
         </div>
       </form>
     </div>

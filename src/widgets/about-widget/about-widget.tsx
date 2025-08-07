@@ -3,6 +3,9 @@ export const AboutWidget = () => {
   const personal = i.useSelector(
     (state: i.AppRootState) => state.personalSlice.data
   );
+  const software = i.useSelector(
+    (state: i.AppRootState) => state.softwareSlice.data
+  );
   return (
     <div className="relative z-10 max-w-4xl w-full bg-[#111827]/80 border border-indigo-500 shadow-2xl rounded-2xl p-10 backdrop-blur-sm">
       <div className="flex justify-center mb-8">
@@ -66,6 +69,24 @@ export const AboutWidget = () => {
           precision and speed. Every project I take on is approached as a
           mission: to deliver excellence through code.
         </p>
+      </div>
+
+      <div className="flex w-full items-center justify-center gap-[10px] flex-wrap py-[10px]">
+        {personal
+          ?.at(0)
+          ?.software_id?.map((id) =>
+            software
+              ?.filter((s) => s.id === id)
+              .map((s) => (
+                <img
+                  src={s.logo}
+                  alt={s.title}
+                  key={s.id}
+                  width={50}
+                  height={50}
+                />
+              ))
+          )}
       </div>
     </div>
   );
