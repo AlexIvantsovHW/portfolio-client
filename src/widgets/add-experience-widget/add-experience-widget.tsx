@@ -25,7 +25,6 @@ export const AddExperienceWidget = () => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.softwareSlice
   );
-  console.log(data);
   const handleChange = (event: SelectChangeEvent) => {
     setSoftware(+event.target.value);
   };
@@ -48,7 +47,6 @@ export const AddExperienceWidget = () => {
       ...formData,
       software_id: softwareList,
     };
-    console.log(payload);
     try {
       const request = await mutate(payload).unwrap();
       setAlert({ status: true, message: request.message });
