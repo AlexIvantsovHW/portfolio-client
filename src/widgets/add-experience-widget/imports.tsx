@@ -22,3 +22,6 @@ export type { TexperienceForm } from "./model/schema";
 export type { Job, Jobs } from "@/shared/types";
 export { CustomTextArea } from "../update-education-widget/imports";
 export { CustomDatePicker } from "../update-project-widget/imports";
+export { CustomAlert } from "../add-software-widget/imports";
+export { SoftwareSelect } from "@/shared/components/software-select/software-select";
+export type { SelectChangeEvent } from "@mui/material";

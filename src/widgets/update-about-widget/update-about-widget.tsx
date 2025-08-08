@@ -1,3 +1,4 @@
+import { SoftwareSelect } from "@/shared/components/software-select/software-select";
 import * as i from "./imports";
 const defaultValues: i.TpersonalForm = {
   username: "",
@@ -11,6 +12,12 @@ const defaultValues: i.TpersonalForm = {
 };
 
 export const UpdateAbooutWidget = () => {
+  const { data } = i.useSelector(
+    (state: i.AppRootState) => state.personalSlice
+  );
+  const [softwareLisst, setSoftwareList] = i.useState<number[]>(
+    data?.at(0)?.software_id || []
+  );
   const [alert, setAlert] = i.useState({ status: true, message: "" });
 
   const {
@@ -23,9 +30,7 @@ export const UpdateAbooutWidget = () => {
     defaultValues,
   });
   const [mutate, { isLoading }] = i.useUpdatePersonalDataMutation();
-  const { data } = i.useSelector(
-    (state: i.AppRootState) => state.personalSlice
-  );
+
   i.useEffect(() => {
     if (data?.length) {
       const formData: i.TpersonalForm = {
@@ -42,6 +47,7 @@ export const UpdateAbooutWidget = () => {
       age: +formData.age,
       yearExperince: +formData.yearExperince,
       id: data[0]?.id || 1,
+      software_id: softwareLisst,
     };
 
     try {
@@ -129,14 +135,8 @@ export const UpdateAbooutWidget = () => {
           errors={errors}
           styles="sm:col-span-2"
         />{" "}
-        {alert.message ? (
-          <i.Alert
-            variant="filled"
-            severity={alert.status ? "success" : "error"}
-          >
-            {alert.message}
-          </i.Alert>
-        ) : null}
+        {/*       <SoftwareSelect /> */}
+        <i.CustomAlert status={alert.status} message={alert.message} />
         <div className="sm:col-span-2 flex justify-center mt-4">
           <button
             disabled={isLoading}

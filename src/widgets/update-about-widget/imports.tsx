@@ -18,3 +18,4 @@ export { CustomTextArea } from "../update-project-widget/imports";
 export type { TpersonalForm } from "./model/schema";
 export type { Personals } from "@/shared/types";
 export { useUpdatePersonalDataMutation } from "@/shared/api/requests/personal";
+export { CustomAlert } from "../add-software-widget/imports";
