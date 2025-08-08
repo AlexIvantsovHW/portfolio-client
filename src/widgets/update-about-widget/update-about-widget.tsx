@@ -1,5 +1,5 @@
-import { SoftwareSelect } from "@/shared/components/software-select/software-select";
 import * as i from "./imports";
+
 const defaultValues: i.TpersonalForm = {
   username: "",
   surname: "",
@@ -15,7 +15,11 @@ export const UpdateAbooutWidget = () => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.personalSlice
   );
-  const [softwareLisst, setSoftwareList] = i.useState<number[]>(
+  const { data: softwareData } = i.useSelector(
+    (state: i.AppRootState) => state.softwareSlice
+  );
+  const [software, setSoftware] = i.useState<number>(NaN);
+  const [softwareList, setSoftwareList] = i.useState<number[]>(
     data?.at(0)?.software_id || []
   );
   const [alert, setAlert] = i.useState({ status: true, message: "" });
@@ -47,7 +51,7 @@ export const UpdateAbooutWidget = () => {
       age: +formData.age,
       yearExperince: +formData.yearExperince,
       id: data[0]?.id || 1,
-      software_id: softwareLisst,
+      software_id: softwareList,
     };
 
     try {
@@ -65,7 +69,16 @@ export const UpdateAbooutWidget = () => {
       }, 4000);
     }
   };
-
+  const handleSoftwareList = (software: number) => {
+    setSoftwareList((prev) => [...prev, software]);
+  };
+  const handleDeleteSoftware = (software: number) => {
+    const list = softwareList.filter((e) => e != software);
+    setSoftwareList(list);
+  };
+  const handleChange = (event: i.SelectChangeEvent) => {
+    setSoftware(+event.target.value);
+  };
   return (
     <div className="w-full max-w-5xl mx-auto p-8 rounded-xl bg-black/20 shadow-2xl text-white">
       <h1
@@ -135,8 +148,14 @@ export const UpdateAbooutWidget = () => {
           errors={errors}
           styles="sm:col-span-2"
         />{" "}
-        {/*       <SoftwareSelect /> */}
-        <i.CustomAlert status={alert.status} message={alert.message} />
+        <i.SoftwareSelect
+          handleChange={handleChange}
+          software={software}
+          softwareData={softwareData}
+          softwareList={softwareList}
+          handleSoftwareList={handleSoftwareList}
+          handleDeleteSoftware={handleDeleteSoftware}
+        />
         <div className="sm:col-span-2 flex justify-center mt-4">
           <button
             disabled={isLoading}
@@ -146,6 +165,7 @@ export const UpdateAbooutWidget = () => {
             {isLoading ? <i.CircularProgress /> : "Update"}
           </button>
         </div>
+        <i.CustomAlert status={alert.status} message={alert.message} />
       </form>
     </div>
   );
