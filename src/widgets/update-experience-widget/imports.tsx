@@ -1,5 +1,5 @@
 export { default as dayjs } from "dayjs";
-
+export { CustomButton } from "@/shared/components/custom-button/custom-button";
 export { useEffect, useState } from "react";
 export { useForm } from "react-hook-form";
 export { zodResolver } from "@hookform/resolvers/zod";
