@@ -16,4 +16,5 @@ export enum ROUTES {
   UPDATE_EDUCATION = "/update-education",
   CREATE_JOB = "/create-job",
   ADD_SOFTWARE = "/add-software",
+  ADD_PROJECT = "/add-project",
 }

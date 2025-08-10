@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/projects.slice";
-import { Projects } from "@/shared/types/projects.type";
+import { Project, Projects } from "@/shared/types/projects.type";
 import { Tresponse } from "@/shared/types/response.type";
 
 export const projectsApi = createApi({
@@ -34,7 +34,25 @@ export const projectsApi = createApi({
       },
       invalidatesTags: ["projects"],
     }),
+    AddProject: build.mutation<Tresponse<Projects>, Project>({
+      query: (body) => ({
+        url: `/api/projects`,
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["projects"],
+    }),
   }),
 });
 
-export const { useGetAllProjectsQuery, useUpdateProjectMutation } = projectsApi;
+export const {
+  useGetAllProjectsQuery,
+  useUpdateProjectMutation,
+  useAddProjectMutation,
+} = projectsApi;

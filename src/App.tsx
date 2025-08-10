@@ -66,6 +66,7 @@ function App() {
                 element={<i.AddSoftware />}
               />{" "}
               <i.Route path={i.ROUTES.CREATE_JOB} element={<i.AddJob />} />
+              <i.Route path={i.ROUTES.ADD_PROJECT} element={<i.AddProject />} />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>
