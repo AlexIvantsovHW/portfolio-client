@@ -1,4 +1,3 @@
-import { CustomButton } from "../update-experience-widget/imports";
 import * as i from "./imports";
 type Props = {
   route: boolean;
@@ -7,7 +6,6 @@ const widget = (props: Props) => {
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
   );
-  console.log("data", data);
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
   i.useEffect(() => {
@@ -35,7 +33,7 @@ const widget = (props: Props) => {
       />
 
       {data.length <= 3 ? null : (
-        <CustomButton
+        <i.CustomButton
           onclick={handleProjects}
           label={data.length > value ? "See More" : "Hidden All"}
         />
