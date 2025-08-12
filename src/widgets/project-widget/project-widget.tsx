@@ -7,7 +7,7 @@ const widget = (props: Props) => {
     (state: i.AppRootState) => state.projectsSlice
   );
   const [isClient, setIsClient] = i.useState(false);
-  const [value, setValue] = i.useState<number>(2);
+  const [value, setValue] = i.useState<number>(3);
   i.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -18,7 +18,7 @@ const widget = (props: Props) => {
     if (data.length > value) {
       setValue(value + 2);
     } else {
-      setValue(2);
+      setValue(3);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };

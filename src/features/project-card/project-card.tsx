@@ -1,6 +1,5 @@
-import { Button } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import * as i from "./imports";
-import React from "react";
 
 type Props = {
   project: i.Projects;
@@ -8,10 +7,11 @@ type Props = {
   route: boolean;
 };
 
-export const ProjectCard: React.FC<Props> = React.memo(
+export const ProjectCard: i.React.FC<Props> = i.React.memo(
   ({ project, idx, route = false }) => {
     const [visible, setVisible] = i.useState(false);
     const navigate = i.useNavigate();
+    const [mutate, { isLoading }] = i.useDeleteProjectMutation();
     return (
       <i.motion.div
         initial={{ x: idx % 2 === 0 ? -100 : 100, opacity: 0, scale: 0.95 }}
@@ -34,7 +34,7 @@ export const ProjectCard: React.FC<Props> = React.memo(
           {route ? (
             <div className="w-full flex items-center justify-end">
               {" "}
-              <Button
+              <i.Button
                 sx={{
                   color: "white",
                   transition: "transform 0.3s ease",
@@ -46,6 +46,24 @@ export const ProjectCard: React.FC<Props> = React.memo(
                   navigate(i.ROUTES.UPDATE_PROJECTS + `/${project.id}`);
                 }}
                 endIcon={<i.EditIcon />}
+              />
+              <i.Button
+                onClick={() => mutate(project.id)}
+                sx={{
+                  color: "red",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                    color: "white",
+                  },
+                }}
+                endIcon={
+                  isLoading ? (
+                    <CircularProgress size={10} />
+                  ) : (
+                    <i.DeleteForeverIcon />
+                  )
+                }
               />
             </div>
           ) : null}

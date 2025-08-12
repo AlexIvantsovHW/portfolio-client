@@ -20,7 +20,7 @@ export const projectsApi = createApi({
         }
       },
     }),
-    updateProject: build.mutation<Tresponse<Projects>, Projects>({
+    updateProject: build.mutation<Tresponse<Projects[]>, Projects>({
       query: (body) => ({
         url: `/api/projects/${body.id}`,
         method: "PATCH",
@@ -28,13 +28,15 @@ export const projectsApi = createApi({
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
         } catch (e) {
           console.log(e);
         }
       },
       invalidatesTags: ["projects"],
     }),
-    AddProject: build.mutation<Tresponse<Projects>, Project>({
+    AddProject: build.mutation<Tresponse<Projects[]>, Project>({
       query: (body) => ({
         url: `/api/projects`,
         method: "POST",
@@ -42,6 +44,23 @@ export const projectsApi = createApi({
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["projects"],
+    }),
+    DeleteProject: build.mutation<Tresponse<Projects[]>, number>({
+      query: (id) => ({
+        url: `/api/projects/${id}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
         } catch (e) {
           console.log(e);
         }
@@ -55,4 +74,5 @@ export const {
   useGetAllProjectsQuery,
   useUpdateProjectMutation,
   useAddProjectMutation,
+  useDeleteProjectMutation,
 } = projectsApi;
