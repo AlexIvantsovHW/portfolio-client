@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
-import { Universities } from "@/shared/types";
+import { Universities, University } from "@/shared/types";
 import { TeducationForm } from "@/widgets/update-education-widget/imports";
 import { Tresponse } from "@/shared/types/response.type";
 
@@ -35,7 +35,25 @@ export const universitiesApi = createApi({
       },
       invalidatesTags: ["universities"],
     }),
+    addEducation: build.mutation<Tresponse<Universities[]>, University>({
+      query: (body) => ({
+        url: `api/university`,
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(setData(data.data));
+        try {
+          await queryFulfilled;
+        } catch {}
+      },
+      invalidatesTags: ["universities"],
+    }),
   }),
 });
-export const { useGetAllUniversitiesQuery, useUpdateEducationMutation } =
-  universitiesApi;
+export const {
+  useGetAllUniversitiesQuery,
+  useUpdateEducationMutation,
+  useAddEducationMutation,
+} = universitiesApi;

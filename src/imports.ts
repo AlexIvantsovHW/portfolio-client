@@ -68,3 +68,6 @@ export const AddSoftware = lazy(() => {
 export const AddProject = lazy(() => {
   return import("@/pages/add-project/add-project");
 });
+export const AddEducation = lazy(() => {
+  return import("@/pages/add-education/add-education");
+});

@@ -1,3 +1,4 @@
+import { CustomButton, ROUTES } from "../update-experience-widget/imports";
 import * as i from "./imports";
 const widget = ({ route }: { route: boolean }) => {
   const data = i.useSelector(
@@ -5,7 +6,7 @@ const widget = ({ route }: { route: boolean }) => {
   );
 
   const [isClient, setIsClient] = i.useState(false);
-  const [value, setValue] = i.useState<number>(2);
+  const [value, setValue] = i.useState<number>(3);
   i.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -14,15 +15,22 @@ const widget = ({ route }: { route: boolean }) => {
   }, [value]);
   const handleProjects = () => {
     if (data.length > value) {
-      setValue(value + 2);
+      setValue(value + 3);
     } else {
-      setValue(2);
+      setValue(3);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
     <div className="w-full  flex flex-col items-center justify-start  ">
+      {route ? (
+        <CustomButton
+          label={"Add new university"}
+          type="button"
+          route={ROUTES.ADD_EDUCATION}
+        />
+      ) : null}
       <i.UniversityListSkillet
         route={route}
         data={filteredData.sort(
