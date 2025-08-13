@@ -2,9 +2,10 @@ import * as i from "./imports";
 
 type Props = {
   feedback: i.Feedback;
+  route?: boolean;
 };
 
-export const FeedbackCard = ({ feedback }: Props) => {
+export const FeedbackCard = ({ feedback, route }: Props) => {
   const [visible, setVisible] = i.useState(false);
   return (
     <div className="w-full xl:w-[75%] xxl:w-[50%] px-4 py-6">

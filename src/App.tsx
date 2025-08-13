@@ -71,6 +71,10 @@ function App() {
                 path={i.ROUTES.ADD_EDUCATION}
                 element={<i.AddEducation />}
               />
+              <i.Route
+                path={i.ROUTES.ADD_FEEDBACK}
+                element={<i.AddFeedback />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>

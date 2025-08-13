@@ -20,7 +20,7 @@ const UpdateFeedback = () => {
             <RocketLoader />
           </div>
         ) : (
-          <FeedbackWidget />
+          <FeedbackWidget route={true} />
         )}
       </div>
     </PageGuard>

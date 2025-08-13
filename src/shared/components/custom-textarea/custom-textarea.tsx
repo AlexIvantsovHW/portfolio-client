@@ -15,10 +15,11 @@ type Props<T extends FieldValues> = {
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
   label: string;
+  placeholder?: string;
 };
 
 export const CustomTextArea = <T extends FieldValues>(props: Props<T>) => {
-  const { Icon, register, registerName, label, errors } = props;
+  const { Icon, register, registerName, label, errors, placeholder } = props;
   return (
     <div className="sm:col-span-2">
       <label className="text-sm font-semibold flex items-center gap-2 mb-2">
@@ -27,7 +28,7 @@ export const CustomTextArea = <T extends FieldValues>(props: Props<T>) => {
       </label>
       <textarea
         {...register(registerName)}
-        placeholder="Tell us about yourself"
+        placeholder={placeholder ? placeholder : "Tell us about yourself"}
         className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
       />
       {errors[registerName] ? (

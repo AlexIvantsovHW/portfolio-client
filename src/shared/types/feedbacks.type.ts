@@ -1,5 +1,5 @@
 import { Attributes } from "./attributes.type";
-export type Feedbacks = Pick<
+export type Tfeedbacks = Pick<
   Attributes,
   | "id"
   | "name"
@@ -11,4 +11,4 @@ export type Feedbacks = Pick<
   | "country"
   | "city"
 >;
-export type Feedback = Omit<Feedbacks, "id">;
+export type Tfeedback = Omit<Tfeedbacks, "id">;

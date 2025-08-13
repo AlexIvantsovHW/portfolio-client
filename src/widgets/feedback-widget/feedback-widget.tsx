@@ -1,5 +1,9 @@
 import * as i from "./imports";
-const Widget = () => {
+type Props = {
+  route?: boolean;
+};
+const Widget = (props: Props) => {
+  const { route = false } = props;
   const data = i.useSelector(
     (state: i.AppRootState) => state.feedbacksSlice.data
   );
@@ -31,9 +35,16 @@ const Widget = () => {
   return (
     <div className="w-full  flex flex-col items-center justify-start ">
       <div ref={topRef}></div>
-
+      {route ? (
+        <i.CustomButton
+          label="Add new feedback"
+          route={i.ROUTES.ADD_FEEDBACK}
+          type="button"
+        />
+      ) : null}
       <i.FeedbackListSkillet data={filteredData} />
       <div ref={listEndRef}></div>
+
       <button
         onClick={handleProjects}
         className="flex-1 px-2 py-2 max-w-[200px] rounded-full border border-pink-500 bg-pink-600 text-pink-100 hover:bg-pink-900 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"

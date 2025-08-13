@@ -1,8 +1,8 @@
-import { Feedbacks } from "@/shared/types";
+import { Tfeedbacks } from "@/shared/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MyState {
-  data: Feedbacks[];
+  data: Tfeedbacks[];
 }
 const initialState: MyState = {
   data: [],
@@ -12,7 +12,7 @@ export const feedbacksSlice = createSlice({
   name: "feedbacksSlice",
   initialState,
   reducers: {
-    setData: (state, action: PayloadAction<Feedbacks[]>) => {
+    setData: (state, action: PayloadAction<Tfeedbacks[]>) => {
       state.data = action.payload;
     },
   },
