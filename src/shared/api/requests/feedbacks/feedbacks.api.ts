@@ -34,6 +34,25 @@ export const feedbacksApi = createApi({
       },
       invalidatesTags: ["feedbacks"],
     }),
+    DeleteFeedback: build.mutation<Tresponse<Tfeedbacks[]>, number>({
+      query: (id) => ({
+        url: `/api/feedbacks/${id}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["feedbacks"],
+    }),
   }),
 });
-export const { useGetAllFeedbacksQuery, useAddFeedbackMutation } = feedbacksApi;
+export const {
+  useGetAllFeedbacksQuery,
+  useAddFeedbackMutation,
+  useDeleteFeedbackMutation,
+} = feedbacksApi;

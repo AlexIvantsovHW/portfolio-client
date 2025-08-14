@@ -1,12 +1,14 @@
 import * as i from "./imports";
 
 type Props = {
-  feedback: i.Feedback;
+  feedback: i.Tfeedbacks;
   route?: boolean;
 };
 
 export const FeedbackCard = ({ feedback, route }: Props) => {
   const [visible, setVisible] = i.useState(false);
+  const [mutate, { isLoading }] = i.useDeleteFeedbackMutation();
+  const navigate = i.useNavigate();
   return (
     <div className="w-full xl:w-[75%] xxl:w-[50%] px-4 py-6">
       <i.motion.div
@@ -14,14 +16,14 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative bg-gradient-to-br from-[#0f0c29]/50 via-[#302b63]/80 to-[#24243e]/50 
+        className="relative border border-white bg-gradient-to-br from-[#0f0c29]/50 via-[#302b63]/80 to-[#24243e]/50 
                    backdrop-blur-xl border border-[#ffffff22] rounded-3xl 
                    shadow-[0_0_30px_#ff00ff44] overflow-hidden 
                    flex flex-col md:flex-row items-center transition-all duration-500"
       >
+        {" "}
         <div className="absolute top-[-30%] right-[-20%] w-[300px] h-[300px] bg-pink-500 rounded-full opacity-30 blur-[120px] z-0" />
         <div className="absolute bottom-[-30%] left-[-20%] w-[300px] h-[300px] bg-indigo-500 rounded-full opacity-30 blur-[120px] z-0" />
-
         <div className="flex items-center justify-center w-full md:w-[40%] p-6 z-10">
           <img
             src={feedback.logo}
@@ -29,9 +31,8 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
             className="w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] 
                        object-cover rounded-full border-4 border-fuchsia-600 
                        shadow-[0_0_30px_rgba(255,0,255,0.4)]"
-          />
+          />{" "}
         </div>
-
         <div className="flex flex-col gap-4 justify-center p-6 w-full text-white z-10">
           <h2
             className="text-center text-xl md:text-2xl font-black uppercase text-fuchsia-200 tracking-widest 
@@ -82,6 +83,42 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
           <p className="hidden md:block text-base text-white/90 leading-relaxed text-center md:text-left font-light">
             {feedback.description}
           </p>
+          {route ? (
+            <div className="w-full flex items-center justify-end">
+              {" "}
+              <i.Button
+                sx={{
+                  color: "white",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                  },
+                }}
+                onClick={() => {
+                  navigate(i.ROUTES.UPDATE_FEEDBACK + `/${feedback.id}`);
+                }}
+                endIcon={<i.EditIcon />}
+              />
+              <i.Button
+                onClick={() => mutate(feedback.id)}
+                sx={{
+                  color: "red",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                    color: "white",
+                  },
+                }}
+                endIcon={
+                  isLoading ? (
+                    <i.CircularProgress size={10} />
+                  ) : (
+                    <i.DeleteForeverIcon />
+                  )
+                }
+              />
+            </div>
+          ) : null}
         </div>
       </i.motion.div>
     </div>

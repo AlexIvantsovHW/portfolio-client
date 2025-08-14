@@ -1,8 +1,17 @@
-import { CustomizedBtn } from "@/shared/ui/custom-button";
-import { dataConvector, motion } from "../project-card/imports";
-import { Feedback } from "@/shared/types";
-import { useState } from "../project-card/imports";
-import { Box, Modal } from "@mui/material";
+export { ROUTES } from "@/imports";
 
-export { dataConvector, motion, CustomizedBtn, useState, Box, Modal };
-export type { Feedback };
+export { useNavigate } from "react-router";
+
+export { useDeleteFeedbackMutation } from "@/shared/api/requests/feedbacks";
+
+export { DeleteForeverIcon } from "../project-card/imports";
+
+export { CircularProgress } from "@mui/material";
+
+export { Button } from "@mui/material";
+
+export { CustomizedBtn } from "@/shared/ui/custom-button";
+export { dataConvector, EditIcon, motion } from "../project-card/imports";
+export type { Tfeedbacks } from "@/shared/types";
+export { useState } from "../project-card/imports";
+export { Box, Modal } from "@mui/material";

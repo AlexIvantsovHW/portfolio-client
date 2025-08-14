@@ -42,7 +42,7 @@ const Widget = (props: Props) => {
           type="button"
         />
       ) : null}
-      <i.FeedbackListSkillet data={filteredData} />
+      <i.FeedbackListSkillet data={filteredData} route={route} />
       <div ref={listEndRef}></div>
 
       <button
