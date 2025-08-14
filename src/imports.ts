@@ -74,3 +74,6 @@ export const AddEducation = lazy(() => {
 export const AddFeedback = lazy(() => {
   return import("@/pages/add-feedback/add-feedback");
 });
+export const UpdateSpecificFeedback = lazy(() => {
+  return import("@/pages/update-specific-feedback/update-specific-feedback");
+});

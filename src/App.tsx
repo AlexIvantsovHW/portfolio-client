@@ -75,6 +75,10 @@ function App() {
                 path={i.ROUTES.ADD_FEEDBACK}
                 element={<i.AddFeedback />}
               />
+              <i.Route
+                path={i.ROUTES.UPDATE_FEEDBACK + `/:id`}
+                element={<i.UpdateSpecificFeedback />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>

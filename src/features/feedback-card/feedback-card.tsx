@@ -16,7 +16,7 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative border border-white bg-gradient-to-br from-[#0f0c29]/50 via-[#302b63]/80 to-[#24243e]/50 
+        className="relative b bg-gradient-to-br from-[#0f0c29]/50 via-[#302b63]/80 to-[#24243e]/50 
                    backdrop-blur-xl border border-[#ffffff22] rounded-3xl 
                    shadow-[0_0_30px_#ff00ff44] overflow-hidden 
                    flex flex-col md:flex-row items-center transition-all duration-500"
@@ -100,7 +100,7 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
                 endIcon={<i.EditIcon />}
               />
               <i.Button
-                onClick={() => mutate(feedback.id)}
+                onClick={() => mutate(feedback.id).unwrap()}
                 sx={{
                   color: "red",
                   transition: "transform 0.3s ease",

@@ -34,6 +34,22 @@ export const feedbacksApi = createApi({
       },
       invalidatesTags: ["feedbacks"],
     }),
+    UpdateFeedback: build.mutation<Tresponse<Tfeedbacks[]>, Tfeedbacks>({
+      query: (body) => ({
+        url: `/api/feedbacks/${body.id}`,
+        method: "PATCH",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["feedbacks"],
+    }),
     DeleteFeedback: build.mutation<Tresponse<Tfeedbacks[]>, number>({
       query: (id) => ({
         url: `/api/feedbacks/${id}`,
@@ -55,4 +71,5 @@ export const {
   useGetAllFeedbacksQuery,
   useAddFeedbackMutation,
   useDeleteFeedbackMutation,
+  useUpdateFeedbackMutation,
 } = feedbacksApi;
