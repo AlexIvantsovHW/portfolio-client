@@ -11,10 +11,6 @@ export const dataConvector = (date: string) => {
     const currentYear = current.getFullYear();
     const currentMonth = current.getMonth() + 1;
 
-    if (year === currentYear && d.getMonth() + 1 === currentMonth) {
-      return "present";
-    }
-
     return `${year}.${month}`;
   } else {
     return "incorrect date format!";
