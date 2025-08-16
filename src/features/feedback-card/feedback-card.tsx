@@ -24,25 +24,28 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
         {" "}
         <div className="absolute top-[-30%] right-[-20%] w-[300px] h-[300px] bg-pink-500 rounded-full opacity-30 blur-[120px] z-0" />
         <div className="absolute bottom-[-30%] left-[-20%] w-[300px] h-[300px] bg-indigo-500 rounded-full opacity-30 blur-[120px] z-0" />
-        <div className="flex items-center justify-center w-full md:w-[40%] p-6 z-10">
+        <div className="flex flex-col gap-[10px] items-center justify-center w-full md:w-[40%] p-6 z-10">
           <img
             src={feedback.logo}
             alt={feedback.name}
             className="w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] 
                        object-cover rounded-full border-4 border-fuchsia-600 
                        shadow-[0_0_30px_rgba(255,0,255,0.4)]"
-          />{" "}
+          />
+          <p className="text-center text-break text-md md:text-md font-semibold text-pink-300 uppercase tracking-wider">
+            {feedback.name}
+          </p>
         </div>
         <div className="flex flex-col gap-4 justify-center p-6 w-full text-white z-10">
           <h2
             className="text-center text-xl md:text-2xl font-black uppercase text-fuchsia-200 tracking-widest 
                          drop-shadow-[0_0_6px_rgba(255,0,255,0.9)]"
           >
-            Company- {feedback.companyTitle}
+            {feedback.companyTitle}
           </h2>
 
           <p className="text-center text-md md:text-md font-semibold text-pink-300 uppercase tracking-wider">
-            Position-{feedback.position}
+            {feedback.position}
           </p>
 
           <div className="flex justify-center flex-wrap items-center gap-[10px]">
