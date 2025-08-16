@@ -26,7 +26,7 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
         <div className="absolute bottom-[-30%] left-[-20%] w-[300px] h-[300px] bg-indigo-500 rounded-full opacity-30 blur-[120px] z-0" />
         <div className="flex flex-col gap-[10px] items-center justify-center w-full md:w-[40%] p-6 z-10">
           <img
-            src={feedback.logo}
+            src={feedback.logo ?? "./images/not-found-avatart.png"}
             alt={feedback.name}
             className="w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] 
                        object-cover rounded-full border-4 border-fuchsia-600 
