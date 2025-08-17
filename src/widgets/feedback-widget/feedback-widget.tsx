@@ -11,6 +11,7 @@ const Widget = (props: Props) => {
   const [value, setValue] = i.useState<number>(2);
   const listEndRef = i.useRef<HTMLDivElement | null>(null);
   const topRef = i.useRef<HTMLDivElement | null>(null);
+
   i.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -19,7 +20,7 @@ const Widget = (props: Props) => {
       ?.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
       .slice(0, value);
     return sortedData;
-  }, [value]);
+  }, [value, data]);
   const handleProjects = () => {
     if (data.length > value) {
       setValue((prev) => prev + 2);
@@ -31,7 +32,6 @@ const Widget = (props: Props) => {
       topRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   return (
     <div className="w-full  flex flex-col items-center justify-start ">
       <div ref={topRef}></div>

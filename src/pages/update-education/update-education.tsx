@@ -5,7 +5,7 @@ import { EducationWidget } from "@/widgets/education-widget";
 
 const UpdateEducation = () => {
   const { data, isLoading } = useGetAllUniversitiesQuery(20);
-  console.log(data);
+
   return (
     <PageGuard>
       {" "}

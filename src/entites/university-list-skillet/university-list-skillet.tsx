@@ -4,7 +4,7 @@ import { memo } from "react";
 
 type Props = {
   data: Universities[];
-  route: boolean;
+  route?: boolean;
 };
 export const UniversityListSkillet = memo((props: Props) => {
   const { data, route = false } = props;

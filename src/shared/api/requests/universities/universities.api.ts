@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
 import { Universities, University } from "@/shared/types";
-import { TeducationForm } from "@/widgets/update-education-widget/imports";
 import { Tresponse } from "@/shared/types/response.type";
 
 export const universitiesApi = createApi({
@@ -31,7 +30,9 @@ export const universitiesApi = createApi({
         dispatch(setData(data.data));
         try {
           await queryFulfilled;
-        } catch {}
+        } catch (e) {
+          console.log(e);
+        }
       },
       invalidatesTags: ["universities"],
     }),
@@ -46,7 +47,28 @@ export const universitiesApi = createApi({
         dispatch(setData(data.data));
         try {
           await queryFulfilled;
-        } catch {}
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["universities"],
+    }),
+    deleteEducation: build.mutation<Tresponse<Universities[]>, number>({
+      query: (id) => ({
+        url: `api/university/${id}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(setData(data.data));
+        await dispatch(
+          universitiesApi.endpoints.getAllUniversities.initiate(20)
+        ).unwrap();
+        try {
+          await queryFulfilled;
+        } catch (e) {
+          console.log(e);
+        }
       },
       invalidatesTags: ["universities"],
     }),
@@ -56,4 +78,5 @@ export const {
   useGetAllUniversitiesQuery,
   useUpdateEducationMutation,
   useAddEducationMutation,
+  useDeleteEducationMutation,
 } = universitiesApi;

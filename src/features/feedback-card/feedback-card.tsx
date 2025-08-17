@@ -9,6 +9,7 @@ export const FeedbackCard = ({ feedback, route }: Props) => {
   const [visible, setVisible] = i.useState(false);
   const [mutate, { isLoading }] = i.useDeleteFeedbackMutation();
   const navigate = i.useNavigate();
+
   return (
     <div className="w-full xl:w-[75%] xxl:w-[50%] px-4 py-6">
       <i.motion.div

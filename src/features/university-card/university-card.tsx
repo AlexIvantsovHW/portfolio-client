@@ -11,7 +11,7 @@ export const UniversityCard = (props: Props) => {
   const [visibleDescription, setVisibleDescription] = i.useState(false);
   const [zoomed, setZoomed] = i.useState(false);
   const navigate = i.useNavigate();
-  console.log(`route`, route);
+  const [mutate, { isLoading }] = i.useDeleteEducationMutation();
   return (
     <div
       key={university.id || idx}
@@ -54,6 +54,24 @@ export const UniversityCard = (props: Props) => {
                   navigate(i.ROUTES.UPDATE_EDUCATION + `/${university.id}`);
                 }}
                 endIcon={<i.EditIcon />}
+              />{" "}
+              <i.Button
+                onClick={() => mutate(university?.id)}
+                sx={{
+                  color: "red",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                    color: "white",
+                  },
+                }}
+                endIcon={
+                  isLoading ? (
+                    <i.CircularProgress size={10} />
+                  ) : (
+                    <i.DeleteForeverIcon />
+                  )
+                }
               />
             </div>
           ) : null}

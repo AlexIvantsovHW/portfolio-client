@@ -37,7 +37,7 @@ export const personalApi = createApi({
           const { data } = await queryFulfilled;
 
           dispatch(setData(data?.data));
-          const softwareResult = await dispatch(
+          await dispatch(
             softwareApi.endpoints.getAllsoftware.initiate(20)
           ).unwrap();
         } catch (err) {

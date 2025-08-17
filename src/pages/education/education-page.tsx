@@ -1,10 +1,6 @@
-import { useGetAllUniversitiesQuery } from "@/shared/api/requests/universities/universities.api";
-import { RocketLoader } from "@/shared/ui/rocket-loader";
 import { EducationWidget } from "@/widgets/education-widget";
 
 const EducationPage = () => {
-  const { data, isLoading } = useGetAllUniversitiesQuery(20);
-
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-6 py-12 bg-cover bg-center relative">
       <h1
@@ -13,13 +9,8 @@ const EducationPage = () => {
       >
         EDUCATION
       </h1>
-      {isLoading ? (
-        <div className="w-full h-full flex-grow flex items-center justify-start">
-          <RocketLoader />
-        </div>
-      ) : (
-        <EducationWidget />
-      )}
+
+      <EducationWidget />
     </div>
   );
 };

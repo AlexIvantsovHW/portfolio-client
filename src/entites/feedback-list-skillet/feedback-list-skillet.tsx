@@ -8,9 +8,10 @@ type Props = {
 };
 export const FeedbackListSkillet = memo((props: Props) => {
   const { data, route } = props;
+  console.log("data FeedbackListSkillet", data);
   return (
     <div className="w-full flex flex-col items-center justify-start gap-[10px]">
-      {data.map((feedback, idx) => {
+      {data.map((feedback) => {
         return (
           <FeedbackCard feedback={feedback} key={feedback.id} route={route} />
         );
