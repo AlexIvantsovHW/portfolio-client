@@ -37,6 +37,7 @@ const Widget = (props: Props) => {
       <div ref={topRef}></div>
       {route ? (
         <i.CustomButton
+          btnValidation={true}
           label="Add new feedback"
           route={i.ROUTES.ADD_FEEDBACK}
           type="button"
@@ -44,12 +45,12 @@ const Widget = (props: Props) => {
       ) : null}
       <i.FeedbackListSkillet data={filteredData} route={route} />
       <div ref={listEndRef}></div>
-      {data.length <= 2 ? null : (
-        <i.CustomButton
-          onclick={handleProjects}
-          label={data.length > value ? "See More" : "Hidden All"}
-        />
-      )}
+
+      <i.CustomButton
+        btnValidation={data.length <= 2 ? false : true}
+        onclick={handleProjects}
+        label={data.length > value ? "See More" : "Hidden All"}
+      />
     </div>
   );
 };
