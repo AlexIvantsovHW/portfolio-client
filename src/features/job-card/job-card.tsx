@@ -3,15 +3,18 @@ import * as i from "./imports";
 type JobCardType = {
   job: i.TjobCard;
   route?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 };
 
-export const JobCard = ({ job, route }: JobCardType) => {
+export const JobCard = ({ job, route, ref }: JobCardType) => {
   const { companyTitle, description, endAt, jobTitle, startAt, id, logo } = job;
   const navigate = i.useNavigate();
   const [mutate, { isLoading }] = i.useDeleteJobMutation();
+
   return (
     <i.motion.div
       key={id}
+      ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: id * 0.2, ease: "easeOut" }}

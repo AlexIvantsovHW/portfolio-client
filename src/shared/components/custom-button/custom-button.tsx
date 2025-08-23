@@ -7,11 +7,20 @@ type Props = {
   type?: "submit" | "button" | "reset";
   route?: string;
   onclick?: () => void;
+  btnValidation: boolean;
 };
 
 export const CustomButton = (props: Props) => {
-  const { isLoading, array, label, type = "button", route, onclick } = props;
-
+  const {
+    isLoading,
+    array,
+    label,
+    type = "button",
+    route,
+    onclick,
+    btnValidation = true,
+  } = props;
+  if (!btnValidation) return;
   const isDisabled = isLoading || array?.length === 0;
 
   const buttonContent = (
