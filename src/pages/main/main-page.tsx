@@ -1,7 +1,7 @@
 const MainPage = () => {
   return (
-    <div className="flex  flex-grow flex-col items-center justify-center w-full h-full">
-      <div className="px-[10px] py-[20px] flex flex-col items-center justify-center">
+    <div className=" flex min-h-screen  flex-col items-center justify-center w-full h-full">
+      <div className=" px-[10px] py-[20px] flex flex-col items-center justify-center ">
         <h1
           style={{ fontFamily: "Revamped" }}
           className=" sm:text-[50px] md:text-[60px] text-[35px] text-center break-words font-revamped uppercase 
