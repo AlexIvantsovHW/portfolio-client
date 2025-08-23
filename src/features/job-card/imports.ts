@@ -6,5 +6,5 @@ export { EditIcon } from "../project-card/imports";
 export { ROUTES } from "@/imports";
 export { Button } from "@mui/material";
 export { default as DeleteForeverIcon } from "@mui/icons-material/DeleteForever";
-
+export { dataConvector } from "../project-card/imports";
 export { useNavigate } from "react-router-dom";

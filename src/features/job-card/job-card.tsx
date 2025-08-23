@@ -1,4 +1,3 @@
-import { dataConvector } from "../project-card/imports";
 import * as i from "./imports";
 
 type JobCardType = {
@@ -82,11 +81,11 @@ export const JobCard = ({ job, route }: JobCardType) => {
 
         <div className="flex flex-col items-center justify-center sm:justify-start sm:flex-row flex-wrap gap-3 text-xs font-semibold text-white/90">
           <span className="bg-gradient-to-r from-purple-700 to-fuchsia-700 px-4 py-1 rounded-full shadow-md w-fit">
-            🚀 Start: {dataConvector(startAt)}
+            🚀 Start: {i.dataConvector(startAt)}
             {}
           </span>
           <span className="bg-gradient-to-r from-pink-700 to-red-600 px-4 py-1 rounded-full shadow-md w-fit">
-            🛑 End: {dataConvector(endAt)}
+            🛑 End: {i.dataConvector(endAt)}
           </span>
         </div>
 
