@@ -11,27 +11,30 @@ const defaultValues: i.TprojectForm = {
 type Props = {
   id: number;
 };
-export const UpdateProjectWidget = (props: Props) => {
+export const UpdateProjectWidget = i.React.memo(function (props: Props) {
   const { id } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = i.useNavigate();
-  const { register, reset, handleSubmit, setValue, watch } =
-    i.useForm<i.TprojectForm>({
-      resolver: i.zodResolver(i.schema),
-      defaultValues,
-    });
+  const {
+    register,
+    reset,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = i.useForm<i.TprojectForm>({
+    resolver: i.zodResolver(i.schema),
+    defaultValues,
+  });
   const [mutate, { isLoading }] = i.useUpdateProjectMutation();
   const { data } = i.useSelector(
     (state: i.AppRootState) => state.projectsSlice
   );
   i.useEffect(() => {
-    console.log(data);
     if (data?.length) {
       const project = data?.find((p) => p.id === id) ?? defaultValues;
-
       const formData: i.TprojectForm = {
         ...project,
-        // id: String(project.id),
       };
       reset(formData);
     }
@@ -96,92 +99,33 @@ export const UpdateProjectWidget = (props: Props) => {
             placeholder={el.placeholder}
             registerName={el.registerName}
             register={register}
+            errors={errors}
           />
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <i.DatePicker
+            <i.CustomDatePicker
               label="Start Date"
-              value={i.dayjs(watch("startAt"))}
-              onChange={(date) => {
-                if (date) setValue("startAt", date.toISOString());
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
-            />
-
-            <i.DatePicker
+              watch={watch}
+              setValue={setValue}
+              registerName={"startAt"}
+            />{" "}
+            <i.CustomDatePicker
               label="End Date"
-              value={i.dayjs(watch("endAt"))}
-              onChange={(date) => {
-                if (date) setValue("endAt", date.toISOString());
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              watch={watch}
+              setValue={setValue}
+              registerName={"endAt"}
             />
           </div>
         </i.LocalizationProvider>
-        <div className="sm:col-span-2">
-          <label className="text-sm font-semibold flex items-center gap-2 mb-2">
-            <i.DescriptionIcon className="text-green-500" />
-            Description
-          </label>
-          <textarea
-            {...register("description")}
-            placeholder="Tell us about yourself"
-            className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
-          />
-        </div>
+        <i.CustomTextArea
+          label="Description"
+          register={register}
+          registerName="description"
+          errors={errors}
+          Icon={i.DescriptionIcon}
+        />
+
         {alert.message ? (
           <i.Alert
             variant="filled"
@@ -202,4 +146,4 @@ export const UpdateProjectWidget = (props: Props) => {
       </form>
     </div>
   );
-};
+});

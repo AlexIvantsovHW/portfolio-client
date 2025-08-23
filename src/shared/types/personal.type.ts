@@ -10,6 +10,7 @@ export type Personals = Pick<
   | "yearExperince"
   | "description"
   | "avatar"
+  | "software_id"
 >;
 export type Personal = Omit<Personals, "id">;
 export type TpersonalForm = Omit<Personal, "yearExperince" | "age"> & {

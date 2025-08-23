@@ -20,7 +20,7 @@ export const Header = () => {
   }, []);
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    console.log(import.meta.env.VITE_FRONTEND_URL);
+
     window.location.replace(import.meta.env.VITE_FRONTEND_URL as string);
   };
   return (

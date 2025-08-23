@@ -20,11 +20,7 @@ export const ContactWidget = () => {
         sx={sx}
         click={() => (window.location.href = contacts[0].cv)}
       />
-      <i.CustomizedBtn
-        Icon="CodewarsIcon"
-        sx={sx}
-        href={contacts[0].codewars}
-      />
+      <i.CustomizedBtn Icon="CodeIcon" sx={sx} href={contacts[0].codewars} />
       <i.CustomizedBtn Icon="HttpIcon" sx={sx} href={contacts[0].website} />
 
       <i.CustomizedBtn Icon="GitHubIcon" sx={sx} href={contacts[0].github} />

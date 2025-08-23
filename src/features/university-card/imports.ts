@@ -1,7 +1,16 @@
-import { CustomizedBtn } from "@/shared/ui/custom-button";
-import { dataConvector, motion } from "../project-card/imports";
-import { Universities } from "@/shared/types";
-import { useState } from "../project-card/imports";
-import { Box, Modal } from "@mui/material";
-export { dataConvector, motion, CustomizedBtn, useState, Box, Modal };
-export type { Universities };
+export { useDeleteEducationMutation } from "@/shared/api/requests/universities/universities.api";
+
+export { DeleteForeverIcon } from "../project-card/imports";
+
+export { CustomizedBtn } from "@/shared/ui/custom-button";
+export {
+  dataConvector,
+  EditIcon,
+  motion,
+  ROUTES,
+} from "../project-card/imports";
+export type { Universities } from "@/shared/types";
+export { useState } from "../project-card/imports";
+export { Box, Button, Modal } from "@mui/material";
+export { useNavigate } from "react-router-dom";
+export { CircularProgress } from "@mui/material";

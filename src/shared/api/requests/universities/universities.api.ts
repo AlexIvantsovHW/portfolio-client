@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
-import { Universities } from "@/shared/types";
+import { Universities, University } from "@/shared/types";
+import { Tresponse } from "@/shared/types/response.type";
 
 export const universitiesApi = createApi({
   reducerPath: "universitiesApi",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  tagTypes: ["universities"],
   endpoints: (build) => ({
     getAllUniversities: build.query<Universities[], number>({
       query: (limit: number) => `api/university`,
@@ -17,6 +19,64 @@ export const universitiesApi = createApi({
         }
       },
     }),
+    updateEducation: build.mutation<Tresponse<Universities[]>, Universities>({
+      query: (body) => ({
+        url: `api/university/${body.id}`,
+        method: "PATCH",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(setData(data.data));
+        try {
+          await queryFulfilled;
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["universities"],
+    }),
+    addEducation: build.mutation<Tresponse<Universities[]>, University>({
+      query: (body) => ({
+        url: `api/university`,
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(setData(data.data));
+        try {
+          await queryFulfilled;
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["universities"],
+    }),
+    deleteEducation: build.mutation<Tresponse<Universities[]>, number>({
+      query: (id) => ({
+        url: `api/university/${id}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(setData(data.data));
+        await dispatch(
+          universitiesApi.endpoints.getAllUniversities.initiate(20)
+        ).unwrap();
+        try {
+          await queryFulfilled;
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["universities"],
+    }),
   }),
 });
-export const { useGetAllUniversitiesQuery } = universitiesApi;
+export const {
+  useGetAllUniversitiesQuery,
+  useUpdateEducationMutation,
+  useAddEducationMutation,
+  useDeleteEducationMutation,
+} = universitiesApi;

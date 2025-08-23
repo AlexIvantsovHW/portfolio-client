@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/jobs.slice";
-import { Jobs } from "@/shared/types";
+import { Job, Jobs } from "@/shared/types";
 import { Tresponse } from "@/shared/types/response.type";
 
 export const jobsApi = createApi({
@@ -11,12 +11,12 @@ export const jobsApi = createApi({
   }),
 
   endpoints: (build) => ({
-    getAllJobs: build.query<Jobs[], number>({
+    getAllJobs: build.query<Tresponse<Jobs[]>, number>({
       query: (limit: number) => `api/jobs`,
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setData(data));
+          dispatch(setData(data.data));
         } catch (err) {}
       },
     }),
@@ -38,7 +38,47 @@ export const jobsApi = createApi({
       },
       invalidatesTags: ["jobs"],
     }),
+    deleteJob: build.mutation<Tresponse<Jobs[]>, number>({
+      query(id) {
+        return {
+          url: `api/jobs/${id}`,
+          method: "DELETE",
+        };
+      },
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      invalidatesTags: ["jobs"],
+    }),
+    addJob: build.mutation<Tresponse<Jobs[]>, Job>({
+      query(data) {
+        return {
+          url: `api/jobs`,
+          method: "POST",
+          body: data,
+        };
+      },
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      invalidatesTags: ["jobs"],
+    }),
   }),
 });
 
-export const { useGetAllJobsQuery, useUpdateJobMutation } = jobsApi;
+export const {
+  useGetAllJobsQuery,
+  useUpdateJobMutation,
+  useDeleteJobMutation,
+  useAddJobMutation,
+} = jobsApi;

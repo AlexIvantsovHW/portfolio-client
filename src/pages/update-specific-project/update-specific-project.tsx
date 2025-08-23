@@ -1,16 +1,18 @@
 import { PageGuard } from "@/shared/hoc/page-guard";
 
 import { UpdateProjectWidget } from "@/widgets/update-project-widget";
+import React, { useMemo } from "react";
 import { useParams } from "react-router";
 
-const UpdateSpeificProject = () => {
+const Widget = () => {
   const { id } = useParams();
+  const memoId = useMemo(() => (id ? +id : 1), []);
 
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">
         {id ? (
-          <UpdateProjectWidget id={+id} />
+          <UpdateProjectWidget id={memoId} />
         ) : (
           <h1
             style={{ fontFamily: "Revamped" }}
@@ -23,4 +25,5 @@ const UpdateSpeificProject = () => {
     </PageGuard>
   );
 };
+const UpdateSpeificProject = React.memo(Widget);
 export default UpdateSpeificProject;

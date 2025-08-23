@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router";
 import * as i from "./imports";
-import { ROUTES } from "@/imports";
 
 const defaultValues: i.TexperienceForm = {
   companyTitle: "",
@@ -8,7 +6,6 @@ const defaultValues: i.TexperienceForm = {
   endAt: "1990-01-01",
   jobTitle: "",
   logo: "",
-  software_id: "",
   startAt: "1990-01-01",
 };
 type Props = {
@@ -16,22 +13,36 @@ type Props = {
 };
 export const UpdateExperienceWidget = (props: Props) => {
   const { id } = props;
-  const [alert, setAlert] = i.useState({ status: true, message: "" });
-  const navigate = useNavigate();
-  const { register, reset, handleSubmit, setValue, watch } =
-    i.useForm<i.TexperienceForm>({
-      resolver: i.zodResolver(i.schema),
-      defaultValues,
-    });
   const [mutate, { isLoading }] = i.useUpdateJobMutation();
   const { data } = i.useSelector((state: i.AppRootState) => state.jobsSlice);
+  const { data: softwareData } = i.useSelector(
+    (state: i.AppRootState) => state.softwareSlice
+  );
+  const [alert, setAlert] = i.useState({ status: true, message: "" });
+  const [software, setSoftware] = i.useState<number>(NaN);
+  const [softwareList, setSoftwareList] = i.useState<number[]>(
+    data?.filter((e) => e.id === id)[0].software_id || []
+  );
+  const navigate = i.useNavigate();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = i.useForm<i.TexperienceForm>({
+    resolver: i.zodResolver(i.schema),
+    defaultValues,
+  });
+
   i.useEffect(() => {
     if (data?.length) {
       const job = data?.find((j) => j.id === id) ?? defaultValues;
 
-      const formData: i.TexperienceForm = {
+      const formData: i.Job = {
         ...job,
-        software_id: String(job.software_id),
+        software_id: softwareList,
       };
       reset(formData);
     }
@@ -39,7 +50,7 @@ export const UpdateExperienceWidget = (props: Props) => {
   const onSubmit = async (formData: i.TexperienceForm) => {
     let payload: i.Jobs = {
       ...formData,
-      software_id: +formData.software_id,
+      software_id: softwareList,
       id: id,
     };
 
@@ -48,7 +59,7 @@ export const UpdateExperienceWidget = (props: Props) => {
       setAlert({ status: true, message: request.message });
       setTimeout(() => {
         setAlert({ status: true, message: "" });
-        navigate(ROUTES.UPDATE_EXPERIENCE);
+        navigate(i.ROUTES.UPDATE_EXPERIENCE);
       }, 4000);
     } catch (e: any) {
       const errorMessage =
@@ -81,7 +92,16 @@ export const UpdateExperienceWidget = (props: Props) => {
       registerName: "logo",
     },
   ];
-
+  const handleSoftwareList = (software: number) => {
+    setSoftwareList((prev) => [...prev, software]);
+  };
+  const handleDeleteSoftware = (software: number) => {
+    const list = softwareList.filter((e) => e != software);
+    setSoftwareList(list);
+  };
+  const handleChange = (event: i.SelectChangeEvent) => {
+    setSoftware(+event.target.value);
+  };
   return (
     <div className="w-full max-w-5xl mx-auto p-8 rounded-xl bg-black/20 shadow-2xl text-white">
       <form
@@ -95,108 +115,122 @@ export const UpdateExperienceWidget = (props: Props) => {
             placeholder={el.placeholder}
             registerName={el.registerName}
             register={register}
+            errors={errors}
           />
         ))}
         <i.LocalizationProvider dateAdapter={i.AdapterDayjs}>
           <div className="flex flex-col gap-6 sm:flex-row sm:col-span-2">
-            <i.DatePicker
+            <i.CustomDatePicker
               label="Start Date"
-              value={i.dayjs(watch("startAt"))}
-              onChange={(date) => {
-                if (date) setValue("startAt", date.format("YYYY-MM-DD"));
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              registerName="startAt"
+              watch={watch}
+              setValue={setValue}
             />
-
-            <i.DatePicker
+            <i.CustomDatePicker
               label="End Date"
-              value={i.dayjs(watch("endAt"))}
-              onChange={(date) => {
-                if (date) setValue("endAt", date.format("YYYY-MM-DD"));
-              }}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  variant: "outlined",
-                  InputProps: {
-                    sx: {
-                      backgroundColor: "#1e1e1e",
-                      color: "white",
-                      borderRadius: "8px",
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#a855f7",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#ec4899",
-                      },
-                      "& .MuiSvgIcon-root": {
-                        color: "white",
-                      },
-                    },
-                  },
-                  InputLabelProps: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                },
-              }}
+              registerName="endAt"
+              watch={watch}
+              setValue={setValue}
             />
           </div>
         </i.LocalizationProvider>
-        <div className="sm:col-span-2">
-          <label className="text-sm font-semibold flex items-center gap-2 mb-2">
-            <i.DescriptionIcon className="text-green-500" />
-            Description
-          </label>
-          <textarea
-            {...register("description")}
-            placeholder="Tell us about yourself"
-            className="w-full min-h-[100px] bg-zinc-800 text-white p-4 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
-          />
+        <i.CustomTextArea
+          Icon={i.DescriptionIcon}
+          label="Description"
+          errors={errors}
+          register={register}
+          registerName="description"
+        />
+        <div className="w-full flex flex-col items-start gap-4">
+          <i.FormControl fullWidth>
+            <div className="flex items-center gap-4">
+              <i.InputLabel id="software-select-label" sx={{ color: "white" }}>
+                Software
+              </i.InputLabel>
+              <i.Select
+                labelId="software-select-label"
+                id="software-select"
+                value={software.toString()}
+                onChange={handleChange}
+                error={softwareList.length === 0}
+                sx={{
+                  backgroundColor: "#222436",
+                  p: 1,
+                  color: "white",
+                  borderRadius: 2,
+                  minWidth: 200,
+                  boxShadow: "0 6px 18px rgba(0, 0, 0, 0.5)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-1px)",
+                    boxShadow: "0 10px 24px rgba(0, 230, 118, 0.4)",
+                  },
+                  ".MuiSvgIcon-root": {
+                    color: "white",
+                  },
+                }}
+              >
+                {softwareData?.map((s) => (
+                  <i.MenuItem value={s.id} key={s.id}>
+                    {s.title}
+                  </i.MenuItem>
+                ))}
+              </i.Select>
+
+              <i.Button
+                variant="contained"
+                size="medium"
+                color="secondary"
+                sx={{
+                  height: "40px",
+                  textTransform: "none",
+                  fontWeight: 500,
+                  borderRadius: 2,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                }}
+                disabled={softwareList.includes(software) || isNaN(software)}
+                onClick={() => handleSoftwareList(software)}
+              >
+                Add
+              </i.Button>
+            </div>
+          </i.FormControl>
+
+          <ul className="flex flex-col gap-2 mt-4">
+            {softwareList?.map((s) => (
+              <li
+                key={s}
+                className="flex items-center gap-2 text-white bg-[#1e1f2b] px-4 py-2 rounded-lg shadow-md"
+              >
+                <span
+                  className="cursor-pointer transition-transform hover:scale-125"
+                  onClick={() => handleDeleteSoftware(s)}
+                >
+                  <i.ClearIcon
+                    color="error"
+                    sx={{
+                      transition: "transform 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "rotate(180deg)",
+                      },
+                    }}
+                  />
+                </span>
+                <span className="text-sm font-medium">
+                  {softwareData.find((e) => s === e.id)?.title}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
-        {alert.message ? (
-          <i.Alert
-            variant="filled"
-            severity={alert.status ? "success" : "error"}
-          >
-            {alert.message}
-          </i.Alert>
-        ) : null}
         <div className="sm:col-span-2 flex justify-center mt-4">
-          <button
-            disabled={isLoading}
+          <i.CustomButton
+            isLoading={isLoading}
             type="submit"
-            className="px-6 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition-all duration-300 font-medium shadow-md"
-          >
-            {isLoading ? <i.CircularProgress /> : "Update"}
-          </button>
+            label="Update"
+            array={softwareList}
+          />
+          <i.CustomAlert message={alert.message} status={alert.status} />
         </div>
       </form>
     </div>

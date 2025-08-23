@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/projects.slice";
-import { Projects } from "@/shared/types/projects.type";
+import { Project, Projects } from "@/shared/types/projects.type";
 import { Tresponse } from "@/shared/types/response.type";
 
 export const projectsApi = createApi({
@@ -13,14 +13,14 @@ export const projectsApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
+
           dispatch(setData(data));
         } catch (err) {
           console.log(err);
         }
       },
     }),
-    updateProject: build.mutation<Tresponse<Projects>, Projects>({
+    updateProject: build.mutation<Tresponse<Projects[]>, Projects>({
       query: (body) => ({
         url: `/api/projects/${body.id}`,
         method: "PATCH",
@@ -28,6 +28,39 @@ export const projectsApi = createApi({
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["projects"],
+    }),
+    AddProject: build.mutation<Tresponse<Projects[]>, Project>({
+      query: (body) => ({
+        url: `/api/projects`,
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      invalidatesTags: ["projects"],
+    }),
+    DeleteProject: build.mutation<Tresponse<Projects[]>, number>({
+      query: (id) => ({
+        url: `/api/projects/${id}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setData(data?.data));
         } catch (e) {
           console.log(e);
         }
@@ -37,4 +70,9 @@ export const projectsApi = createApi({
   }),
 });
 
-export const { useGetAllProjectsQuery, useUpdateProjectMutation } = projectsApi;
+export const {
+  useGetAllProjectsQuery,
+  useUpdateProjectMutation,
+  useAddProjectMutation,
+  useDeleteProjectMutation,
+} = projectsApi;

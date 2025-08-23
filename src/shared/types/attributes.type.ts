@@ -5,7 +5,7 @@ export type Attributes = {
   endAt: string;
   description: string;
   jobTitle: string;
-  software_id: number;
+  software_id: number[];
   certificate: string;
   link: string;
   logo: string;

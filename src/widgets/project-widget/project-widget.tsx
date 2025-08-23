@@ -7,7 +7,7 @@ const widget = (props: Props) => {
     (state: i.AppRootState) => state.projectsSlice
   );
   const [isClient, setIsClient] = i.useState(false);
-  const [value, setValue] = i.useState<number>(2);
+  const [value, setValue] = i.useState<number>(3);
   i.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -18,31 +18,26 @@ const widget = (props: Props) => {
     if (data.length > value) {
       setValue(value + 2);
     } else {
-      setValue(2);
+      setValue(3);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
-    <div className="w-full  flex flex-col items-center justify-start  ">
+    <div className="w-full  flex flex-col items-center justify-start gap-[10px] ">
       <i.ProjectListSkillet
         data={filteredData.sort(
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
         )}
         route={props.route}
       />
-      <button
-        onClick={handleProjects}
-        className="flex items-center justify-center text-orangeLight text-[15px] hover:border-b hover:border-b-orangeLight py-[5px] hover:text-orangeDark hover:border-orangeDark transition ease-in-out  duration-500 "
-      >
-        <span>
-          {data.length <= 3
-            ? null
-            : data.length > value
-            ? "See More"
-            : "Hidden All"}
-        </span>
-      </button>
+
+      {data.length <= 3 ? null : (
+        <i.CustomButton
+          onclick={handleProjects}
+          label={data.length > value ? "See More" : "Hidden All"}
+        />
+      )}
     </div>
   );
 };

@@ -1,41 +1,23 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useSelector } from "react-redux";
-import { AppRootState } from "@/app/store";
-import { schema } from "./model/index";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import PersonIcon from "@mui/icons-material/Person";
-import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import FaceIcon from "@mui/icons-material/Face";
-import FlagIcon from "@mui/icons-material/Flag";
-import Looks6Icon from "@mui/icons-material/Looks6";
-import Timer3SelectIcon from "@mui/icons-material/Timer3Select";
-import { Alert, CircularProgress } from "@mui/material";
-import { InputField } from "@/features/input-field/input-field";
-
-import { TpersonalForm } from "./model/schema";
-import { Personals } from "@/shared/types";
-import { useUpdatePersonalDataMutation } from "@/shared/api/requests/personal";
-export {
-  useEffect,
-  useForm,
-  useSelector,
-  useState,
-  zodResolver,
-  AccountBoxIcon,
-  PersonIcon,
-  SensorOccupiedIcon,
-  LocationCityIcon,
-  FaceIcon,
-  Looks6Icon,
-  Timer3SelectIcon,
-  FlagIcon,
-  Alert,
-  CircularProgress,
-  InputField,
-  useUpdatePersonalDataMutation,
-  schema,
-};
-export type { Personals, TpersonalForm, AppRootState };
+export { useEffect, useState } from "react";
+export { useForm } from "react-hook-form";
+export { zodResolver } from "@hookform/resolvers/zod";
+export { useSelector } from "react-redux";
+export type { AppRootState } from "@/app/store";
+export { schema } from "./model/index";
+export { default as AccountBoxIcon } from "@mui/icons-material/AccountBox";
+export { default as PersonIcon } from "@mui/icons-material/Person";
+export { default as SensorOccupiedIcon } from "@mui/icons-material/SensorOccupied";
+export { default as LocationCityIcon } from "@mui/icons-material/LocationCity";
+export { default as FaceIcon } from "@mui/icons-material/Face";
+export { default as FlagIcon } from "@mui/icons-material/Flag";
+export { default as Looks6Icon } from "@mui/icons-material/Looks6";
+export { default as Timer3SelectIcon } from "@mui/icons-material/Timer3Select";
+export { Alert, CircularProgress } from "@mui/material";
+export { InputField } from "@/features/input-field/input-field";
+export { CustomTextArea } from "../update-project-widget/imports";
+export type { TpersonalForm } from "./model/schema";
+export type { Personals } from "@/shared/types";
+export { useUpdatePersonalDataMutation } from "@/shared/api/requests/personal";
+export { CustomAlert } from "../add-software-widget/imports";
+export { SoftwareSelect } from "@/shared/components/software-select/software-select";
+export type { SelectChangeEvent } from "@mui/material";

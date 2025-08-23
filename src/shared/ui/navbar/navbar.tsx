@@ -1,5 +1,5 @@
 import * as i from "./imports";
-export const Navbar = () => {
+const Navbar = () => {
   const dispatch = i.useDispatch();
 
   return (
@@ -46,3 +46,4 @@ export const Navbar = () => {
     </i.motion.div>
   );
 };
+export default Navbar;

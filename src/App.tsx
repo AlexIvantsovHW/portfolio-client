@@ -57,6 +57,28 @@ function App() {
                 path={i.ROUTES.UPDATE_PROJECTS + "/:id"}
                 element={<i.UpdateSpecificProject />}
               />
+              <i.Route
+                path={i.ROUTES.UPDATE_EDUCATION + "/:id"}
+                element={<i.UpdateSpecificEducation />}
+              />{" "}
+              <i.Route
+                path={i.ROUTES.ADD_SOFTWARE}
+                element={<i.AddSoftware />}
+              />{" "}
+              <i.Route path={i.ROUTES.CREATE_JOB} element={<i.AddJob />} />
+              <i.Route path={i.ROUTES.ADD_PROJECT} element={<i.AddProject />} />
+              <i.Route
+                path={i.ROUTES.ADD_EDUCATION}
+                element={<i.AddEducation />}
+              />
+              <i.Route
+                path={i.ROUTES.ADD_FEEDBACK}
+                element={<i.AddFeedback />}
+              />
+              <i.Route
+                path={i.ROUTES.UPDATE_FEEDBACK + `/:id`}
+                element={<i.UpdateSpecificFeedback />}
+              />
             </i.Routes>
           </i.Suspense>
         </i.BaseLayout>

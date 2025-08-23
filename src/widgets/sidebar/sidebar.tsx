@@ -20,10 +20,11 @@ type Props = {
     | "CodewarsIcon"
     | "ContactPageIcon"
     | "HttpIcon"
-    | "LogoutIcon";
+    | "LogoutIcon"
+    | "CodeIcon";
 };
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const navigate = i.useNavigate();
 
   const SidebarBtn = ({ label, router, Icon }: Props) => {
@@ -71,6 +72,11 @@ export const Sidebar = () => {
       router: i.ROUTES.UPDATE_FEEDBACK,
       Icon: "ThumbUpAltIcon",
     },
+    {
+      label: "Sofware",
+      router: i.ROUTES.ADD_SOFTWARE,
+      Icon: "CodeIcon",
+    },
   ];
 
   return (
@@ -81,3 +87,4 @@ export const Sidebar = () => {
     </div>
   );
 };
+export default Sidebar;

@@ -16,6 +16,7 @@ const initialState: MyState = {
       yearExperince: 0,
       description: "",
       avatar: "",
+      software_id: [],
     },
   ],
 };
