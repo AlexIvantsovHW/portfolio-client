@@ -2,11 +2,9 @@ import { useGetAllJobsQuery } from "@/shared/api/requests/jobs/jobs.api";
 import { PageGuard } from "@/shared/hoc/page-guard";
 import { RocketLoader } from "@/shared/ui/rocket-loader";
 import { JobsWidget } from "@/widgets/jobs-widget";
-import { Button } from "@mui/material";
 
 const UpdateJobs = () => {
   const { data, isLoading } = useGetAllJobsQuery(20);
-  console.log(data);
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">
@@ -16,7 +14,6 @@ const UpdateJobs = () => {
         >
           Experience
         </h1>
-        <div></div>
         {isLoading ? (
           <div className="w-full h-full flex-grow flex items-center justify-center">
             <RocketLoader />

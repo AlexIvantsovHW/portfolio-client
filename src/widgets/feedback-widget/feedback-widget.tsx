@@ -44,19 +44,12 @@ const Widget = (props: Props) => {
       ) : null}
       <i.FeedbackListSkillet data={filteredData} route={route} />
       <div ref={listEndRef}></div>
-
-      <button
-        onClick={handleProjects}
-        className="flex-1 px-2 py-2 max-w-[200px] rounded-full border border-pink-500 bg-pink-600 text-pink-100 hover:bg-pink-900 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
-      >
-        <span>
-          {data.length <= 2
-            ? null
-            : data.length > value
-            ? "See More"
-            : "Hidden All"}
-        </span>
-      </button>
+      {data.length <= 2 ? null : (
+        <i.CustomButton
+          onclick={handleProjects}
+          label={data.length > value ? "See More" : "Hidden All"}
+        />
+      )}
     </div>
   );
 };

@@ -7,7 +7,6 @@ import { useParams } from "react-router";
 const Widget = () => {
   const { id } = useParams();
   const memoId = useMemo(() => (id ? +id : 1), []);
-  console.log("Parent render");
 
   return (
     <PageGuard>

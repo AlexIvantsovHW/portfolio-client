@@ -5,7 +5,7 @@ import { AddProjectWidget } from "@/widgets/add-project-widget";
 
 const AddProject = () => {
   const { data } = useGetAllsoftwareQuery(20);
-  console.log(data);
+
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">

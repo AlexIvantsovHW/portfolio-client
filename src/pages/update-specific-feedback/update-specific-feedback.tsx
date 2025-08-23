@@ -1,8 +1,7 @@
 import { AppRootState } from "@/app/store";
-import { AddFeedbackWidget } from "@/widgets/add-feedback-widget";
 import { UpdateSpecificFeedbackWidget } from "@/widgets/update-specific-feedback-widget";
 import { useSelector } from "react-redux";
-import { useParams, useRoutes } from "react-router";
+import { useParams } from "react-router";
 
 const UpdateSpecificFeedback = () => {
   const feedbacks = useSelector(

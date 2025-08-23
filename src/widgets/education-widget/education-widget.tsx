@@ -28,9 +28,6 @@ const widget = ({ route }: { route?: boolean }) => {
     }
   };
 
-  console.log("filtered data", filteredData);
-
-  console.log(" data", data);
   return (
     <div className="w-full  flex flex-col gap-[10px] items-center justify-start  ">
       {route ? (

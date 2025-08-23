@@ -1,5 +1,6 @@
-import { FeedbackCard } from "@/features/feedback-card/feedback-card";
+import FeedbackCard from "@/features/feedback-card/feedback-card";
 import { Tfeedbacks } from "@/shared/types";
+import { Suspense } from "react";
 import { memo } from "react";
 
 type Props = {
@@ -8,14 +9,26 @@ type Props = {
 };
 export const FeedbackListSkillet = memo((props: Props) => {
   const { data, route } = props;
-  console.log("data FeedbackListSkillet", data);
+
   return (
     <div className="w-full flex flex-col items-center justify-start gap-[10px]">
-      {data.map((feedback) => {
-        return (
-          <FeedbackCard feedback={feedback} key={feedback.id} route={route} />
-        );
-      })}
+      <Suspense fallback={<div>Loading...</div>}>
+        {data.map((f) => (
+          <FeedbackCard
+            id={f.id}
+            name={f.name}
+            date={f.date}
+            description={f.description}
+            key={f.id}
+            position={f.position}
+            companyTitle={f.companyTitle}
+            logo={f.logo}
+            country={f.country}
+            city={f.city}
+            route={route}
+          />
+        ))}
+      </Suspense>
     </div>
   );
 });

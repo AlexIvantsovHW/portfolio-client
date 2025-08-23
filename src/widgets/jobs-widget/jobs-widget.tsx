@@ -1,8 +1,9 @@
 import * as i from "./imports";
-type Props = { route: boolean };
+type Props = { route?: boolean };
 export const JobsWidget = (props: Props) => {
   const { route } = props;
   const navigate = i.useNavigate();
+
   return (
     <div className="w-full">
       {route ? (

@@ -16,7 +16,6 @@ export const softwareApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data.data);
           dispatch(setData(data.data));
         } catch (err) {}
       },

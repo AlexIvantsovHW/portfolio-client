@@ -2,8 +2,9 @@ import * as i from "./imports";
 
 type JobCardType = {
   job: i.TjobCard;
-  route: boolean;
+  route?: boolean;
 };
+
 export const JobCard = ({ job, route }: JobCardType) => {
   const { companyTitle, description, endAt, jobTitle, startAt, id, logo } = job;
   const navigate = i.useNavigate();
@@ -57,6 +58,7 @@ export const JobCard = ({ job, route }: JobCardType) => {
         <div className="flex flex-col sm:flex-row items-center gap-5">
           <div className="w-16 h-16 rounded-xl border border-pink-500/30 bg-white/10 flex items-center justify-center overflow-hidden shadow-inner shadow-pink-800/50 will-change-transform">
             <img
+              loading="lazy"
               src={
                 logo === "https://avatar.com" || !logo
                   ? "./images/job-default.png"
@@ -64,7 +66,6 @@ export const JobCard = ({ job, route }: JobCardType) => {
               }
               alt={companyTitle}
               className="w-11 h-11 object-contain pointer-events-none will-change-transform"
-              loading="lazy"
               decoding="async"
             />
           </div>

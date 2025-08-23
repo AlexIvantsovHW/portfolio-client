@@ -24,7 +24,7 @@ type Props = {
     | "CodeIcon";
 };
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const navigate = i.useNavigate();
 
   const SidebarBtn = ({ label, router, Icon }: Props) => {
@@ -87,3 +87,4 @@ export const Sidebar = () => {
     </div>
   );
 };
+export default Sidebar;

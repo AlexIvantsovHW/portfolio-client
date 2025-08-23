@@ -13,6 +13,9 @@ export const AboutWidget = () => {
           <img
             src={personal[0]?.avatar}
             alt="Avatar"
+            loading="lazy"
+            width={40}
+            height={40}
             className="object-cover w-full h-full"
           />
         </div>

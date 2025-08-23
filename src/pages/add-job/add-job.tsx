@@ -4,7 +4,7 @@ import { AddExperienceWidget } from "@/widgets/add-experience-widget";
 
 const AddJob = () => {
   const { data } = useGetAllsoftwareQuery(20);
-  console.log(data);
+
   return (
     <PageGuard>
       <div className="w-full h-full flex flex-col items-center justify-start px-6 py-12 bg-cover bg-center relative">

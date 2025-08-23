@@ -13,7 +13,7 @@ export const projectsApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
+
           dispatch(setData(data));
         } catch (err) {
           console.log(err);
