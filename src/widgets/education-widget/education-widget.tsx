@@ -4,6 +4,8 @@ const widget = ({ route }: { route?: boolean }) => {
   const { data, isLoading } = i.useGetAllUniversitiesQuery(20);
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
+  const listEndRef = i.useRef<HTMLDivElement | null>(null);
+  const topRef = i.useRef<HTMLDivElement | null>(null);
   i.useEffect(() => {
     setIsClient(true);
   }, []);
@@ -14,6 +16,9 @@ const widget = ({ route }: { route?: boolean }) => {
   const handleProjects = () => {
     if (data && data.length > value) {
       setValue(value + 2);
+      setTimeout(() => {
+        listEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } else {
       setValue(2);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -28,6 +33,7 @@ const widget = ({ route }: { route?: boolean }) => {
 
   return (
     <div className="w-full  flex flex-col gap-[10px] items-center justify-start  ">
+      <div ref={topRef}></div>
       {route ? (
         <i.CustomButton
           btnValidation={true}
@@ -43,7 +49,7 @@ const widget = ({ route }: { route?: boolean }) => {
           (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
         )}
       />
-
+      <div ref={listEndRef}></div>
       <i.CustomButton
         btnValidation={data.length <= 2 ? false : true}
         onclick={handleProjects}
