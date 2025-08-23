@@ -2,7 +2,7 @@ import { AppRootState } from "@/app/store";
 import { JobCard } from "@/features/job-card";
 import { useGetAllsoftwareQuery } from "@/shared/api/requests/software/software.api";
 import { CustomButton } from "@/widgets/update-experience-widget/imports";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 type Props = { route?: boolean };
@@ -19,6 +19,12 @@ export const JobListSkelet = (props: Props) => {
       inline: "nearest",
     });
   };
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [value - 1]);
+
   const filteredJobs = useMemo(
     () =>
       jobs?.slice(0, value).map((j) => {
@@ -32,7 +38,7 @@ export const JobListSkelet = (props: Props) => {
     [value, jobs, data]
   );
 
-  if (isLoading) return;
+  if (isLoading || !data?.data) return;
   return (
     <div className="w-full min-h-screen py-12 px-4 flex flex-col items-center justify-start gap-12 ">
       {filteredJobs?.map((job) => (
@@ -40,7 +46,7 @@ export const JobListSkelet = (props: Props) => {
       ))}
 
       <CustomButton
-        btnValidation={filteredJobs.length < 2}
+        btnValidation={data.data.length > 2 || false}
         onclick={handleButton}
         label={value >= jobs.length ? "Hidden" : "Show more"}
       />
