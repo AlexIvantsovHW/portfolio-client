@@ -9,12 +9,18 @@ const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
   const openNavbar = useSelector(
     (state: AppRootState) => state.navbarSlice.open
   );
+  const openSidebar = useSelector(
+    (state: AppRootState) => state.sidebarSlice.open
+  );
+  const auth = useSelector((state: AppRootState) => state.authSlice.login);
+
   const [sidebar, setSidebar] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
+  /*   useEffect(() => {
+    const token = auth.access_token;
+
     if (!token) return setSidebar(false);
     setSidebar(true);
-  }, []);
+  }, [auth]); */
   return (
     <div className={`relative w-full min-h-screen overflow-x-hidden ${cl}`}>
       <video
@@ -30,7 +36,7 @@ const BaseLayout = ({ children, cl }: { children: ReactNode; cl?: string }) => {
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header />
         <div className="flex flex-1 h-full">
-          <Suspense fallback={null}>{sidebar && <Sidebar />}</Suspense>
+          <Suspense fallback={null}>{openSidebar && <Sidebar />}</Suspense>
           <main className="flex-grow h-full flex flex-col">
             {children}
             <Suspense fallback={null}>{openNavbar && <Navbar />}</Suspense>

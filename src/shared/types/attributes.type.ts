@@ -12,7 +12,7 @@ export type Attributes = {
   title: string;
   name: string;
   codewars: string;
-  access_token: string;
+  access_token: string | null;
   message: string;
   github: string;
   username: string;
@@ -33,4 +33,5 @@ export type Attributes = {
   website: string;
   companyLogo: string;
   avatar: string;
+  refresh_token: string;
 };

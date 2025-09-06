@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice";
 import { Universities, University } from "@/shared/types";
 import { Tresponse } from "@/shared/types/response.type";
+import { baseQuery } from "../../baseApi";
 
 export const universitiesApi = createApi({
   reducerPath: "universitiesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  baseQuery,
   tagTypes: ["universities"],
   endpoints: (build) => ({
     getAllUniversities: build.query<Universities[], number>({
