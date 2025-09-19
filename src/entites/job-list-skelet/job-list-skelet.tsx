@@ -1,12 +1,12 @@
 import { AppRootState } from "@/app/store";
 import { JobCard } from "@/features/job-card";
 import { useGetAllsoftwareQuery } from "@/shared/api/requests/software/software.api";
+import { Tprop } from "@/shared/types/prop.type";
 import { CustomButton } from "@/widgets/update-experience-widget/imports";
 import { useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-type Props = { route?: boolean };
-export const JobListSkelet = (props: Props) => {
+export const JobListSkelet = (props: Tprop<undefined>) => {
   const { data, isLoading } = useGetAllsoftwareQuery(20);
   const jobs = useSelector((state: AppRootState) => state.jobsSlice.data);
   const [value, setValue] = useState(2);

@@ -1,4 +1,6 @@
-export type Attributes = {
+export type Attributes<T> = {
+  data?: T;
+  route?: boolean;
   id: number;
   companyTitle: string;
   startAt: string;
