@@ -1,17 +1,14 @@
 import { UniversityCard } from "@/features/university-card/university-card";
 import { Universities } from "@/shared/types";
 import { memo } from "react";
+import { Tprop } from "../project-list-skillet/imports";
 
-type Props = {
-  data: Universities[];
-  route?: boolean;
-};
-export const UniversityListSkillet = memo((props: Props) => {
+export const UniversityListSkillet = memo((props: Tprop<Universities[]>) => {
   const { data, route = false } = props;
 
   return (
     <div className="w-full flex flex-col items-center justify-start gap-[10px]">
-      {data.map((university) => {
+      {data?.map((university) => {
         return (
           <UniversityCard
             key={university.id}
