@@ -12,7 +12,7 @@ export const UniversityListSkillet = memo((props: Tprop<Universities[]>) => {
         return (
           <UniversityCard
             key={university.id}
-            university={university}
+            data={university}
             idx={university.id}
             route={route}
           />

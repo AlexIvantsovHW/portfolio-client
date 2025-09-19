@@ -10,7 +10,7 @@ const ProjectListSkillet: React.FC<i.Tprop<i.Projects[]>> = ({
         {data?.map((project, idx) => (
           <i.ProjectCard
             key={project.id || idx}
-            project={project}
+            data={project}
             idx={idx}
             route={!route}
           />

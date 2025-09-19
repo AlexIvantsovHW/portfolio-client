@@ -1,22 +1,16 @@
 import * as i from "./imports";
 
-type Props = {
-  university: i.Universities;
-  idx: number;
-  route: boolean;
-};
-export const UniversityCard = (props: Props) => {
-  const { university, idx, route = false } = props;
+export const UniversityCard = (
+  props: i.Tprop<i.Universities> & { idx: number }
+) => {
+  const { data, idx, route = false } = props;
   const [visible, setVisible] = i.useState(false);
   const [visibleDescription, setVisibleDescription] = i.useState(false);
   const [zoomed, setZoomed] = i.useState(false);
   const navigate = i.useNavigate();
   const [mutate, { isLoading }] = i.useDeleteEducationMutation();
   return (
-    <div
-      key={university.id || idx}
-      className="w-full xl:w-[75%] xxl:w-[50%] h-auto"
-    >
+    <div key={data?.id || idx} className="w-full xl:w-[75%] xxl:w-[50%] h-auto">
       <i.motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -27,8 +21,8 @@ export const UniversityCard = (props: Props) => {
         {" "}
         <div className="flex items-center justify-center p-4 bg-dark/40  ">
           <img
-            src={university.companyLogo}
-            alt={university.companyTitle}
+            src={data?.companyLogo}
+            alt={data?.companyTitle}
             className="
             w-[150px] h-[150px] 
             sm:w-[200px] sm:h-[200px] 
@@ -39,7 +33,7 @@ export const UniversityCard = (props: Props) => {
           />
         </div>
         <div className="w-full flex-grow flex flex-col gap-4 justify-center p-6 text-white bg-black/40 dark:text-white">
-          {route ? (
+          {route ?? (
             <div className="w-full flex items-center justify-end">
               {" "}
               <i.Button
@@ -51,12 +45,12 @@ export const UniversityCard = (props: Props) => {
                   },
                 }}
                 onClick={() => {
-                  navigate(i.ROUTES.UPDATE_EDUCATION + `/${university.id}`);
+                  navigate(i.ROUTES.UPDATE_EDUCATION + `/${data?.id}`);
                 }}
                 endIcon={<i.EditIcon />}
               />{" "}
               <i.Button
-                onClick={() => mutate(university?.id)}
+                onClick={() => mutate(data?.id)}
                 sx={{
                   color: "red",
                   transition: "transform 0.3s ease",
@@ -74,26 +68,26 @@ export const UniversityCard = (props: Props) => {
                 }
               />
             </div>
-          ) : null}
+          )}
           <h1 className="text-2xl font-extrabold tracking-wide uppercase text-center text-pink-400 drop-shadow-[0_0_4px_rgba(255,0,100,0.5)]">
-            {university.companyTitle}
+            {data?.companyTitle}
           </h1>
           <p className="text-xl font-extrabold tracking-wide uppercase text-center text-pink-400 drop-shadow-[0_0_4px_rgba(255,0,100,0.5)]">
-            {university.title}
+            {data?.title}
           </p>
 
           <div className="w-full flex items-center justify-center gap-[10px]">
             {" "}
             <span className="text-[13px] bg-gradient-to-r from-purple-700 to-fuchsia-700 px-2 py-1 rounded-full shadow-md w-fit">
-              🚀 {i.dataConvector(university.startAt)}
+              🚀 {i.dataConvector(data?.startAt)}
             </span>
             <span className="text-[13px] bg-gradient-to-r from-pink-700 to-red-600 px-2 py-1 rounded-full shadow-md w-fit">
-              🛑 {i.dataConvector(university.endAt)}
+              🛑 {i.dataConvector(data?.endAt)}
             </span>
           </div>
 
           <p className="text-base leading-relaxed hidden md:block">
-            {university.description}
+            {data?.description}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mt-4">
@@ -111,7 +105,7 @@ export const UniversityCard = (props: Props) => {
               >
                 {" "}
                 <p className="text-base leading-relaxed max-h-[calc(100%-56px)] custom-scroll">
-                  {university.description}
+                  {data?.description}
                 </p>
                 <button
                   onClick={() => setVisibleDescription(false)}
@@ -139,12 +133,12 @@ export const UniversityCard = (props: Props) => {
               Icon="SchoolIcon"
             />
 
-            <a href={university.link} target="_blank" rel="noopener noreferrer">
+            <a href={data?.link} target="_blank" rel="noopener noreferrer">
               <i.CustomizedBtn label="University" Icon="CastForEducationIcon" />
             </a>
           </div>
         </div>
-        {visible ? (
+        {visible ?? (
           <i.Modal
             open={visible}
             onClose={() => setVisible(false)}
@@ -175,7 +169,7 @@ export const UniversityCard = (props: Props) => {
                 onDoubleClick={() => setZoomed(!zoomed)}
               >
                 <img
-                  src={university.certificate}
+                  src={data?.certificate}
                   alt="Certificate"
                   style={{
                     transition: "transform 0.3s ease",
@@ -189,7 +183,7 @@ export const UniversityCard = (props: Props) => {
               </i.Box>
             </i.Box>
           </i.Modal>
-        ) : null}
+        )}
       </i.motion.div>
     </div>
   );

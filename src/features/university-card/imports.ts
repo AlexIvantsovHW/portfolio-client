@@ -1,5 +1,5 @@
 export { useDeleteEducationMutation } from "@/shared/api/requests/universities/universities.api";
-
+export type { Tprop } from "../project-card/imports";
 export { DeleteForeverIcon } from "../project-card/imports";
 
 export { CustomizedBtn } from "@/shared/ui/custom-button";
