@@ -7,7 +7,7 @@ type Props = {
   type?: "submit" | "button" | "reset";
   route?: string;
   onclick?: () => void;
-  btnValidation: boolean;
+  btnValidation?: boolean;
 };
 
 export const CustomButton = (props: Props) => {
