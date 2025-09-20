@@ -18,4 +18,17 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          mui: ["@mui/material", "@mui/icons-material"],
+          redux: ["@reduxjs/toolkit", "react-redux"],
+          motion: ["motion"],
+          forms: ["react-hook-form", "zod"],
+        },
+      },
+    },
+  },
 });

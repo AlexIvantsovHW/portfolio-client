@@ -35,3 +35,380 @@
       dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500;
   }
 }
+
+/* Космические анимации и эффекты */
+@layer components {
+  .cosmic-bg {
+    @apply relative overflow-hidden;
+  }
+
+  /* Галактическая туманность - основной фон */
+  .galaxy-nebula {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at 20% 30%,
+        rgba(147, 51, 234, 0.3) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 70%,
+        rgba(59, 130, 246, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 50% 50%,
+        rgba(236, 72, 153, 0.15) 0%,
+        transparent 70%
+      );
+    animation: nebula-drift 60s ease-in-out infinite;
+  }
+
+  /* Движущиеся звезды - имитация движения камеры */
+  .moving-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(1px 1px at 10px 20px, #fff, transparent),
+      radial-gradient(
+        1px 1px at 30px 40px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(2px 2px at 50px 10px, #ddd, transparent),
+      radial-gradient(
+        1px 1px at 70px 30px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 90px 50px, #fff, transparent),
+      radial-gradient(
+        2px 2px at 110px 20px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(1px 1px at 130px 40px, #eee, transparent),
+      radial-gradient(
+        1px 1px at 150px 60px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      );
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: star-field-movement 40s linear infinite;
+  }
+
+  /* Дальние звезды - медленное движение */
+  .distant-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        1px 1px at 15px 25px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 35px 45px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 55px 15px,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 75px 35px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 95px 55px,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 115px 25px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 135px 45px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 155px 65px,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+    background-repeat: repeat;
+    background-size: 180px 90px;
+    animation: distant-stars-movement 80s linear infinite;
+  }
+
+  /* Космическая пыль и частицы */
+  .cosmic-dust {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        2px 2px at 20px 30px,
+        rgba(147, 51, 234, 0.4),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 40px 60px,
+        rgba(59, 130, 246, 0.3),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 60px 20px,
+        rgba(236, 72, 153, 0.2),
+        transparent
+      ),
+      radial-gradient(1px 1px at 80px 50px, rgba(34, 197, 94, 0.3), transparent),
+      radial-gradient(
+        2px 2px at 100px 10px,
+        rgba(251, 146, 60, 0.4),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 120px 40px,
+        rgba(168, 85, 247, 0.3),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 140px 70px,
+        rgba(244, 63, 94, 0.2),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 160px 30px,
+        rgba(14, 165, 233, 0.4),
+        transparent
+      );
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: dust-drift 50s ease-in-out infinite;
+  }
+
+  /* Светящиеся туманности */
+  .glowing-nebulae {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse 300px 200px at 25% 25%,
+        rgba(147, 51, 234, 0.1) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 200px 300px at 75% 75%,
+        rgba(59, 130, 246, 0.08) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 250px 150px at 50% 80%,
+        rgba(236, 72, 153, 0.06) 0%,
+        transparent 80%
+      );
+    animation: nebula-pulse 25s ease-in-out infinite;
+  }
+
+  /* Пульсирующие энергетические кольца */
+  .energy-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: 50%;
+    animation: energy-pulse 8s ease-in-out infinite;
+  }
+
+  .energy-rings::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 50%;
+    animation: energy-pulse 8s ease-in-out infinite 2s;
+  }
+
+  .energy-rings::after {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    right: -100px;
+    bottom: -100px;
+    border: 1px solid rgba(236, 72, 153, 0.1);
+    border-radius: 50%;
+    animation: energy-pulse 8s ease-in-out infinite 4s;
+  }
+
+  /* Космические лучи света */
+  .cosmic-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 48%,
+        rgba(255, 255, 255, 0.03) 49%,
+        rgba(255, 255, 255, 0.03) 51%,
+        transparent 52%
+      ),
+      linear-gradient(
+        -45deg,
+        transparent 48%,
+        rgba(255, 255, 255, 0.02) 49%,
+        rgba(255, 255, 255, 0.02) 51%,
+        transparent 52%
+      );
+    animation: ray-sweep 15s linear infinite;
+  }
+}
+
+/* Ключевые кадры анимаций - имитация космического видео */
+
+/* Движение туманности - медленное дрейфование */
+@keyframes nebula-drift {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px) scale(1.05);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-10px) translateY(15px) scale(0.95);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateX(15px) translateY(5px) scale(1.02);
+    opacity: 0.85;
+  }
+}
+
+/* Движение звездного поля - имитация движения камеры */
+@keyframes star-field-movement {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(-200px) translateY(-100px);
+  }
+}
+
+/* Движение дальних звезд - параллакс эффект */
+@keyframes distant-stars-movement {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(-180px) translateY(-90px);
+  }
+}
+
+/* Дрейф космической пыли */
+@keyframes dust-drift {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateX(30px) translateY(-20px) rotate(1deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-20px) translateY(25px) rotate(-1deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateX(25px) translateY(10px) rotate(0.5deg);
+    opacity: 0.7;
+  }
+}
+
+/* Пульсация туманностей */
+@keyframes nebula-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* Энергетические импульсы */
+@keyframes energy-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  25% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.4;
+  }
+  75% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+}
+
+/* Сканирующие лучи света */
+@keyframes ray-sweep {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateX(0%) rotate(2deg);
+    opacity: 0.05;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(100%) rotate(0deg);
+    opacity: 0;
+  }
+}
