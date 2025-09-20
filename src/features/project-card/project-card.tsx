@@ -24,7 +24,7 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
               : "opacity-100 pointer-events-auto"
           }`}
         >
-          {route ?? (
+          {route ? (
             <div className="w-full flex items-center justify-end">
               {" "}
               <i.Button
@@ -59,7 +59,7 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
                 }
               />
             </div>
-          )}
+          ) : null}
 
           <img
             src={data?.logo}

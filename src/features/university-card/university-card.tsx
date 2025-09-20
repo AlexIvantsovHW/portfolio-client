@@ -33,7 +33,7 @@ export const UniversityCard = (
           />
         </div>
         <div className="w-full flex-grow flex flex-col gap-4 justify-center p-6 text-white bg-black/40 dark:text-white">
-          {route ?? (
+          {route ? (
             <div className="w-full flex items-center justify-end">
               {" "}
               <i.Button
@@ -68,7 +68,7 @@ export const UniversityCard = (
                 }
               />
             </div>
-          )}
+          ) : null}
           <h1 className="text-2xl font-extrabold tracking-wide uppercase text-center text-pink-400 drop-shadow-[0_0_4px_rgba(255,0,100,0.5)]">
             {data?.companyTitle}
           </h1>
@@ -138,7 +138,7 @@ export const UniversityCard = (
             </a>
           </div>
         </div>
-        {visible ?? (
+        {visible ? (
           <i.Modal
             open={visible}
             onClose={() => setVisible(false)}
@@ -183,7 +183,7 @@ export const UniversityCard = (
               </i.Box>
             </i.Box>
           </i.Modal>
-        )}
+        ) : null}
       </i.motion.div>
     </div>
   );
