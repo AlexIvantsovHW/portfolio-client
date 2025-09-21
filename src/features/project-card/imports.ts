@@ -13,3 +13,4 @@ export { useDeleteProjectMutation } from "@/shared/api/requests/projects/project
 export { React };
 export { CircularProgress } from "@mui/material";
 export type { Tprop } from "@/shared/types/prop.type";
+export { CardBtn } from "../university-card/imports";

@@ -86,12 +86,8 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
             >
               Visit Project
             </a>
-            <button
-              onClick={() => setVisible(true)}
-              className="flex-1 px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
-            >
-              Description
-            </button>
+
+            <i.CardBtn label="Description" click={() => setVisible(!visible)} />
           </div>
         </div>
 
@@ -105,12 +101,11 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
           <div className="overflow-y-auto text-[14px] leading-relaxed font-light max-h-[calc(100%-56px)] custom-scroll">
             {data?.description}
           </div>
-          <button
-            onClick={() => setVisible(false)}
-            className="mt-4 w-full px-4 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-sm font-semibold shadow-md"
-          >
-            ❌ Hide description
-          </button>
+          <i.CardBtn
+            close={false}
+            label=" ❌ Hide description"
+            click={() => setVisible(!visible)}
+          />
         </i.motion.div>
 
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-white/0 opacity-10 z-0 pointer-events-none rounded-2xl" />
