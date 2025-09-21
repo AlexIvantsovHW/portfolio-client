@@ -1,7 +1,6 @@
 import * as i from "./imports";
-
 const widget = ({ route }: { route?: boolean }) => {
-  const { data, isLoading } = i.useGetAllUniversitiesQuery(20);
+  const { data, isLoading, isError } = i.useGetAllUniversitiesQuery(20);
   const [isClient, setIsClient] = i.useState(false);
   const [value, setValue] = i.useState<number>(2);
   const listEndRef = i.useRef<HTMLDivElement | null>(null);
@@ -9,11 +8,16 @@ const widget = ({ route }: { route?: boolean }) => {
   i.useEffect(() => {
     setIsClient(true);
   }, []);
-
+  const btnProps = i.useMemo(() => {
+    return {
+      validator: data && (data.length <= 2 ? false : true),
+      bttLabel: data && data.length > value ? "See More" : "Hidden All",
+    };
+  }, [data?.length, value]);
   const filteredData = i.useMemo(() => {
     return data && data.slice(0, value);
   }, [value, data]);
-  const handleProjects = () => {
+  const handleProjects = i.useCallback(() => {
     if (data && data.length > value) {
       setValue(value + 2);
       setTimeout(() => {
@@ -23,13 +27,11 @@ const widget = ({ route }: { route?: boolean }) => {
       setValue(2);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
-  if (isLoading || !data || !filteredData)
-    return (
-      <div className="w-full h-full flex-grow flex items-center justify-start">
-        <i.RocketLoader />
-      </div>
-    );
+  }, [data, value]);
+
+  if (isLoading || !data || !filteredData) return <i.RocketLoader />;
+
+  if (isError) return <i.ErrorComponent />;
 
   return (
     <div className="w-full  flex flex-col gap-[10px] items-center justify-start  ">
@@ -43,17 +45,12 @@ const widget = ({ route }: { route?: boolean }) => {
         />
       ) : null}
 
-      <i.UniversityListSkillet
-        route={route}
-        data={filteredData?.sort(
-          (a, b) => Date.parse(b.endAt) - Date.parse(a.endAt)
-        )}
-      />
+      <i.UniversityListSkillet route={route} data={filteredData} />
       <div ref={listEndRef}></div>
       <i.CustomButton
-        btnValidation={data.length <= 2 ? false : true}
+        btnValidation={btnProps?.validator}
         onclick={handleProjects}
-        label={data.length > value ? "See More" : "Hidden All"}
+        label={btnProps?.bttLabel}
       />
     </div>
   );

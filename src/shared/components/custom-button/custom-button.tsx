@@ -22,7 +22,7 @@ export const CustomButton = (props: Props) => {
   } = props;
   if (!btnValidation) return;
   const isDisabled = isLoading || array?.length === 0;
-
+  console.log("Custom button");
   const buttonContent = (
     <button
       disabled={isDisabled}

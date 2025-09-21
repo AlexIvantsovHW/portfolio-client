@@ -169,7 +169,7 @@ export const UniversityCard = (
                 onDoubleClick={() => setZoomed(!zoomed)}
               >
                 <img
-                  src={data?.certificate}
+                  src={data?.certificate ?? "./images/education-default.png"}
                   alt="Certificate"
                   style={{
                     transition: "transform 0.3s ease",
