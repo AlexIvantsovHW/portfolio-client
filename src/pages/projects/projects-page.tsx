@@ -13,13 +13,7 @@ const ProjectsPage = () => {
       >
         PROJECTS
       </h1>
-      {isLoading ? (
-        <div className="w-full h-full flex-grow flex items-center justify-start">
-          <RocketLoader />
-        </div>
-      ) : (
-        <ProjectWidget route={false} />
-      )}
+      {isLoading ? <RocketLoader /> : <ProjectWidget route={false} />}
     </div>
   );
 };
