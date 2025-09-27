@@ -5,6 +5,10 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
     const [visible, setVisible] = i.useState(false);
     const navigate = i.useNavigate();
     const [mutate, { isLoading }] = i.useDeleteProjectMutation();
+    const handleNavigate = () => {
+      console.log("handleNavigate");
+      navigate(i.ROUTES.UPDATE_PROJECTS + `/${data?.id}`);
+    };
     return (
       <i.motion.div
         initial={{ x: idx % 2 === 0 ? -100 : 100, opacity: 0, scale: 0.95 }}
@@ -35,9 +39,7 @@ export const ProjectCard: i.React.FC<i.Tprop<i.Projects> & { idx: number }> =
                     transform: "scale(1.1)",
                   },
                 }}
-                onClick={() => {
-                  navigate(i.ROUTES.UPDATE_PROJECTS + `/${data?.id}`);
-                }}
+                onClick={handleNavigate}
                 endIcon={<i.EditIcon />}
               />
               <i.Button

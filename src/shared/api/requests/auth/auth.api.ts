@@ -17,7 +17,7 @@ export const authApi = createApi({
     >({
       query(auth) {
         return {
-          url: `/api/auth`,
+          url: `/auth/login`,
           method: "POST",
           body: auth,
         };
@@ -34,7 +34,7 @@ export const authApi = createApi({
     signin: build.mutation<{ message: string }, Tsignin>({
       query(data) {
         return {
-          url: `/api/auth/signin`,
+          url: `/auth/signin`,
           method: "POST",
           body: data,
         };

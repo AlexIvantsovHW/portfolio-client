@@ -15,15 +15,14 @@ const widget = (props: Props) => {
   const filteredData = i.useMemo(() => {
     return projects.slice(0, value);
   }, [projects, value]);
-  const handleProjects = i.useCallback(() => {
+  const handleProjects = () => {
     if (projects.length > value) {
       setValue(value + 2);
     } else {
       setValue(3);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [projects, value]);
-
+  };
   return (
     <div className="w-full  flex flex-col items-center justify-start gap-[10px] ">
       <i.ProjectListSkillet data={filteredData} route={props.route} />

@@ -19,6 +19,7 @@ export const JobListSkelet = memo(
     const topRef = useRef<HTMLDivElement | null>(null);
 
     const handleButton = useCallback(() => {
+      console.log("handleButton");
       if (jobs.length > value) {
         value >= jobs.length ? setValue(2) : setValue(value + 2);
         setTimeout(() => {

@@ -9,13 +9,10 @@ export const PageGuard = ({ children }: Props) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}api/auth/check`,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}auth/check`, {
+          method: "GET",
+          credentials: "include",
+        });
 
         if (res.ok) {
           setLoading(false);
