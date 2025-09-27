@@ -1,4 +1,3 @@
-import { memo } from "react";
 import * as i from "./imports";
 
 type Props = {
@@ -15,7 +14,7 @@ type Props = {
   route?: boolean;
 };
 
-const FeedbackCard = memo(
+const FeedbackCard = i.memo(
   ({
     id,
     name,
@@ -91,22 +90,20 @@ const FeedbackCard = memo(
                 <p className="overflow-y-auto text-[14px] leading-relaxed font-light max-h-[calc(100%-56px)] custom-scroll">
                   {description}
                 </p>
-                <button
-                  onClick={() => setVisible(false)}
-                  className="mt-4 w-full transition duration-300  px-4 max-w-[350px] py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-sm font-semibold shadow-md"
-                >
-                  ❌ Hide feedback
-                </button>
+                <i.CardBtn
+                  label="❌ Hide feedback"
+                  click={() => setVisible(!visible)}
+                  close={false}
+                />
               </i.motion.div>
             ) : (
               <div className="md:hidden transition duration-300  flex flex-col items-center justify-center">
                 {" "}
-                <button
-                  onClick={() => setVisible(true)}
-                  className="flex-1 px-2 py-2 max-w-[200px] rounded-full border border-pink-500 text-pink-500 hover:bg-pink-600 hover:text-white transition duration-300 text-[13px] font-semibold shadow-md text-center"
-                >
-                  Feedback
-                </button>
+                <i.CardBtn
+                  label="Feedback"
+                  click={() => setVisible(!visible)}
+                  close={false}
+                />
               </div>
             )}
             <p className="hidden md:block text-base text-white/90 leading-relaxed text-center md:text-left font-light">

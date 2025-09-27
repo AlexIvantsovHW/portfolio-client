@@ -1,5 +1,6 @@
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { memo } from "react";
 import {
   FieldValues,
   Path,
@@ -14,46 +15,51 @@ type Props<T extends FieldValues> = {
   registerName: Path<T>;
   label: string;
 };
-export const CustomDatePicker = <T extends FieldValues>(props: Props<T>) => {
-  const { watch, setValue, registerName, label } = props;
-  return (
-    <DatePicker
-      label={label}
-      value={dayjs(watch(registerName) as string)}
-      onChange={(date) => {
-        if (date)
-          setValue(
-            registerName,
-            date.toISOString() as PathValue<T, typeof registerName>
-          );
-      }}
-      slotProps={{
-        textField: {
-          fullWidth: true,
-          variant: "outlined",
-          InputProps: {
-            sx: {
-              backgroundColor: "#1e1e1e",
-              color: "white",
-              borderRadius: "8px",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#a855f7",
+export const CustomDatePicker = memo(
+  <T extends FieldValues>(props: Props<T>) => {
+    const { watch, setValue, registerName, label } = props;
+    return (
+      <DatePicker
+        label={label}
+        value={dayjs(watch(registerName) as string)}
+        onChange={(date) => {
+          if (date)
+            setValue(
+              registerName,
+              date.toISOString() as PathValue<T, typeof registerName>
+            );
+        }}
+        slotProps={{
+          textField: {
+            fullWidth: true,
+            variant: "outlined",
+            InputProps: {
+              sx: {
+                backgroundColor: "#1e1e1e",
+                color: "white",
+                borderRadius: "8px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#a855f7",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ec4899",
+                },
+                "& .MuiSvgIcon-root": {
+                  color: "white",
+                },
               },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ec4899",
-              },
-              "& .MuiSvgIcon-root": {
+            },
+            InputLabelProps: {
+              sx: {
                 color: "white",
               },
             },
           },
-          InputLabelProps: {
-            sx: {
-              color: "white",
-            },
-          },
-        },
-      }}
-    />
-  );
-};
+        }}
+      />
+    );
+  },
+  (prevProps, nextProps) => {
+    return prevProps.registerName === nextProps.registerName;
+  }
+);

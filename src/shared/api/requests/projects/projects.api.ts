@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setData } from "./slice/projects.slice";
 import { Project, Projects } from "@/shared/types/projects.type";
 import { Tresponse } from "@/shared/types/response.type";
+import { baseQueryWithReauth } from "../../baseApi";
 
 export const projectsApi = createApi({
   reducerPath: "projectsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["projects"],
   endpoints: (build) => ({
     getAllProjects: build.query<Projects[], number>({

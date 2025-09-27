@@ -1,28 +1,31 @@
 import { Tlogin, Tsignin } from "@/shared/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setLogin, setSignin } from "./slice";
+import { baseQuery, baseQueryWithReauth } from "../../baseApi";
+
+import { setSidebarOpen } from "@/widgets/sidebar/slice";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
     login: build.mutation<
-      { access_token: string; response: { message: string[]; code: number } },
+      {
+        response: { message: string[]; code: number };
+      },
       Tlogin
     >({
       query(auth) {
         return {
-          url: `/api/auth`,
+          url: `/auth/login`,
           method: "POST",
           body: auth,
         };
       },
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await queryFulfilled;
-          localStorage.setItem("access_token", data.access_token);
-          dispatch(setLogin({ access_token: data.access_token }));
-          window.location.replace(import.meta.env.VITE_FRONTEND_URL as string);
+          dispatch(setSidebarOpen(true));
+          //window.location.replace(import.meta.env.VITE_FRONTEND_URL as string);
         } catch (err) {
           console.log(err);
         }
@@ -31,7 +34,7 @@ export const authApi = createApi({
     signin: build.mutation<{ message: string }, Tsignin>({
       query(data) {
         return {
-          url: `/api/auth/signin`,
+          url: `/auth/signin`,
           method: "POST",
           body: data,
         };
@@ -47,4 +50,5 @@ export const authApi = createApi({
     }),
   }),
 });
-export const { useLoginMutation, useSigninMutation } = authApi;
+export const { useLoginMutation, useSigninMutation /* useRefreshMutation */ } =
+  authApi;

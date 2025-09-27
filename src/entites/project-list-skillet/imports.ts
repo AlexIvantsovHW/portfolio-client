@@ -1,8 +1,6 @@
-import { Projects } from "@/shared/types/projects.type";
-import { dataConvector } from "@/shared/utils/data-convector";
-import { memo } from "react";
-
-import { AnimatePresence } from "motion/react";
-import { ProjectCard } from "@/features/project-card";
-export { dataConvector, memo, AnimatePresence, ProjectCard };
-export type { Projects };
+export type { Projects } from "@/shared/types";
+export { dataConvector } from "@/shared/utils/data-convector";
+export { memo } from "react";
+export type { Tprop } from "@/shared/types/prop.type";
+export { AnimatePresence } from "motion/react";
+export { ProjectCard } from "@/features/project-card";

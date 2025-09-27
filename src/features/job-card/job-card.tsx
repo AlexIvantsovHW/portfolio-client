@@ -9,7 +9,10 @@ export const JobCard = ({ job, route }: JobCardType) => {
   const { companyTitle, description, endAt, jobTitle, startAt, id, logo } = job;
   const navigate = i.useNavigate();
   const [mutate, { isLoading }] = i.useDeleteJobMutation();
-
+  const handleNavigate = () => {
+    console.log("handleNavigate");
+    navigate(i.ROUTES.UPDATE_EXPERIENCE + `/${id}`);
+  };
   return (
     <i.motion.div
       key={id}
@@ -47,9 +50,7 @@ export const JobCard = ({ job, route }: JobCardType) => {
                 transform: "scale(1.1)",
               },
             }}
-            onClick={() => {
-              navigate(i.ROUTES.UPDATE_EXPERIENCE + `/${id}`);
-            }}
+            onClick={handleNavigate}
             endIcon={<i.EditIcon />}
           />
         </div>

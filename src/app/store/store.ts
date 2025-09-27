@@ -27,6 +27,7 @@ import { authApi } from "@/shared/api/requests/auth";
 import { authSlice } from "@/shared/api/requests/auth/slice";
 import { softwareApi } from "@/shared/api/requests/software/software.api";
 import { softwareSlice } from "@/shared/api/requests/software/slice/software.slice";
+import { sidebarSlice } from "@/widgets/sidebar/slice";
 
 const persistConfig = {
   key: "root",
@@ -52,6 +53,7 @@ const rootReducer = combineReducers({
   authSlice: authSlice.reducer,
   [softwareApi.reducerPath]: softwareApi.reducer,
   softwareSlice: softwareSlice.reducer,
+  sidebarSlice: sidebarSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

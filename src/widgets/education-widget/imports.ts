@@ -5,3 +5,5 @@ export { UniversityListSkillet } from "@/entites/university-list-skillet";
 export { CustomButton, ROUTES } from "../update-experience-widget/imports";
 export { RocketLoader } from "@/imports";
 export { useGetAllUniversitiesQuery } from "@/shared/api/requests/universities/universities.api";
+export { useCallback } from "react";
+export { ErrorComponent } from "@/shared/ui/error-component/error-component";

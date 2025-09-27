@@ -1,3 +1,4 @@
+import { Tprop } from "@/shared/types/prop.type";
 import * as i from "./imports";
 
 const defaultValues: i.TfeedbackForm = {
@@ -9,10 +10,9 @@ const defaultValues: i.TfeedbackForm = {
   country: "",
   city: "",
 };
-type Props = { feedback: i.Tfeedbacks };
 
-export const UpdateSpecificFeedbackWidget = (props: Props) => {
-  const { feedback } = props;
+export const UpdateSpecificFeedbackWidget = (props: Tprop<i.Tfeedbacks>) => {
+  const { data } = props;
   const [alert, setAlert] = i.useState({ status: true, message: "" });
   const navigate = i.useNavigate();
   const {
@@ -25,21 +25,21 @@ export const UpdateSpecificFeedbackWidget = (props: Props) => {
     defaultValues,
   });
   i.useEffect(() => {
-    setValue("city", feedback.city);
-    setValue("companyTitle", feedback.companyTitle);
-    setValue("country", feedback.country);
-    setValue("description", feedback.description);
-    setValue("logo", feedback.logo);
-    setValue("name", feedback.name);
-    setValue("position", feedback.position);
-  }, [feedback]);
+    setValue("city", data?.city);
+    setValue("companyTitle", data?.companyTitle);
+    setValue("country", data?.country);
+    setValue("description", data?.description);
+    setValue("logo", data?.logo);
+    setValue("name", data?.name);
+    setValue("position", data?.position);
+  }, [data]);
   const [mutate, { isLoading }] = i.useUpdateFeedbackMutation();
 
   const onSubmit = async (formData: i.TfeedbackForm) => {
     let payload: i.Tfeedbacks & { date: string } = {
       ...formData,
       date: i.dayjs().toISOString(),
-      id: feedback.id,
+      id: data?.id,
     };
 
     try {

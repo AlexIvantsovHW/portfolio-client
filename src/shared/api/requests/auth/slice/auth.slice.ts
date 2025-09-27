@@ -6,7 +6,7 @@ interface MyState {
   signin: { message: string };
 }
 const initialState: MyState = {
-  login: { access_token: "" },
+  login: { access_token: null },
   signin: { message: "" },
 };
 
